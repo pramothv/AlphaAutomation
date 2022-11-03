@@ -282,6 +282,10 @@ public class ILABFlow extends BaseClass {
         Assert.assertTrue("unable to captureUserName", jCollaborateQALoginPage.captureUserName(username));
         Assert.assertTrue("unable to capturePassword", jCollaborateQALoginPage.capturePassword(password));
 
+
+        ExtentCucumberAdapter.addTestStepLog("The message is good");
+
+
         takeScreenShotNew(this.scenario);
 //        seleniumAdaptor.pauseFor(1);
 

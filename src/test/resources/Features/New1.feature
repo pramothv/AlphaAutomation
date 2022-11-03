@@ -5,8 +5,8 @@ Feature: ILab Assessment23
   Scenario Outline: Job Application to training2
 
     Given I capture "<username>""<password>" and click Signin
-    When I click on JConnectBuild Option
-    And I click on Subject and CreateSubject Option and capture "<firstname>""<lastname>""<site>""<subNum>""<subExtID>""<phoneCode>""<phoneNum>""<email>""<role>""<startDate>""<language>"
+#    When I click on JConnectBuild Option
+#    And I click on Subject and CreateSubject Option and capture "<firstname>""<lastname>""<site>""<subNum>""<subExtID>""<phoneCode>""<phoneNum>""<email>""<role>""<startDate>""<language>"
 
 #     And I click on contact us
 #    And I type in my personal details "<applicatName>" and "<surname>" "<emailAddress>" "<message>"
