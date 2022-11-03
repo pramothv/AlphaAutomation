@@ -1,7 +1,7 @@
 @testing
 Feature: ILab Assessment23
 
-  @testing23
+  @testinsample
   Scenario Outline: Job Application to training2
 
     Given I capture "<username>""<password>" and click Signin
