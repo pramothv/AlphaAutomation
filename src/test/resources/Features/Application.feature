@@ -24,9 +24,9 @@ Feature: ILab Assessment
     And I click on contact us
 #    And I type in my personal details "<applicatName>" and "<surname>" "<emailAddress>" "<message>"
     And I type in my details "<applicatName>" and "<surname>" "<emailAddress>" "<message>"
-#    Then i should be able to submit the application and quite the browser
+    Then i should be able to submit the application and quite the browser
 
 
     Examples:
       | applicatName |surname| emailAddress							  |message|
-      | Priscilla    |Muleye | automationAssessment@iLabQuality.com   | I am respoding to the advitised position|
+      | Pram         |Muleye | automa@iLabQuality.com                  | I am respoding to theon|

@@ -28,7 +28,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
 
-    String broserName="Edge";
+    String broserName="chrome";
+//    String broserName="Edge";
     public SeleniumAction seleniumAction;
  public  ExtentTest extentTest;
 
@@ -66,7 +67,7 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
          System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver.exe");
             driver = new ChromeDriver();
                }
-        else if(broserName.equalsIgnoreCase("chrome")){
+        else if(broserName.equalsIgnoreCase("firefox")){
             System.setProperty("webdriver.firefox.marionette", webDriverlocationpath+ "\\geckodriver.exe");
             driver =new FirefoxDriver();
         }

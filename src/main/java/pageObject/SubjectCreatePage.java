@@ -30,8 +30,14 @@ public class SubjectCreatePage extends BaseClass {
     @FindBy(xpath="(//span[text()='Subject'])[1]")
     private WebElement btn_Subject;
 
+    @FindBy(xpath="(//i[@class='anticon anticon-menu-unfold trigger'])[1]")
+    private WebElement btn_JconnectWidget;
+
     @FindBy(xpath="(//span[text()='Create'])[1]")
     private WebElement btn_Create;
+
+    @FindBy(xpath="(//i[@class='anticon anticon-edit app-menu side-menu-icon'])[1]")
+    private WebElement btn_Create1;
 
     @FindBy(xpath="(//input[@id='firstName'])[1]")
     private WebElement txt_FirstName;
@@ -113,30 +119,68 @@ public class SubjectCreatePage extends BaseClass {
     public boolean clickSubject(){
         try{
             seleniumAdaptor.pauseFor(2);
-            System.out.println("The btn_Subject is not clicked");
-            seleniumAdaptor.JavaScriptClick(btn_Subject);
+//            seleniumAction.WaitFoElementToBeVisible(btn_Subject);
+            loggerObj.info("The btn_Subject is not clicked");
+//            seleniumAdaptor.JavaScriptClick(btn_Subject);
+            seleniumAction.clickElement(btn_Subject);
 //			loggerObj.debug("Print Logger");
             loggerObj.info("The btn_Subject is clicked");
 
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
 
 
-
-
-    public boolean clickCreate(){
+    public boolean clickJconnectWidget(){
         try{
             seleniumAdaptor.pauseFor(2);
-            System.out.println("The btn_Create is not clicked");
-            seleniumAdaptor.JavaScriptClick(btn_Create);
+
+            loggerObj.info("The btn_JconnectWidget is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_JconnectWidget);
+            loggerObj.info("The btn_JconnectWidget is clicked");
+            seleniumAdaptor.pauseFor(5);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickJconnectWidget1(){
+        try{
+            seleniumAdaptor.pauseFor(2);
+
+            loggerObj.info("The btn_JconnectWidget is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_JconnectWidget);
+            loggerObj.info("The btn_JconnectWidget is clicked");
+            seleniumAdaptor.pauseFor(5);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+    public boolean clickCreate(){
+        try{
+            seleniumAdaptor.pauseFor(4);
+//            seleniumAction.WaitFoElementToBeVisible(btn_Create);
+            loggerObj.info("The btn_Create is not clicked");
+//            seleniumAdaptor.JavaScriptClick(btn_Create1);
+            seleniumAction.clickElement(btn_Create1);
+            seleniumAdaptor.JavaScriptClick(btn_Create1);
+            seleniumAdaptor.JavaScriptClick(btn_Create1);
+            seleniumAdaptor.JavaScriptClick(btn_Create1);
 //			loggerObj.debug("Print Logger");
             loggerObj.info("The btn_Create is clicked");
 
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -144,7 +188,7 @@ public class SubjectCreatePage extends BaseClass {
     public boolean captureFirstName(String firstname){
         try{
 //			seleniumAdaptor.pauseFor(2);
-            System.out.println("The txt_FirstName is not clicked");
+            loggerObj.info("The txt_FirstName is not clicked");
             seleniumAdaptor.JavaScriptClick(txt_FirstName);
             seleniumAction.clearText(txt_FirstName);
             seleniumAction.typeText(txt_FirstName,firstname);
@@ -157,7 +201,7 @@ public class SubjectCreatePage extends BaseClass {
     public boolean captureLastName(String lastname){
         try{
 //			seleniumAdaptor.pauseFor(2);
-            System.out.println("The txt_LastName is not clicked");
+            loggerObj.info("The txt_LastName is not clicked");
             seleniumAdaptor.JavaScriptClick(txt_LastName);
             seleniumAction.clearText(txt_LastName);
             seleniumAction.typeText(txt_LastName,lastname);
@@ -187,7 +231,7 @@ public class SubjectCreatePage extends BaseClass {
     public boolean captureSubjectNumMRN(String subNum){
         try{
 //			seleniumAdaptor.pauseFor(2);
-            System.out.println("The input_SubjectNumMRN is not clicked");
+            loggerObj.info("The input_SubjectNumMRN is not clicked");
             seleniumAdaptor.JavaScriptClick(input_SubjectNumMRN);
             seleniumAction.clearText(input_SubjectNumMRN);
             seleniumAction.typeText(input_SubjectNumMRN,subNum);
@@ -200,7 +244,7 @@ public class SubjectCreatePage extends BaseClass {
     public boolean captureSubjectExtID(String subExtID){
         try{
 //			seleniumAdaptor.pauseFor(2);
-            System.out.println("The SubjectExtID is not clicked");
+            loggerObj.info("The input_SubjectExtID is not clicked");
             seleniumAdaptor.JavaScriptClick(input_SubjectExtID);
             seleniumAction.clearText(input_SubjectExtID);
             seleniumAction.typeText(input_SubjectExtID,subExtID);
@@ -228,7 +272,7 @@ public class SubjectCreatePage extends BaseClass {
     public boolean capturePhoneNum(String phoneNum){
         try{
 //			seleniumAdaptor.pauseFor(2);
-            System.out.println("The input_PhoneNum is not clicked");
+            loggerObj.info("The input_PhoneNum is not clicked");
             seleniumAdaptor.JavaScriptClick(input_PhoneNum);
             seleniumAction.clearText(input_PhoneNum);
             seleniumAction.typeText(input_PhoneNum,phoneNum);
@@ -242,7 +286,7 @@ public class SubjectCreatePage extends BaseClass {
     public boolean captureEmail(String email){
         try{
 //			seleniumAdaptor.pauseFor(2);
-            System.out.println("The email is not clicked");
+            loggerObj.info("The input_Email is not clicked");
             seleniumAdaptor.JavaScriptClick(input_Email);
             seleniumAction.clearText(input_Email);
             seleniumAction.typeText(input_Email,email);
@@ -272,7 +316,7 @@ public class SubjectCreatePage extends BaseClass {
 
 //            input_Role.sendKeys(new CharSequence[]{Keys.TAB});
 //            input_Role1.sendKeys(TAB);
-            seleniumAdaptor.pauseFor(10);
+//            seleniumAdaptor.pauseFor(10);
 
             return true;
         } catch(Exception var2) {
@@ -355,6 +399,23 @@ public class SubjectCreatePage extends BaseClass {
         }
     }
 
+
+    public boolean captureSubjectStartDate1(String startDate){
+        try{
+//			seleniumAdaptor.pauseFor(2);
+//            System.out.println("The input_Date is not clicked");
+//            seleniumAdaptor.JavaScriptClick(input_Date);
+//            seleniumAction.clearText(input_Date);
+            seleniumAdaptor.JavaScriptSetValue(input_SubjectStartDate3,startDate);
+            loggerObj.info("The input_SubjectStartDate3 is captured");
+//            seleniumAdaptor.pauseFor(4);
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
 //    public boolean captureSubjectStartDate1(String month, String day) {
 //
 //        seleniumAdaptor.pauseFor(2);
@@ -381,6 +442,7 @@ public class SubjectCreatePage extends BaseClass {
 //    }
 
     public boolean captureLanguage(String language){
+
         try{
 //			seleniumAdaptor.pauseFor(2);
 //            System.out.println("The inputname is not clicked");
@@ -425,7 +487,7 @@ public class SubjectCreatePage extends BaseClass {
     public boolean clickSaveandNext(){
         try{
             seleniumAdaptor.pauseFor(2);
-            System.out.println("The SaveandNext is not clicked");
+            loggerObj.info("The btn_SaveandNext is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_SaveandNext);
 //			loggerObj.debug("Print Logger");
             loggerObj.info("The btn_SaveandNext is clicked");
@@ -440,7 +502,7 @@ public class SubjectCreatePage extends BaseClass {
     public boolean clickSubCreationOK(){
         try{
             seleniumAdaptor.pauseFor(2);
-            System.out.println("The SubCreationOK is not clicked");
+            loggerObj.info("The SubCreationOK is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_SubCreationOK);
 //			loggerObj.debug("Print Logger");
             loggerObj.info("The SubCreationOK is clicked");
