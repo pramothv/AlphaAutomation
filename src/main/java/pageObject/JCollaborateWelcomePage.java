@@ -106,10 +106,9 @@ public class JCollaborateWelcomePage extends BaseClass {
         public boolean clickJConnectBuild(){
         try{
 //        seleniumAdaptor.pauseFor(2);
-        System.out.println("The lnk_JConnectBuild is not clicked");
-        seleniumAdaptor.JavaScriptClick(lnk_JConnectBuild);
-//			loggerObj.debug("Print Logger");
-        loggerObj.info("The lnk_JConnectBuild is clicked");
+            loggerObj.info("The lnk_JConnectBuild is not clicked");
+             seleniumAdaptor.JavaScriptClick(lnk_JConnectBuild);
+             loggerObj.info("The lnk_JConnectBuild is clicked");
 
         return true;
         } catch(Exception var2) {

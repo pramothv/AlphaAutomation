@@ -30,6 +30,9 @@ public class SubjectCreatePage extends BaseClass {
     @FindBy(xpath="(//span[text()='Subject'])[1]")
     private WebElement btn_Subject;
 
+    @FindBy(xpath="(//span[text()='Study'])[1]")
+    private WebElement btn_Study;
+
     @FindBy(xpath="(//i[@class='anticon anticon-menu-unfold trigger'])[1]")
     private WebElement btn_JconnectWidget;
 
@@ -99,8 +102,22 @@ public class SubjectCreatePage extends BaseClass {
     @FindBy(xpath="(//button[@class='ant-btn ant-btn-default'])[1]")
     private WebElement btn_VisitPrevious;
 
+    private By txt_EDiaryVersionNum = By.xpath("//*[contains(text(),'91')]");
+
+    private By txt_SubCreationAlertMsg = By.xpath("//*[contains(text(),'Proceed with the entered details ?')]");
+
+    private By txt_SubCreationCancelBtnMsg = By.xpath("//*[contains(text(),'Cancel')]");
+
+    private By txt_EDiaryVersionNum1 = By.xpath("(//span[@class='ant-typography headerData headerData-version-number ant-typography-ellipsis ant-typography-ellipsis-single-line'])[1]");
+
+    private By txt_EDiaryVersionDesc = By.xpath("(//span[@class='infoLabel'])[3]");
+
     @FindBy(xpath="(//i[@title='Custom date'])[1]")
     private WebElement lnk_CustomDate;
+
+    @FindBy(xpath="//span[@class='ant-calendar-picker']/div/input")
+    private WebElement btn_CalenderIconSubjectCreate;
+
     @FindBy(xpath="(//input[@placeholder='Select date'])[1]")
     private WebElement input_SubjectStartDate;
 
@@ -133,6 +150,20 @@ public class SubjectCreatePage extends BaseClass {
         }
     }
 
+    public boolean clickStudy(){
+        try{
+            seleniumAdaptor.pauseFor(2);
+
+            loggerObj.info("The btn_Study is not clicked");
+            seleniumAction.clickElement(btn_Study);
+            loggerObj.info("The btn_Study is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
 
     public boolean clickJconnectWidget(){
         try{
@@ -167,7 +198,7 @@ public class SubjectCreatePage extends BaseClass {
     }
     public boolean clickCreate(){
         try{
-            seleniumAdaptor.pauseFor(4);
+            seleniumAdaptor.pauseFor(0);
 //            seleniumAction.WaitFoElementToBeVisible(btn_Create);
             loggerObj.info("The btn_Create is not clicked");
 //            seleniumAdaptor.JavaScriptClick(btn_Create1);
@@ -194,6 +225,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.typeText(txt_FirstName,firstname);
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -207,6 +239,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.typeText(txt_LastName,lastname);
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -224,6 +257,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.clickElement(driver.findElement(By.xpath("//ul//li[text()='" + site + "']")));
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -237,6 +271,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.typeText(input_SubjectNumMRN,subNum);
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -250,6 +285,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.typeText(input_SubjectExtID,subExtID);
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -264,6 +300,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.clickElement(driver.findElement(By.xpath("//ul//li[text()='" + phoneCode + "']")));
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -278,6 +315,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.typeText(input_PhoneNum,phoneNum);
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -292,6 +330,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.typeText(input_Email,email);
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -320,6 +359,7 @@ public class SubjectCreatePage extends BaseClass {
 
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -369,7 +409,24 @@ public class SubjectCreatePage extends BaseClass {
             else{
                 seleniumAdaptor.JavaScriptClick(input_SubjectStartDate);
                 loggerObj.info("The input_SubjectStartDate is clicked");
+
             return  false;
+
+        }
+    }
+
+    public boolean clickCalenderIconSubjectCreate() {
+        try {
+
+            loggerObj.info("The btn_CalenderIconSubjectCreate is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_CalenderIconSubjectCreate);
+            loggerObj.info("The btn_CalenderIconSubjectCreate is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
         }
     }
 
@@ -448,10 +505,11 @@ public class SubjectCreatePage extends BaseClass {
 //            System.out.println("The inputname is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_drpLanguage);
 //            seleniumAction.clearText(txt_UserName);
-            seleniumAdaptor.pauseFor(2);
+//            seleniumAdaptor.pauseFor(2);
             seleniumAction.clickElement(driver.findElement(By.xpath("//ul//li[text()='" + language + "']")));
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -486,7 +544,7 @@ public class SubjectCreatePage extends BaseClass {
 
     public boolean clickSaveandNext(){
         try{
-            seleniumAdaptor.pauseFor(2);
+//            seleniumAdaptor.pauseFor(2);
             loggerObj.info("The btn_SaveandNext is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_SaveandNext);
 //			loggerObj.debug("Print Logger");
@@ -494,6 +552,7 @@ public class SubjectCreatePage extends BaseClass {
 
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -501,7 +560,7 @@ public class SubjectCreatePage extends BaseClass {
 
     public boolean clickSubCreationOK(){
         try{
-            seleniumAdaptor.pauseFor(2);
+            seleniumAdaptor.pauseFor(1);
             loggerObj.info("The SubCreationOK is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_SubCreationOK);
 //			loggerObj.debug("Print Logger");
@@ -509,6 +568,7 @@ public class SubjectCreatePage extends BaseClass {
 
             return true;
         } catch(Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -569,6 +629,46 @@ public class SubjectCreatePage extends BaseClass {
             return false;
         }
     }
+    public String getSubCreationAlertMsg() {
+
+        seleniumAction.clickElement(txt_SubCreationAlertMsg);
+        loggerObj.info("The txt_SubCreationAlertMsg is clicked");
+        String alertmsg = driver.findElement(txt_SubCreationAlertMsg).getText();
+        loggerObj.info("The SubjectCreation Alert Message is :" + alertmsg);
+        return alertmsg;
+    }
+
+    public String getSubCreationCancelBtnMsg() {
+
+        seleniumAction.clickElement(txt_SubCreationCancelBtnMsg);
+        String cancelbtnmsg = driver.findElement(txt_SubCreationCancelBtnMsg).getText();
+        loggerObj.info("The SubjectCreation Cancel button text is :" + cancelbtnmsg);
+        return cancelbtnmsg;
+    }
+
+
+
+    public String getEDiaryVersionNum() {
+
+        seleniumAction.clickElement(txt_EDiaryVersionNum1);
+        loggerObj.info("The txt_EDiaryVersionNum is clicked");
+        String versionnum = driver.findElement(txt_EDiaryVersionNum1).getText();
+        loggerObj.info("The EDiaryVersion Number is :" + versionnum);
+        return versionnum;
+    }
+
+    public String getEDiaryVersion() {
+
+        seleniumAction.clickElement(txt_EDiaryVersionDesc);
+        loggerObj.info("The txt_EDiaryVersionDesc is clicked");
+        String EDiary = driver.findElement(txt_EDiaryVersionDesc).getText();
+        loggerObj.info("The EDiaryVersion Description in JConnect is :" + EDiary);
+        return EDiary;
+    }
+
+
+
+
 
 
 }

@@ -11,8 +11,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import pageObject.IlabPageObjects;
-import pageObject.SearchPageObject;
+
 import seleniumaction.SeleniumAction;
 import seleniumadaptor.SeleniumAdaptor;
 
@@ -22,10 +21,10 @@ import java.util.concurrent.TimeUnit;
 public class JCollaborate extends BaseClass {
 
     PropertiesFileReader obj=new PropertiesFileReader();
-    SearchPageObject searchPageObject;
+
     SeleniumAction seleniumAction;
     SeleniumAdaptor seleniumAdaptor;
-    public IlabPageObjects ilabPageObjects;
+
     private Scenario scenario;
     public static ExtentTest extentTest;
 

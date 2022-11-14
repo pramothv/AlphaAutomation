@@ -42,6 +42,7 @@ public class JCollaborateQALoginPage extends BaseClass {
             seleniumAdaptor.JavaScriptClick(txt_UserName);
             seleniumAction.clearText(txt_UserName);
             seleniumAction.typeText(txt_UserName,username);
+            loggerObj.info("The txt_UserName is captured successfully");
             return true;
         } catch(Exception var2) {
             var2.printStackTrace();
@@ -56,7 +57,7 @@ public class JCollaborateQALoginPage extends BaseClass {
             seleniumAdaptor.JavaScriptClick(txt_Password);
             seleniumAction.clearText(txt_Password);
             seleniumAction.typeText(txt_Password,password);
-
+            loggerObj.info("The txt_Password is captured successfully");
 
             return true;
         } catch(Exception var2) {
@@ -68,9 +69,8 @@ public class JCollaborateQALoginPage extends BaseClass {
     public boolean clickSignIn(){
         try{
 //            seleniumAdaptor.pauseFor(2);
-            loggerObj.info("The btn_SignIn is clicked");
+            loggerObj.info("The btn_SignIn is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_SignIn);
-//			loggerObj.debug("Print Logger");
             loggerObj.info("The btn_SignIn is clicked");
 
             return true;

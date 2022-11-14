@@ -4,10 +4,13 @@ import base.BaseClass;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AmazonWebMailPage extends BaseClass {
@@ -43,6 +46,16 @@ public class AmazonWebMailPage extends BaseClass {
 
     private By webmailPassword = By.xpath("//*[contains(text(), 'Password')]");
 
+    private By webmailVideoCallScheduled = By.xpath("//*[contains(text(), 'Video Call is scheduled with ')]");
+
+    private By chkbox_Screening1 = By.xpath("(//input[@class='ant-checkbox-input'])[2]");
+
+    private By chkbox_WeekOneBaseLine1 = By.xpath("(//input[@class='ant-checkbox-input'])[3]");
+
+    @FindBy(xpath = "(//input[@class='ant-checkbox-input'])[2]")
+    private WebElement chkbox_Screening;
+    @FindBy(xpath = "(//input[@class='ant-checkbox-input'])[3]")
+    private WebElement chkbox_WeekOneBaseLine;
 
     @FindBy(xpath = "(//input[@id='wdc_username'])[1]")
     private WebElement input_AmazonWebMailUsername;
@@ -75,6 +88,7 @@ public class AmazonWebMailPage extends BaseClass {
             seleniumAction.typeText(input_WebmailSearch, webmailSearch);
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -89,6 +103,7 @@ public class AmazonWebMailPage extends BaseClass {
 
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -106,6 +121,7 @@ public class AmazonWebMailPage extends BaseClass {
 
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
 
@@ -125,6 +141,7 @@ public class AmazonWebMailPage extends BaseClass {
 
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }}
 
@@ -140,6 +157,7 @@ public class AmazonWebMailPage extends BaseClass {
 
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -155,6 +173,7 @@ public class AmazonWebMailPage extends BaseClass {
 
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -170,6 +189,7 @@ public class AmazonWebMailPage extends BaseClass {
 
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -185,6 +205,7 @@ public class AmazonWebMailPage extends BaseClass {
 
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -197,9 +218,62 @@ public class AmazonWebMailPage extends BaseClass {
         String number = password.split(":")[1].trim();
         loggerObj.info("The Password is :" + number);
         System.out.println("The Password is :" + number);
+
         return number;
     }
 
+    public String getwebmailVideoCallScheduled() {
+
+        String notification=driver.findElement(webmailVideoCallScheduled).getText();
+        loggerObj.info("The VideoCall Guest email notification Description is :" + notification);
+        return notification;
+    }
+
+    public void CheckingChkboxScreening(){
+        String val=chkbox_Screening.getText();
+        loggerObj.info("The text is :" + val);
+        boolean checkstatus;
+        checkstatus=chkbox_Screening.isSelected();
+        if (checkstatus==true){
+            loggerObj.info("Screening Checkbox is already checked");
+        }
+        else
+        {
+
+            loggerObj.info("Screening Checkbox is not selected");
+        }
+    }
+
+    public void CheckingChkboxWeekOneBaseLine(){
+        String val=chkbox_WeekOneBaseLine.getText();
+        loggerObj.info("The text is :" + val);
+        boolean checkstatus;
+        checkstatus=chkbox_WeekOneBaseLine.isSelected();
+        if (checkstatus==true){
+            loggerObj.info("WeekOneBaseLine Checkbox is already checked");
+        }
+        else
+        {
+
+            loggerObj.info("WeekOneBaseLine is not selected");
+        }
+    }
+
+    public String getCheckingChkboxScreening() {
+
+//        seleniumAction.clickElement(webmailPassword);
+        String val=driver.findElement(chkbox_Screening1).getText();
+        loggerObj.info("The text is :" + val);
+        return val;
+    }
+
+    public String getCheckingChkboxWeekOneBaseLine() {
+
+
+        String val=driver.findElement(chkbox_WeekOneBaseLine1).getText();
+        loggerObj.info("The text is :" + val);
+        return val;
+    }
 
     public void opentabAmazonWebMail(){
 
@@ -209,6 +283,58 @@ public class AmazonWebMailPage extends BaseClass {
 
     }
 
+    public void opentabJconnect(){
+
+        seleniumAdaptor.openNewTabJS(1);
+        seleniumAdaptor.switchToTab(1);
+        driver.get("https://jconnect-build.qa.jivascience.com/webapp/admin/auth/login");
+
+    }
+
+    public void opentabAmazonWebApp(){
+
+        seleniumAdaptor.openNewTabJS(1);
+        seleniumAdaptor.switchToTab(1);
+        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+
+    }
+    public void opentabAmazonWebAppReal(){
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(2));
+        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+
+//        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+
+    }
+
+    public void opentabAmazonWebAppReal1(){
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+
+//        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+
+    }
+    public void opentabJconnectReal1(){
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        driver.get("https://jcollaborate.jiva-demo.jivascience.com/api/CRIOIntegration/users/sign_in");
+
+//        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+
+    }
+    public void opentabJConnect(){
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        driver.get("https://jcollaborate.jiva-demo.jivascience.com/api/CRIOIntegration/users/sign_in");
+
+//        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+
+    }
 
     public boolean captureAmazonWebMailUsername(String webmailusername) {
         try {
@@ -219,6 +345,7 @@ public class AmazonWebMailPage extends BaseClass {
             seleniumAction.typeText(input_AmazonWebMailUsername, webmailusername);
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -232,6 +359,7 @@ public class AmazonWebMailPage extends BaseClass {
             seleniumAction.typeText(input_AmazonWebMailPassword, webmailpassword);
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
@@ -247,6 +375,7 @@ public class AmazonWebMailPage extends BaseClass {
 
             return true;
         } catch (Exception var2) {
+            var2.printStackTrace();
             return false;
         }
     }
