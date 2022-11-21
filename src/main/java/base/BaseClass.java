@@ -14,6 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -28,7 +29,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseClass {
 
-    String broserName="Edge";
+    String broserName="chrome";
+//    String broserName="Edge";
     public SeleniumAction seleniumAction;
  public  ExtentTest extentTest;
 
@@ -64,9 +66,25 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
 
         if(broserName.equalsIgnoreCase("chrome")){
          System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver.exe");
-            driver = new ChromeDriver();
+          ChromeOptions options = new ChromeOptions();
+//          HashMap<String, Integer> contentSettings = new HashMap<String, Integer>();
+//            HashMap<String, Object> profile = new HashMap<String, Object>();
+//            HashMap<String, Object> prefs = new HashMap<String, Object>();
+//
+//            contentSettings.put("media_stream", 1);
+//            profile.put("managed_default_content_settings", contentSettings);
+//            prefs.put("profile", profile);
+//            options.setExperimentalOption("prefs", prefs);
+
+            options.addArguments("disable-notifications");
+            options.addArguments("disable-geolocation");
+            options.addArguments("disable-media-stream");
+
+//            WebDriverManager.chromedriver().setup();
+
+            driver = new ChromeDriver(options);
                }
-        else if(broserName.equalsIgnoreCase("chrome")){
+        else if(broserName.equalsIgnoreCase("firefox")){
             System.setProperty("webdriver.firefox.marionette", webDriverlocationpath+ "\\geckodriver.exe");
             driver =new FirefoxDriver();
         }
