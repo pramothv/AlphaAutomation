@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
 //       plugin ={ "pretty","json:target/cucumber-reports/AutoumationReport/priscillareports.json"
         plugin ={ "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 //                "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
-                "pretty","json:target/cucumber-reports/AutoumationReport/Automatiomreports.json",
+                "pretty","json:target/cucumber-reports/AutoumationReport/automationreports.json",
                 "html:target/cucumber-reports/reports.html"
                 //"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/AutomationReports/EDBCreditCards.html"
                },
