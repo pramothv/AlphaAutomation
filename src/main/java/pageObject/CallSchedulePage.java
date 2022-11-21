@@ -128,6 +128,9 @@ public class CallSchedulePage extends BaseClass {
     @FindBy(xpath="(//span[@class='ant-select-arrow'])[3]")
     private WebElement btn_drpScheduleInfoTimeZone;
 
+    @FindBy(xpath="(//span[@class='ant-select-arrow'])[3]")
+    private WebElement btn_drpCallDurationHrs5;
+
     @FindBy(xpath="(//input[@placeholder='Select date'])[1]")
     private WebElement input_Date;
 
@@ -182,7 +185,13 @@ public class CallSchedulePage extends BaseClass {
     private WebElement btn_drpAlert;
 
     @FindBy(xpath="(//span[@class='ant-select-arrow'])[5]")
+    private WebElement btn_drpAlert9;
+
+    @FindBy(xpath="(//span[@class='ant-select-arrow'])[5]")
     private WebElement btn_drpCallDurationMins;
+
+    @FindBy(xpath="(//span[@class='ant-select-arrow'])[4]")
+    private WebElement btn_drpCallDurationMins9;
 
     @FindBy(xpath="(//span[@class='ant-select-arrow'])[4]")
     private WebElement btn_drpCallDurationHrs;
@@ -199,6 +208,9 @@ public class CallSchedulePage extends BaseClass {
 
     @FindBy(xpath="(//input[@id='callSchedule.title'])[1]")
     private WebElement input_Title;
+
+    @FindBy(xpath="(//input[@id='visitId'])[1]")
+    private WebElement input_VisitUUID;
 
     @FindBy(xpath="(//span[text()=' + Add Guest '])[1]")
     private WebElement btn_AddGuest;
@@ -238,6 +250,15 @@ public class CallSchedulePage extends BaseClass {
 
     @FindBy(xpath="(//span[@class='anticon anticon-down dropdownIndicator'])[6]")
     private WebElement btn_drpTeleVisitSiteStaff;
+
+    @FindBy(xpath="(//div[@role='combobox'])[2]")
+    private WebElement btn_questionaire;
+
+    @FindBy(xpath="(//span[@class='ant-form-item-children'])[10]")
+    private WebElement btn_questionaire1;
+
+    @FindBy(xpath="(//div[@class='ant-select ant-select-enabled ant-select-allow-clear'])[1]")
+    private WebElement btn_questionaire2;
 
     @FindBy(xpath="(//span[text()='Cancel'])[1]")
     private WebElement btn_AddGuestCancel;
@@ -1059,6 +1080,29 @@ public class CallSchedulePage extends BaseClass {
         }
     }
 
+    public boolean captureCallDurationHrs9(String callDurationHrs){
+        try{
+            seleniumAction.scrollBy("0", "1400");
+//			seleniumAdaptor.pauseFor(2);
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.JavaScriptClick(btn_drpCallDurationHrs5);
+            loggerObj.info("The btn_drpCallDurationHrs is selected");
+
+            String[] strArr= callDurationHrs.split(" ");
+
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[7]//li[starts-with(text(),'"+strArr[0]+"')]")));
+
+            loggerObj.info("The callDurationHrs is selected");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean captureCallDurationMins8(String callDurationMins){
         try{
             seleniumAction.scrollBy("0", "1400");
@@ -1216,6 +1260,28 @@ public class CallSchedulePage extends BaseClass {
         }
     }
 
+    public boolean captureCallDurationMins9(String callDurationMins){
+        try{
+            seleniumAction.scrollBy("0", "1400");
+//			seleniumAdaptor.pauseFor(2);
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.JavaScriptClick(btn_drpCallDurationMins9);
+            loggerObj.info("The btn_drpCallDurationMins9 is selected");
+            String[] strArr= callDurationMins.split(" ");
+
+            loggerObj.info(callDurationMins);
+
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[9]//li[starts-with(text(),'"+strArr[0]+"')]")));
+            loggerObj.info("The CallDurationMins is selected");
+//            seleniumAdaptor.pauseFor(8);
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean captureAlert1(String alert){
         try{
 //			seleniumAdaptor.pauseFor(2);
@@ -1301,6 +1367,27 @@ public class CallSchedulePage extends BaseClass {
             return false;
         }
     }
+
+    public boolean captureAlert9(String alert){
+        try{
+//			seleniumAdaptor.pauseFor(2);
+            seleniumAction.scrollBy("0", "1400");
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.JavaScriptClick(btn_drpAlert9);
+            loggerObj.info("The btn_drpAlert9 is selected");
+            String[] strArr= alert.split(" ");
+
+            System.out.println(alert);
+
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[10]//li[starts-with(text(),'"+strArr[0]+"')]")));
+            loggerObj.info("The Alert is captured");
+//            seleniumAdaptor.pauseFor(8);
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
 
     public boolean clickVisit(){
         try{
@@ -1576,7 +1663,7 @@ public class CallSchedulePage extends BaseClass {
     public boolean captureScheduleTeleVisitSubject5(String ScheduleCallsubject) {
         try {
 //			seleniumAdaptor.pauseFor(2);
-            System.out.println("The webmailusername is not clicked");
+            loggerObj.info("The webmailusername is not clicked");
 //            seleniumAdaptor.JavaScriptClick(input_ScheduleTeleVisitSubject5);
 //            seleniumAction.clearText(input_ScheduleTeleVisitSubject5);
 
@@ -1642,6 +1729,56 @@ public class CallSchedulePage extends BaseClass {
             var2.printStackTrace();
             return false;
         }}
+
+    public boolean capturequestionnaire1(String questionnaire1){
+        try{
+            seleniumAction.scrollBy("0", "1400");
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.scrollDown();
+            seleniumAction.clickElement(btn_questionaire);
+            seleniumAdaptor.JavaScriptClick(btn_questionaire);
+            seleniumAdaptor.JavaScriptClick(input_Title);
+            seleniumAdaptor.JavaScriptClick(btn_questionaire);
+            loggerObj.info("The btn_questionaire1 is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_questionaire1);
+            loggerObj.info("The btn_questionaire1 is clicked");
+            seleniumAdaptor.pauseFor(2);
+//            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//li//div[text()='" + questionnaire1 + "'])[1]")));
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul//li//div[text()='" + questionnaire1 + "'])[1]")));
+            seleniumAdaptor.pauseFor(1);
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean capturequestionnaire4(String questionnaire1){
+        try{
+            loggerObj.info("The btn_questionaire1 is not clicked");
+
+            seleniumAdaptor.JavaScriptClick(btn_questionaire1);
+            loggerObj.info("The btn_questionaire1 is clicked");
+
+//            seleniumAdaptor.pauseFor(2);
+
+            driver.findElement(By.xpath("(//label[@title='Subject']//following::input[9])[1]")).sendKeys(questionnaire1);
+//            seleniumAdaptor.pauseFor(1);
+            seleniumAdaptor.JavaScriptClick(input_VisitUUID);
+            seleniumAction.clickElement(input_VisitUUID);
+//            btn_questionaire1.sendKeys(new CharSequence[] {Keys.TAB});
+//            seleniumAdaptor.pauseFor(2);
+//            txt_Subject.sendKeys(new CharSequence[] {Keys.ENTER});
+            loggerObj.info("The questionnaire is captured");
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     public boolean captureScheduleTeleVisit(String scheduleTeleVisit){
         try{
 //			seleniumAdaptor.pauseFor(2);

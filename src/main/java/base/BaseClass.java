@@ -67,14 +67,14 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
         if(broserName.equalsIgnoreCase("chrome")){
          System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver.exe");
           ChromeOptions options = new ChromeOptions();
-//          HashMap<String, Integer> contentSettings = new HashMap<String, Integer>();
-//            HashMap<String, Object> profile = new HashMap<String, Object>();
-//            HashMap<String, Object> prefs = new HashMap<String, Object>();
-//
-//            contentSettings.put("media_stream", 1);
-//            profile.put("managed_default_content_settings", contentSettings);
-//            prefs.put("profile", profile);
-//            options.setExperimentalOption("prefs", prefs);
+          HashMap<String, Integer> contentSettings = new HashMap<String, Integer>();
+            HashMap<String, Object> profile = new HashMap<String, Object>();
+            HashMap<String, Object> prefs = new HashMap<String, Object>();
+
+            contentSettings.put("media_stream", 2);
+            profile.put("managed_default_content_settings", contentSettings);
+            prefs.put("profile", profile);
+            options.setExperimentalOption("prefs", prefs);
 
             options.addArguments("disable-notifications");
             options.addArguments("disable-geolocation");

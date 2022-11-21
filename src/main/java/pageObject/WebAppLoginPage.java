@@ -256,6 +256,17 @@ public class WebAppLoginPage extends BaseClass {
 
     private By webAppAccessInactivated = By.xpath("//*[contains(text(),'Your access is inactivated. Please contact your Study Coordinator.' )]");
 
+
+    @FindBy(xpath="//*[contains(text(),'Jackie')]")
+    private WebElement lnk_ChatParticipantsWebApp;
+
+    @FindBy(xpath = "(//textarea[@placeholder='Type a message...'])[1]")
+    private WebElement input_Message;
+
+    @FindBy(xpath="(//div[@class='css-901oao r-jwli3a'])[2]")
+    private WebElement btn_CheckCircle;
+
+
     @FindBy(xpath="(//img[@class='css-9pa8cd'])[2]")
     private WebElement btn_backDiary;
 
@@ -304,6 +315,9 @@ public class WebAppLoginPage extends BaseClass {
 
     @FindBy(xpath="(//div[@class='css-1dbjc4n r-1awozwy r-1kihuf0 r-1dzdj1l r-1loqt21 r-z80fyv r-1777fci r-1otgn73 r-1i6wzkk r-lrvibr r-19wmn03'])[37]")
     private WebElement radiobtn_PHQTGetAlongNotAtAll;
+
+    @FindBy(xpath="(//div[@class='css-1dbjc4n r-1p1xfu9 r-1f0042m'])[9]")
+    private WebElement radiobtn_PHQHurtingYourselfMorethanHalf;
 
     @FindBy(xpath="(//div[@class='css-1dbjc4n r-1awozwy r-1kihuf0 r-1dzdj1l r-1loqt21 r-z80fyv r-1777fci r-1otgn73 r-1i6wzkk r-lrvibr r-19wmn03'])[37]")
     private WebElement radiobtn_PHQTGetAlongNotAtAll1;
@@ -432,17 +446,26 @@ public class WebAppLoginPage extends BaseClass {
     @FindBy(xpath="((//div[@class='css-1dbjc4n r-eqz5dr r-d0pm55 r-1hfyk0a'])[46]//div[1]/div[1])[1]")
     private WebElement radiobtn_KillingMyselfDisagree1;
 
+    @FindBy(xpath="((//div[@class='css-1dbjc4n r-eqz5dr r-d0pm55 r-1hfyk0a'])[50]//div[1]/div[1])[1]")
+    private WebElement radiobtn_KillingMyselfStronglyagree;
+
     @FindBy(xpath="(//div[@class='css-1dbjc4n r-1awozwy r-1kihuf0 r-1dzdj1l r-1loqt21 r-z80fyv r-1777fci r-1otgn73 r-1i6wzkk r-lrvibr r-19wmn03'])[51]")
     private WebElement radiobtn_HowToKillingMyselfDisagree;
 
     @FindBy(xpath="((//div[@class='css-1dbjc4n r-eqz5dr r-d0pm55 r-1hfyk0a'])[51]//div[1]/div[1])[1]")
     private WebElement radiobtn_HowToKillingMyselfDisagree1;
 
+    @FindBy(xpath="((//div[@class='css-1dbjc4n r-eqz5dr r-d0pm55 r-1hfyk0a'])[55]//div[1]/div[1])[1]")
+    private WebElement radiobtn_HowToKillingMyselfStronglyagree;
+
     @FindBy(xpath="(//div[@class='css-1dbjc4n r-1awozwy r-1kihuf0 r-1dzdj1l r-1loqt21 r-z80fyv r-1777fci r-1otgn73 r-1i6wzkk r-lrvibr r-19wmn03'])[56]")
     private WebElement radiobtn_PlanToKillingMyselfDisagree;
 
     @FindBy(xpath="((//div[@class='css-1dbjc4n r-eqz5dr r-d0pm55 r-1hfyk0a'])[56]//div[1]/div[1])[1]")
     private WebElement radiobtn_PlanToKillingMyselfDisagree1;
+
+    @FindBy(xpath="((//div[@class='css-1dbjc4n r-eqz5dr r-d0pm55 r-1hfyk0a'])[60]//div[1]/div[1])[1]")
+    private WebElement radiobtn_PlanToKillingMyselfStronglyagree;
 
 
     @FindBy(xpath="(//textarea[@placeholder='Enter here'])[1]")
@@ -2777,6 +2800,22 @@ public class WebAppLoginPage extends BaseClass {
         }
     }
 
+    public boolean clickPHQHurtingYourselfMorethanHalf(){
+        try{
+
+            loggerObj.info("The radiobtn_PHQHurtingYourselfMorethanHalf is not clicked");
+            seleniumAdaptor.JavaScriptClick(radiobtn_PHQHurtingYourselfMorethanHalf);
+            loggerObj.info("The radiobtn_PHQHurtingYourselfMorethanHalf is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     public boolean clickPHQTGetAlongNotAtAll1(){
         try{
 
@@ -3365,6 +3404,18 @@ public class WebAppLoginPage extends BaseClass {
         }
     }
 
+    public boolean clickKillingMyselfStronglyagree(){
+        try{
+
+            loggerObj.info("The radiobtn_KillingMyselfStronglyagree is not clicked");
+            seleniumAdaptor.JavaScriptClick(radiobtn_KillingMyselfStronglyagree);
+            loggerObj.info("The radiobtn_KillingMyselfStronglyagree is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
     public boolean clickHowToKillingMyselfDisagree(){
         try{
 
@@ -3385,6 +3436,20 @@ public class WebAppLoginPage extends BaseClass {
             loggerObj.info("The radiobtn_HowToKillingMyselfDisagree1 is not clicked");
             seleniumAdaptor.JavaScriptClick(radiobtn_HowToKillingMyselfDisagree1);
             loggerObj.info("The radiobtn_HowToKillingMyselfDisagree1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickHowToKillingMyselfStronglyagree(){
+        try{
+
+            loggerObj.info("The radiobtn_HowToKillingMyselfStronglyagree is not clicked");
+            seleniumAdaptor.JavaScriptClick(radiobtn_HowToKillingMyselfStronglyagree);
+            loggerObj.info("The radiobtn_HowToKillingMyselfStronglyagree is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -3413,6 +3478,20 @@ public class WebAppLoginPage extends BaseClass {
             loggerObj.info("The radiobtn_PlanToKillingMyselfDisagree1 is not clicked");
             seleniumAdaptor.JavaScriptClick(radiobtn_PlanToKillingMyselfDisagree1);
             loggerObj.info("The radiobtn_PlanToKillingMyselfDisagree1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickPlanToKillingMyselfStronglyagree(){
+        try{
+
+            loggerObj.info("The radiobtn_PlanToKillingMyselfStronglyagree is not clicked");
+            seleniumAdaptor.JavaScriptClick(radiobtn_PlanToKillingMyselfStronglyagree);
+            loggerObj.info("The radiobtn_PlanToKillingMyselfStronglyagree is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -3766,9 +3845,51 @@ public class WebAppLoginPage extends BaseClass {
 //        return number;
 //    }
 
+    public boolean clickChatParticipantsWebApp(){
+        try{
 
 
+            loggerObj.info("The lnk_ChatParticipantsWebApp is not clicked");
+            seleniumAction.clickElement(lnk_ChatParticipantsWebApp);
+            loggerObj.info("The lnk_ChatParticipantsWebApp is clicked");
+            seleniumAdaptor.pauseFor(2);
 
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean captureMessageWebApp(String message1) {
+        try {
+
+            System.out.println("The input_Message is not clicked");
+            seleniumAdaptor.JavaScriptClick(input_Message);
+            seleniumAction.clearText(input_Message);
+            seleniumAction.typeText(input_Message, message1);
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickCheckCircleWebApp(){
+        try{
+
+            loggerObj.info("The btn_checkCircle is not clicked");
+            seleniumAction.clickElement(btn_CheckCircle);
+            loggerObj.info("The btn_checkCircle is clicked");
+            seleniumAdaptor.pauseFor(2);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
 
 }
 
