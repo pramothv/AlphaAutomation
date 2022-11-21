@@ -156,6 +156,7 @@ public class SubjectCreatePage extends BaseClass {
 
             loggerObj.info("The btn_Study is not clicked");
             seleniumAction.clickElement(btn_Study);
+
             loggerObj.info("The btn_Study is clicked");
 
             return true;
@@ -222,6 +223,7 @@ public class SubjectCreatePage extends BaseClass {
             loggerObj.info("The txt_FirstName is not clicked");
             seleniumAdaptor.JavaScriptClick(txt_FirstName);
             seleniumAction.clearText(txt_FirstName);
+
             seleniumAction.typeText(txt_FirstName,firstname);
             return true;
         } catch(Exception var2) {
@@ -237,6 +239,7 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAdaptor.JavaScriptClick(txt_LastName);
             seleniumAction.clearText(txt_LastName);
             seleniumAction.typeText(txt_LastName,lastname);
+
             return true;
         } catch(Exception var2) {
             var2.printStackTrace();

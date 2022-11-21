@@ -71,7 +71,12 @@ public class SubjectListPage extends BaseClass {
 
     private By txt_UnscheduledDiaryWindowJconnect = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[5]/td[2]");
 
+    private By txt_UnscheduledDiaryWindowJconnect1 = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[6]/td[2]");
+
     private By txt_Week1DiaryWindowJconnect = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[6]/td[2]");
+
+
+    private By txt_Week1DiaryWindowJconnect1 = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[5]/td[2]");
 
     private By txt_Week3DiaryWindowJconnect = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[7]/td[2]");
 
@@ -81,6 +86,10 @@ public class SubjectListPage extends BaseClass {
 
     private By txt_UnscheduledVisit = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[5]/td[4]");
 
+
+    private By txt_UnscheduledVisit1 = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[6]/td[4]");
+
+    private By txt_Week1Status2 = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[5]/td[4]");
 
     private By txt_Week1Status1 = By.xpath("//div[@class='ant-spin-container']//div[@class='ant-table-body']/table/tbody/tr[6]/td[4]");
 
@@ -111,9 +120,28 @@ public class SubjectListPage extends BaseClass {
     @FindBy(xpath="(//span[text()='Completed Forms'])[1]")
     private WebElement btn_VisitCompletedForms;
 
+    @FindBy(xpath="(//span[text()='Partially Submitted'])[1]")
+    private WebElement btn_VisitPartiallSubmittedForms;
+
+
     private By SubFormsStartDate = By.xpath("((//div[@class='ant-table-body'])[1]//table[1]/tbody[1])/tr[1]/td[1]");
 
     private By SubFormsEndDate = By.xpath("((//div[@class='ant-table-body'])[1]//table[1]/tbody[1])/tr[1]/td[2]");
+
+    private By actualSubmissionDate = By.xpath("((//div[@class='ant-table-body'])[1]//table[1]/tbody[1])/tr[1]/td[3]");
+
+    private By withDrawenStatusSubjectList = By.xpath("(//span[text()='Withdrawn'])[1]");
+
+    @FindBy(xpath="(//textarea[@id='comments'])[1]")
+    private WebElement input_WithdrawnComments;
+
+    @FindBy(xpath="(//span[text()='Save'])[1]")
+    private WebElement btn_SaveComments;
+
+    @FindBy(xpath="(//span[text()='Withdrawn'])[1]")
+    private WebElement btn_WithDrawn;
+
+
 
     @FindBy(xpath="(//li[text()='AAA'])[1]")
     private WebElement lnk_FormsAAA;
@@ -499,6 +527,26 @@ public class SubjectListPage extends BaseClass {
         return UnscheduledVisit;
     }
 
+    public String getUnscheduledVisitStatus1() {
+
+        seleniumAction.clickElement(txt_UnscheduledVisit1);
+        loggerObj.info("The txt_Screening is clicked");
+        String UnscheduledVisit1 = driver.findElement(txt_UnscheduledVisit1).getText();
+        loggerObj.info("The UnscheduledVisit Status is :" + UnscheduledVisit1);
+        return UnscheduledVisit1;
+    }
+
+
+    public String getWeek1Status2() {
+
+        seleniumAction.clickElement(txt_Week1Status2);
+        loggerObj.info("The txt_Screening is clicked");
+        String week1status = driver.findElement(txt_Week1Status2).getText();
+        loggerObj.info("The Week1 Status is  :" + week1status);
+        return week1status;
+    }
+
+
     public String getWeek1Status1() {
 
         seleniumAction.clickElement(txt_Week1Status1);
@@ -591,6 +639,16 @@ public class SubjectListPage extends BaseClass {
         return DiaryWindowJconnect;
     }
 
+    public String getUnscheduledDiaryWindowJconnect1() {
+
+        seleniumAction.clickElement(txt_UnscheduledDiaryWindowJconnect1);
+        loggerObj.info("The txt_UnscheduledDiaryWindowJconnect is not clicked");
+        String DiaryWindowJconnect = driver.findElement(txt_UnscheduledDiaryWindowJconnect1).getText();
+        loggerObj.info("The UnscheduledDiaryWindowJconnect is :" + DiaryWindowJconnect);
+        return DiaryWindowJconnect;
+    }
+
+
     public String getWeek1DiaryWindowJconnect() {
 
         seleniumAction.clickElement(txt_Week1DiaryWindowJconnect);
@@ -599,6 +657,16 @@ public class SubjectListPage extends BaseClass {
         loggerObj.info("The Week1DiaryWindowJconnect is :" + Week1DiaryWindow);
         return Week1DiaryWindow;
     }
+
+    public String getWeek1DiaryWindowJconnect1() {
+
+        seleniumAction.clickElement(txt_Week1DiaryWindowJconnect1);
+        loggerObj.info("The txt_Week1DiaryWindowJconnect is not clicked");
+        String Week1DiaryWindow = driver.findElement(txt_Week1DiaryWindowJconnect1).getText();
+        loggerObj.info("The Week1DiaryWindowJconnect is :" + Week1DiaryWindow);
+        return Week1DiaryWindow;
+    }
+
 
     public String getWeek3DiaryWindowJconnect() {
 
@@ -681,7 +749,22 @@ public class SubjectListPage extends BaseClass {
             seleniumAdaptor.JavaScriptClick(btn_visittype);
             loggerObj.info("The btn_visittype is selected");
             seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[8]//li[starts-with(text(),'"+visittype+"')]")));
-            loggerObj.info("The callDurationHrs is selected");
+            loggerObj.info("The Visittype is selected");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean SelectVisit1 (String visittype){
+        try{
+            seleniumAction.scrollBy("0", "1400");
+            seleniumAdaptor.scrollDown();
+            seleniumAdaptor.JavaScriptClick(btn_visittype);
+            loggerObj.info("The btn_visittype is selected");
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[7]//li[starts-with(text(),'"+visittype+"')]")));
+            loggerObj.info("The Visittype is selected");
 
             return true;
         } catch(Exception var2) {
@@ -770,6 +853,18 @@ public class SubjectListPage extends BaseClass {
         }
     }
 
+    public boolean clickVisitPartiallSubmittedForms(){
+        try{
+            loggerObj.info("The btn_VisitPartiallSubmittedForms is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_VisitPartiallSubmittedForms);
+            loggerObj.info("The btn_VisitPartiallSubmittedForms is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
 
     public String getSubFormsStartDate() {
 
@@ -789,6 +884,15 @@ public class SubjectListPage extends BaseClass {
         return number;
     }
 
+    public String getActualSubmissionDate() {
+
+        seleniumAction.clickElement(actualSubmissionDate);
+        loggerObj.info("The actualSubmissionDate is not clicked");
+        String number = driver.findElement(actualSubmissionDate).getText();
+        loggerObj.info("The ActualSubmissionDate for Form is :" + number);
+        return number;
+    }
+
 
     public void checkSubFormsEndDate(){
 
@@ -802,6 +906,55 @@ public class SubjectListPage extends BaseClass {
 
             loggerObj.info("The SubFormsEndDate is not Present");
         }
+    }
+
+    public boolean clickWithdrawn(){
+        try{
+
+            loggerObj.info("The btn_WithDrawn is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_WithDrawn);
+            loggerObj.info("The btn_WithDrawn is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean captureWithdrawnComments(String withdrawnComments){
+        try{
+
+            loggerObj.info("The input_Password is not clicked");
+            seleniumAdaptor.JavaScriptClick(input_WithdrawnComments);
+            seleniumAction.clearText(input_WithdrawnComments);
+            seleniumAction.typeText(input_WithdrawnComments,withdrawnComments);
+            return true;
+        } catch(Exception var2) {
+            return false;
+        }
+    }
+
+    public boolean clickSaveComments(){
+        try{
+
+            loggerObj.info("The btn_SaveComments is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_SaveComments);
+            loggerObj.info("The btn_SaveComments is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            return false;
+        }
+    }
+
+    public String getWithDrawenStatusSubjectList() {
+
+        seleniumAction.clickElement(withDrawenStatusSubjectList);
+        loggerObj.info("The actualSubmissionDate is not clicked");
+        String desc = driver.findElement(actualSubmissionDate).getText();
+        loggerObj.info("The WithDrawenStatus Descriptionm is :" + desc);
+        return desc;
     }
 
 

@@ -37,13 +37,21 @@ public class WebAppLoginPage extends BaseClass {
 
     @FindBy(xpath="(//input[@type='password'])[1]")
     private WebElement input_Password;
+
+    @FindBy(xpath="(//textarea[@id='comments'])[1]")
+    private WebElement input_WithdrawnComments;
+
     @FindBy(xpath="(//div[text()='Save'])[1]")
     private WebElement btn_SaveTimeZone;
+
+    @FindBy(xpath="(//span[text()='Save'])[1]")
+    private WebElement btn_SaveComments;
 
     @FindBy(xpath="(//div[text()='Diary'])[1]")
     private WebElement btn_Diary;
 
-
+    @FindBy(xpath="(//span[text()='Withdrawn'])[1]")
+    private WebElement btn_WithDrawn;
 
     @FindBy(xpath="(//div[text()='Week -1 Baseline'])[1]")
     private WebElement lnk_Week1Baseline;
@@ -246,8 +254,13 @@ public class WebAppLoginPage extends BaseClass {
 
     private By txt_StatusScreening1 = By.xpath("//*[contains(text(),'Status:' )]");
 
+    private By webAppAccessInactivated = By.xpath("//*[contains(text(),'Your access is inactivated. Please contact your Study Coordinator.' )]");
+
     @FindBy(xpath="(//img[@class='css-9pa8cd'])[2]")
     private WebElement btn_backDiary;
+
+    @FindBy(xpath="(//img[@class='css-9pa8cd'])[3]")
+    private WebElement btn_back;
 
     @FindBy(xpath="(//div[@class='css-1dbjc4n r-1habvwh r-14lw9ot r-rs99b7 r-z80fyv r-1777fci r-19wmn03'])[2]")
     private WebElement chk_Field2SwellingOnmLegs;
@@ -658,6 +671,8 @@ public class WebAppLoginPage extends BaseClass {
             return false;
         }
     }
+
+
 
     public boolean clickDiary1(){
         try{
@@ -2287,12 +2302,28 @@ public class WebAppLoginPage extends BaseClass {
         loggerObj.info("The Screening Status is :" + status);
         return status;
     }
+
+
     public boolean clickBackDiary(){
         try{
 
             loggerObj.info("The btn_backDiary is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_backDiary);
             loggerObj.info("The btn_backDiary is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickBack(){
+        try{
+
+            loggerObj.info("The btn_back is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_back);
+            loggerObj.info("The btn_back is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -3711,6 +3742,16 @@ public class WebAppLoginPage extends BaseClass {
 
 
         return number;
+    }
+
+
+    public String getWebAppAccessInactivated() {
+
+        seleniumAction.clickElement(webAppAccessInactivated);
+        loggerObj.info("The actualSubmissionDate is not clicked");
+        String desc = driver.findElement(webAppAccessInactivated).getText();
+        loggerObj.info("The WebAppAccessInactivated Descriptionm is :" + desc);
+        return desc;
     }
 
 //    public String getPassword() {

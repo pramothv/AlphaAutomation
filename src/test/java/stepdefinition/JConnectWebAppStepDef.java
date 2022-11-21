@@ -108,11 +108,12 @@ public class JConnectWebAppStepDef extends BaseClass {
         Assert.assertTrue("unable to clickVisits", subjectListPage.clickVisits());
         seleniumAdaptor.pauseFor(2);
         Assert.assertTrue("unable to clickSummary", subjectListPage.clickSummary());
-        putValue("ICFtxt", subjectListPage.getICFDesc());
-        validate("ICF", subjectListPage.getICFDesc());
 
-        putValue("ICFStatus", subjectListPage.getICFStatus());
-//        validate("In Progress", subjectListPage.getICFStatus());
+//        putValue("ICFtxt", subjectListPage.getICFDesc());
+//        validate("ICF", subjectListPage.getICFDesc());
+//        putValue("ICFStatus", subjectListPage.getICFStatus());
+
+        //        validate("In Progress", subjectListPage.getICFStatus());
     }
 
 
@@ -139,25 +140,25 @@ public class JConnectWebAppStepDef extends BaseClass {
     }
 
 
-    @And("I launch the JConnect WebApp and capture {string}{string}\"password and login and click Savebuton for TimeZone")
-    public void iLaunchTheJConnectWebAppAndCapturePasswordAndLoginAndClickSavebutonForTimeZone(String phoneCode, String phoneNum) throws Throwable {    // Write code here that turns the phrase above into concrete actions    throw new cucumber.api.PendingException();}
-
-        amazonWebMailPage = new AmazonWebMailPage(driver);
-        webAppLoginPage = new WebAppLoginPage(driver);
-        seleniumAdaptor = new SeleniumAdaptor(driver);
-
-        takeScreenShotNew(this.scenario);
-        webAppLoginPage.opentabJconnectWebApp();
-        Assert.assertTrue("unable to capturePhoneCode", webAppLoginPage.capturePhoneCode2(phoneCode));
-        Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePhoneNum(phoneNum));
-        webAppLoginPage.capturePassword(getValue("password"));
-        takeScreenShotNew(this.scenario);
-        Assert.assertTrue("unable to clickLogin", webAppLoginPage.clickLogin());
-        takeScreenShotNew(this.scenario);
-        Assert.assertTrue("unable to clickSaveTimeZone", webAppLoginPage.clickSaveTimeZone());
-//        seleniumAdaptor.pauseFor(10);
-
-    }
+//    @And("I launch the JConnect WebApp and capture {string}{string}\"password and login and click Savebuton for TimeZone")
+//    public void iLaunchTheJConnectWebAppAndCapturePasswordAndLoginAndClickSavebutonForTimeZone(String phoneCode, String phoneNum) throws Throwable {    // Write code here that turns the phrase above into concrete actions    throw new cucumber.api.PendingException();}
+//
+//        amazonWebMailPage = new AmazonWebMailPage(driver);
+//        webAppLoginPage = new WebAppLoginPage(driver);
+//        seleniumAdaptor = new SeleniumAdaptor(driver);
+//
+//        takeScreenShotNew(this.scenario);
+//        webAppLoginPage.opentabJconnectWebApp();
+//        Assert.assertTrue("unable to capturePhoneCode", webAppLoginPage.capturePhoneCode2(phoneCode));
+//        Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePhoneNum(phoneNum));
+//        webAppLoginPage.capturePassword(getValue("password"));
+//        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to clickLogin", webAppLoginPage.clickLogin());
+//        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to clickSaveTimeZone", webAppLoginPage.clickSaveTimeZone());
+////        seleniumAdaptor.pauseFor(10);
+//
+//    }
 
 
     @And("I join the meeting and join the meeting from Webapp")

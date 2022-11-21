@@ -35,6 +35,9 @@ public class JCollaborateWelcomePage extends BaseClass {
     @FindBy(xpath="(//img[@src='assets/images/jConnect_build.svg'])[1]")
     private WebElement lnk_JConnectBuild;
 
+    @FindBy(xpath="(//img[@src='assts/images/jConnect_build.svg'])[1]")
+    private WebElement lnk_JConnectBuild1;
+
     @FindBy(xpath="(//a[text()=' Log Out '])[1]")
     private WebElement btn_SignOut;
 
@@ -118,6 +121,18 @@ public class JCollaborateWelcomePage extends BaseClass {
         }
 
 
+    public boolean clickJConnectBuild1(){
+        try{
 
+            loggerObj.info("The lnk_JConnectBuild1 is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_JConnectBuild1);
+            loggerObj.info("The lnk_JConnectBuild1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
 
 }
