@@ -147,6 +147,11 @@ public class SeleniumAdaptor extends BaseClass {
         jse.executeScript("arguments[0].click();", new Object[]{webElement});
     }
 
+    public void JavaScriptSetValue(WebElement webElement, String value) {
+        JavascriptExecutor jse = (JavascriptExecutor) this.driver;
+        jse.executeScript("arguments[0].value='"+value+"';", new Object[]{webElement});
+    }
+
     public WebElement WaitForElementToPresent(WebElement webElement, int seconds){
         WebDriverWait webDriverWait =  new WebDriverWait(this.driver, (long)seconds);
         return(WebElement) webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
