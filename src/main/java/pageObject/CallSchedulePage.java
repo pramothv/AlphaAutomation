@@ -54,8 +54,24 @@ public class CallSchedulePage extends BaseClass {
     @FindBy(xpath="//*[contains(text(),'Safer')]")
     private WebElement lnk_SaferInterview;
 
+    @FindBy(xpath="//*[contains(text(),'Screening')]")
+    private WebElement lnk_ScreeningMeetingJconnect;
+
+    @FindBy(xpath="//*[contains(text(),'Week1BaseLine')]")
+    private WebElement lnk_WeekOneBaseLineMeetingJconnect;
+
+    @FindBy(xpath="//*[contains(text(),'Week 1')]")
+    private WebElement lnk_WeekOneMeetingJconnect;
+
+    @FindBy(xpath="//*[contains(text(),'Unscheduled')]")
+    private WebElement lnk_UnscheduledMeetingJconnect;
+
+
     @FindBy(xpath="//*[contains(text(),'Start/Join Call')]")
     private WebElement btn_StartJoinCall;
+
+    @FindBy(xpath="//*[contains(text(),'Reschedule Call')]")
+    private WebElement btn_RescheduleCall;
     @FindBy(xpath="(//*[contains(text(),'Join meeting')])[2]")
     private WebElement btn_JoinMeeting;
 
@@ -75,10 +91,21 @@ public class CallSchedulePage extends BaseClass {
     @FindBy(xpath="(//i[@class='anticon anticon-close ant-modal-close-icon'])[1]")
     private WebElement btn_CloseScheduleCall;
 
+    private By txt_ScheduleACall = By.xpath("(//span[text()='Schedule a Call'])[1]");
+
+    private By txt_ICFCall = By.xpath("//*[contains(text(),'ICF')]");
+
+
+
     private By btn_JconnectEndCall = By.xpath("(//div[@class='jitsi-icon jitsi-icon-default '])[10]");
+
+    private By btn_JconnectEndCall4 = By.xpath("(//div[@class='toolbox-icon   hangup-button'])[1]");
 
     @FindBy(xpath="(//div[@class='jitsi-icon jitsi-icon-default '])[10]")
     private WebElement btn_JconnectEndCall2;
+
+    @FindBy(xpath="(//div[@class='toolbox-icon   hangup-button'])[1]")
+    private WebElement btn_JconnectEndCall3;
 
     private By btn_Toggle2 = By.xpath("(//div[@class='jitsi-icon jitsi-icon-default '])[9]");
 
@@ -110,6 +137,9 @@ public class CallSchedulePage extends BaseClass {
 
     @FindBy(xpath="//label[@title='Subject']//following::input[1]")
     private WebElement txt_Subject;
+
+    @FindBy(xpath="//label[@title='Site Staff']//following::input[1]")
+    private WebElement txt_SiteStaff;
 
     @FindBy(xpath="(//label[@title='Subject']//following::input[1])[2]")
     private WebElement txt_Subject1;
@@ -336,6 +366,27 @@ public class CallSchedulePage extends BaseClass {
             return false;
         }
     }
+
+    public String getScheduleACalltxt() {
+
+        seleniumAction.clickElement(txt_ScheduleACall);
+        seleniumAdaptor.pauseFor(1);
+        String txt = driver.findElement(txt_ScheduleACall).getText();
+        loggerObj.info("The ScheduleACall PopUp screen Description in JConnect is :" + txt);
+        return txt;
+    }
+
+
+    public String getICFCalltxt() {
+
+        seleniumAction.clickElement(txt_ICFCall);
+        seleniumAdaptor.pauseFor(1);
+        String txt = driver.findElement(txt_ICFCall).getText();
+        loggerObj.info("The ICFCall Description in the Calendar in JConnect is :" + txt);
+        return txt;
+    }
+
+
 
     public boolean clickVisitTypeScheduledVisit() {
         try {
@@ -784,6 +835,7 @@ public class CallSchedulePage extends BaseClass {
             seleniumAdaptor.scrollDown();
             seleniumAdaptor.scrollDown();
 //            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[7]//li[starts-with(text(),'"+timemins+"')]")));
+            seleniumAdaptor.pauseFor(1);
             seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[7]//li[starts-with(text(),'"+timemins+"')]")));
             loggerObj.info("The TimeMins is selected");
 
@@ -896,7 +948,7 @@ public class CallSchedulePage extends BaseClass {
     public boolean clickTimeIcon() {
         try {
 
-            System.out.println("The btn_TimeIcon is not clicked");
+            loggerObj.info("The btn_TimeIcon is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_TimeIcon);
             loggerObj.info("The btn_TimeIcon is clicked");
 
@@ -1522,6 +1574,28 @@ public class CallSchedulePage extends BaseClass {
         }
     }
 
+    public boolean captureSiteStaff1(String siteStaff){
+        try{
+            loggerObj.info("The btn_drpSubject is not clicked");
+
+            seleniumAction.clickElement(btn_drpSiteStaff);
+            loggerObj.info("The btn_drpSubject is clicked");
+
+            seleniumAdaptor.pauseFor(2);
+
+            driver.findElement(By.xpath("//label[@title='Site Staff']//following::input[1]")).sendKeys(siteStaff);
+            seleniumAdaptor.pauseFor(1);
+            txt_SiteStaff.sendKeys(new CharSequence[] {Keys.ARROW_DOWN});
+//            seleniumAdaptor.pauseFor(2);
+            txt_SiteStaff.sendKeys(new CharSequence[] {Keys.ENTER});
+            loggerObj.info("The Subject is not captured");
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean captureTitle(String title){
         try{
 //			seleniumAdaptor.pauseFor(2);
@@ -1763,9 +1837,10 @@ public class CallSchedulePage extends BaseClass {
 //            seleniumAdaptor.pauseFor(2);
 
             driver.findElement(By.xpath("(//label[@title='Subject']//following::input[9])[1]")).sendKeys(questionnaire1);
-//            seleniumAdaptor.pauseFor(1);
-            seleniumAdaptor.JavaScriptClick(input_VisitUUID);
+            seleniumAdaptor.pauseFor(1);
+//            seleniumAdaptor.JavaScriptClick(input_VisitUUID);
             seleniumAction.clickElement(input_VisitUUID);
+
 //            btn_questionaire1.sendKeys(new CharSequence[] {Keys.TAB});
 //            seleniumAdaptor.pauseFor(2);
 //            txt_Subject.sendKeys(new CharSequence[] {Keys.ENTER});
@@ -1887,11 +1962,71 @@ public class CallSchedulePage extends BaseClass {
         }
     }
 
+    public boolean clickScreeningMeetingJconnect() {
+        try {
+            loggerObj.info("The lnk_ScreeningMeetingJconnect is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_ScreeningMeetingJconnect);
+            loggerObj.info("The lnk_ScreeningMeetingJconnect is clicked");
+
+            return true;
+        } catch (Exception var2) {
+            return false;
+        }
+    }
+
+    public boolean clickWeekOneBaseLineMeetingJconnect() {
+        try {
+            loggerObj.info("The lnk_WeekOneBaseLineMeetingJconnect is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_WeekOneBaseLineMeetingJconnect);
+            loggerObj.info("The lnk_WeekOneBaseLineMeetingJconnect is clicked");
+
+            return true;
+        } catch (Exception var2) {
+            return false;
+        }
+    }
+
+    public boolean clickWeekOneMeetingJconnect() {
+        try {
+            loggerObj.info("The lnk_WeekOneMeetingJconnect is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_WeekOneMeetingJconnect);
+            loggerObj.info("The lnk_WeekOneMeetingJconnect is clicked");
+
+            return true;
+        } catch (Exception var2) {
+            return false;
+        }
+    }
+
+    public boolean clickUnscheduledMeetingJconnect() {
+        try {
+            loggerObj.info("The lnk_UnscheduledMeetingJconnect is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_UnscheduledMeetingJconnect);
+            loggerObj.info("The lnk_UnscheduledMeetingJconnect is clicked");
+
+            return true;
+        } catch (Exception var2) {
+            return false;
+        }
+    }
     public boolean clickStartJoinCall() {
         try {
             loggerObj.info("The btn_StartJoinCallJconnect is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_StartJoinCall);
             loggerObj.info("The btn_StartJoinCallJconnect is clicked");
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickRescheduleCall() {
+        try {
+            loggerObj.info("The btn_RescheduleCall is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_RescheduleCall);
+            loggerObj.info("The btn_RescheduleCall is clicked");
 
             return true;
         } catch (Exception var2) {
@@ -2033,6 +2168,23 @@ public class CallSchedulePage extends BaseClass {
             return false;
         }
     }
+
+    public boolean clickEndCallJconnect2() {
+        try {
+
+            seleniumAction.hoverMouseOverElement(btn_JconnectEndCall4);
+            seleniumAdaptor.JavaScriptClick(btn_JconnectEndCall3);
+//            seleniumAction.clickElement(btn_JconnectEndCall3);
+            loggerObj.info("The btn_JconnectEndCall3 is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
 
     public boolean clickCloseScheduleCall() {
         try {

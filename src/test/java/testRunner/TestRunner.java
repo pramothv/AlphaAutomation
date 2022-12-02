@@ -9,18 +9,22 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features={"src/test/resources/features"},
-        tags = "@testinCallSchedulecont222",
+        tags = "@testingWorkSample122",
         glue= {"stepdefinition"},
         dryRun = false,
 //       plugin ={ "pretty","json:target/cucumber-reports/AutoumationReport/priscillareports.json"
         plugin ={ "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+                "pretty","html:target/cucumber","summary","json:target/cucumber1/report.json",
 //                "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm",
                 "pretty","json:target/cucumber-reports/AutoumationReport/automationreports.json",
                 "html:target/cucumber-reports/reports.html"
                 //"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/AutomationReports/EDBCreditCards.html"
                },
 
-        monochrome = true)
+        monochrome = true,
+        publish = true
+
+)
 
 
 public class TestRunner {}

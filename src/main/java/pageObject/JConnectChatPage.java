@@ -29,8 +29,17 @@ private String homeDirectory = System.getProperty("user.dir");
     private String testdata = "testdata";
     @FindBy(xpath="(//span[text()='Chat'])[1]")
     private WebElement lnk_Chat;
+
+    @FindBy(xpath="(//button[@class='ant-btn ant-btn-primary'])[1]")
+    private WebElement lnk_NewChat;
     @FindBy(xpath="//*[contains(text(),'Jackie Shroff,JA SC')]")
     private WebElement lnk_ChatParticipants;
+
+    @FindBy(xpath="(//*[contains(text(),'JA SC')])[1]")
+    private WebElement lnk_ChatParticipants1;
+
+    @FindBy(xpath="(//*[contains(text(),'Dan nick')])[1]")
+    private WebElement lnk_ChatParticipants2;
 
     @FindBy(xpath="(//div[@class='sendButton'])[1]")
     private WebElement btn_messageSend;
@@ -42,8 +51,14 @@ private String homeDirectory = System.getProperty("user.dir");
     @FindBy(xpath="(//span[@class='anticon anticon-check-circle'])[1]")
     private WebElement btn_CheckCircle;
 
+    @FindBy(xpath="(//button[@class='ant-btn ant-btn-primary ant-btn-circle ant-btn-lg'])[2]")
+    private WebElement btn_SendMessage;
+
     @FindBy(xpath="(//span[@class='anticon anticon-down dropdownIndicator'])[1]")
     private WebElement btn_drpUsers;
+
+    @FindBy(xpath="(//span[@class='jconnect-card-title'])[1]")
+    private WebElement txt_chat;
 
     @FindBy(xpath="(//span[@class='anticon anticon-down dropdownIndicator'])[2]")
     private WebElement btn_drpSubject;
@@ -51,20 +66,40 @@ private String homeDirectory = System.getProperty("user.dir");
 
     private By message = By.xpath("//*[contains(text(),'Hello')]");
 
+    private By message1 = By.xpath("(//div[@class='rce-mbox-text'])[2]");
+
     @FindBy(xpath="(//input[@type='file'])[1]")
     private WebElement inputAddFileMessageJconnect;
 
     @FindBy(xpath="//label[@title='Subject']//following::input[1]")
     private WebElement txt_Subject;
 
+    @FindBy(xpath="//label[@title='Users']//following::input[1]")
+    private WebElement txt_Users;
+
 
     public boolean clickChat(){
         try{
-            seleniumAdaptor.pauseFor(2);
+//            seleniumAdaptor.pauseFor(2);
 
             loggerObj.info("The lnk_Chat is not clicked");
-            seleniumAction.clickElement(lnk_Chat);
+//            seleniumAction.clickElement(lnk_Chat);
+            seleniumAdaptor.JavaScriptClick(lnk_Chat);
             loggerObj.info("The lnk_Chat is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickNewChat(){
+        try{
+
+            loggerObj.info("The lnk_NewChat is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_NewChat);
+            loggerObj.info("The lnk_NewChat is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -76,12 +111,41 @@ private String homeDirectory = System.getProperty("user.dir");
     public boolean clickChatParticipants(){
         try{
 
-
             loggerObj.info("The lnk_ChatParticipants is not clicked");
             seleniumAction.clickElement(lnk_ChatParticipants);
             loggerObj.info("The lnk_ChatParticipants is clicked");
             seleniumAdaptor.pauseFor(2);
 
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickChatParticipants1(){
+        try{
+
+            loggerObj.info("The lnk_ChatParticipants1 is not clicked");
+            seleniumAction.clickElement(lnk_ChatParticipants1);
+            loggerObj.info("The lnk_ChatParticipants1 is clicked");
+            seleniumAdaptor.pauseFor(2);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public boolean clickChatParticipants2(){
+        try{
+
+            loggerObj.info("The lnk_ChatParticipants2 is not clicked");
+            seleniumAction.clickElement(lnk_ChatParticipants2);
+            loggerObj.info("The lnk_ChatParticipants2 is clicked");
+            seleniumAdaptor.pauseFor(2);
 
             return true;
         } catch(Exception var2) {
@@ -109,10 +173,14 @@ private String homeDirectory = System.getProperty("user.dir");
     public boolean captureMessage(String message) {
         try {
 
-            System.out.println("The input_Message is not clicked");
+            loggerObj.info("The input_Message is not clicked");
             seleniumAdaptor.JavaScriptClick(input_Message);
             seleniumAction.clearText(input_Message);
             seleniumAction.typeText(input_Message, message);
+
+            seleniumAction.scrollDown();
+            seleniumAction.scrollDown();
+            seleniumAction.scrollBy("0", "1400");
             return true;
         } catch (Exception var2) {
             var2.printStackTrace();
@@ -135,6 +203,20 @@ private String homeDirectory = System.getProperty("user.dir");
         }
     }
 
+    public boolean clickSendMessage(){
+        try{
+
+            loggerObj.info("The btn_SendMessage is not clicked");
+            seleniumAction.clickElement(btn_SendMessage);
+            loggerObj.info("The btn_SendMessage is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
 
 
 
@@ -147,11 +229,35 @@ private String homeDirectory = System.getProperty("user.dir");
             seleniumAction.clickElement(btn_drpUsers);
             seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//div//div[text()='" + users + "'])[1]")));
             seleniumAdaptor.pauseFor(1);
+            seleniumAction.clickElement(btn_drpSubject);
+//            seleniumAdaptor.JavaScriptClick(btn_drpSubject);
             return true;
         } catch(Exception var2) {
             var2.printStackTrace();
             return false;
         }}
+
+    public boolean captureUsers1(String users){
+        try{
+            loggerObj.info("The btn_drpUsers is not clicked");
+
+            seleniumAction.clickElement(btn_drpUsers);
+            loggerObj.info("The btn_drpUsers is clicked");
+
+
+            driver.findElement(By.xpath("//label[@title='Users']//following::input[1]")).sendKeys(users);
+            seleniumAdaptor.pauseFor(1);
+            txt_Users.sendKeys(new CharSequence[] {Keys.ARROW_DOWN});
+            txt_Users.sendKeys(new CharSequence[] {Keys.ENTER});
+            loggerObj.info("The Users is captured");
+            seleniumAction.clickElement(txt_chat);
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
 
     public boolean captureSubjectChat(String subject){
         try{
@@ -160,7 +266,7 @@ private String homeDirectory = System.getProperty("user.dir");
             seleniumAction.clickElement(btn_drpSubject);
             loggerObj.info("The btn_drpSubject is clicked");
 
-            seleniumAdaptor.pauseFor(2);
+//            seleniumAdaptor.pauseFor(2);
 
             driver.findElement(By.xpath("//label[@title='Subject']//following::input[1]")).sendKeys(subject);
             seleniumAdaptor.pauseFor(1);
@@ -178,8 +284,9 @@ private String homeDirectory = System.getProperty("user.dir");
         try{
             seleniumAction.scrollDown();
             seleniumAction.scrollDown();
+            seleniumAction.scrollBy("0", "1400");
 
-            inputAddFileMessageJconnect.sendKeys(new CharSequence[]{System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + resources + File.separator + testdata + File.separator + "AutomationTestPlan.pdf"});
+            inputAddFileMessageJconnect.sendKeys(new CharSequence[]{System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + resources + File.separator + testdata + File.separator + "AutomationSample.pdf"});
 
 
             loggerObj.info("The File is uploaded");
@@ -198,6 +305,14 @@ private String homeDirectory = System.getProperty("user.dir");
         return desc;
     }
 
+    public String getMessage1() {
+
+        seleniumAction.clickElement(message1);
+        loggerObj.info("The message is not clicked");
+        String desc = driver.findElement(message1).getText();
+        loggerObj.info("The Message from WebApp chat is :" + desc);
+        return desc;
+    }
 
 
 

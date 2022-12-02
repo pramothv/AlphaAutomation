@@ -5,8 +5,14 @@ package base;
 
 //import io.cucumber.core.api.Scenario;
 
+import Utility.Base64Encoder;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+import gherkin.formatter.Reporter;
 import io.cucumber.java.Scenario;
+import io.cucumber.messages.internal.com.google.protobuf.DescriptorProtos;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -22,6 +28,9 @@ import seleniumaction.SeleniumAction;
 import seleniumadaptor.SeleniumAdaptor;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -101,6 +110,11 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
         driver.manage().timeouts().implicitlyWait(1000l, TimeUnit.SECONDS);
         driver.get(url);
         return driver;
+
+        //AddReport
+//       reporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "./reports/Execution.html");
+
+
     }
     public static String generateRandomString(int length) {
         String candidateChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -157,12 +171,71 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
             TakesScreenshot ts =(TakesScreenshot) driver;
             byte[] src = ts.getScreenshotAs(OutputType.BYTES);
             scenario.attach(src, "image/png", "screenshot");
+
+
+//            byte[] imageBytes= IOUtils.toByteArray(new FileInputStream(String.valueOf(src)));
+//             Base64.getEncoder().encodeToString(imageBytes);
         }
         catch (Exception e) {
             System.out.println("Unable to take screenshot");
             System.out.println(e);
 
         }
+    }
+
+    public static void takeScreenShotNew5(Scenario scenario) {
+        try {
+            TakesScreenshot ts =(TakesScreenshot) driver;
+            byte[] src = ts.getScreenshotAs(OutputType.BASE64).getBytes();
+            scenario.attach(src, "data:image/png:base64", "screenshot");
+//            String encodedBase64 = null;
+//            byte[] bytes = new byte[(int)finalDesti]
+//            encodedBase64= new String(Base64Encoder.encodedBase64String(bytes));
+//          String img = "data:image/png:base64, " +encodedBase64;
+//            ExtentCucumberAdapter.addTestStepScreenCaptureFromPath(img.toString());
+
+        }
+        catch (Exception e) {
+            System.out.println("Unable to take screenshot");
+            System.out.println(e);
+
+        }
+    }
+
+
+    public String takeScreenShotNew2(Scenario scenario) throws IOException {
+
+        TakesScreenshot ts =(TakesScreenshot) driver;
+        byte[] src = ts.getScreenshotAs(OutputType.BASE64).getBytes();
+        scenario.attach(src, "image/png", "screenshot");
+//        byte[] imageBytes= IOUtils.toByteArray(new FileInputStream(String.valueOf(src)));
+//
+//
+//
+        return Base64.getEncoder().encodeToString(src);
+
+
+
+    }
+
+
+
+
+
+    public static String getScreenshotAsBase64() throws IOException {
+        File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String path = System.getProperty("user.dir")+"/Screenshots/image.png";
+        FileUtils.copyFile(source, new File(path));
+        byte[] imageBytes= IOUtils.toByteArray(new FileInputStream(path));
+//        scenario.attach(path, "image/png", "screenshot");
+        return Base64.getEncoder().encodeToString(imageBytes);
+
+    }
+
+    public String getBase64() throws IOException {
+
+        return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+
     }
 
     public void putValue(String vname, String vvalue) {

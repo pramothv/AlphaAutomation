@@ -17,7 +17,7 @@ When I click on JConnectBuild Option
 #   And I navigate to Jconnect CallSchedule capture "<ScheduleCallsubject>" and launch the ICF meeting
 
 #   And I navigate to Jconnect CallSchedule capture "<ScheduleCallsubject>"
-    And I navigate to Jconnect CallSchedule capture "<ScheduleCallsubject>" with meeting
+#    And I navigate to Jconnect CallSchedule capture "<ScheduleCallsubject>" with meeting
 
 #    And I join the meeting from JConnect and from Webapp and conclude the call
 #    And I join the meeting and join the meeting from Webapp and end

@@ -3,6 +3,7 @@ package pageObject;
 import base.BaseClass;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,7 +33,44 @@ public class JCollaborateQALoginPage extends BaseClass {
     @FindBy(xpath="(//button[text()='Sign In'])[1]")
     private WebElement btn_SignIn;
 
+    private By txt_UserName1 = By.xpath("(//input[@id='username'])[1]");
 
+    private By txt_Password1 = By.xpath("(//input[@id='password'])[1]");
+
+    private By txt_Login1 = By.xpath("(//button[text()='Sign In'])[1]");
+
+
+
+
+    public String getUserNameText() {
+
+        seleniumAction.clickElement(txt_UserName1);
+        loggerObj.info("The UserNameText is clicked");
+        String text = driver.findElement(txt_UserName1).getText();
+        loggerObj.info("The UserNameText is :" + text);
+
+        return text;
+    }
+
+    public String getPasswordText() {
+
+        seleniumAction.clickElement(txt_Password1);
+        loggerObj.info("The Password Text is clicked");
+        String text = driver.findElement(txt_Password1).getText();
+        loggerObj.info("The Password Text is :" + text);
+
+        return text;
+    }
+
+    public String getLoginText() {
+
+//        seleniumAction.clickElement(txt_Login1);
+//        loggerObj.info("The txt_Login1 is clicked");
+        String text = driver.findElement(txt_Login1).getText();
+        loggerObj.info("The Login Text is :" + text);
+
+        return text;
+    }
 
 
     public boolean captureUserName(String username){
