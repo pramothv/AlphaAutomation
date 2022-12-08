@@ -23,6 +23,12 @@
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>4.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
@@ -204,6 +210,75 @@
         <!--            <version>4.13.2</version>-->
         <!--            <scope>compile</scope>-->
         <!--        </dependency>-->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>5.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.26</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>openxml4j</artifactId>
+            <version>1.0-beta</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.mail</groupId>
+            <artifactId>jakarta.mail-api</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.lightbody.bmp</groupId>
+            <artifactId>browsermob-core</artifactId>
+            <version>2.1.5</version>
+        </dependency>
 
 
     </dependencies>
@@ -221,28 +296,55 @@
                         <version>3.0.0-M7</version>
                     </dependency>
                 </dependencies>
-
-                <configuration>
-                    <includes>
-                        <include>**/*TestRunner.java</include>
-                    </includes>
-
-                    <systemPropertyVariables>
-                        <ConfigType>JAVASCRIPT</ConfigType>
-                        <test_type>sanity test</test_type>
-                        <release>October</release>
-                        <sprint>13</sprint>
-                        <project>Eclipse</project>
-                        <environment>QA</environment>
-                        <feature>Self</feature>
-                        <featurefile>Feature File</featurefile>
-                        <scenario>Thescenarioname</scenario>
-
-                    </systemPropertyVariables>
+            </plugin>
 
 
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>3.8.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
 
-                </configuration>
+                        <configuration>
+                            <projectName>CucumberAlpha</projectName>
+                            <outputDirectory>target/cucumber-reports/advanced-reports.html</outputDirectory>
+                            <cucumberOutput>target/cucumber1/report.json</cucumberOutput>
+                            <buildNumber>1</buildNumber>
+                            <parallelTesting>false</parallelTesting>
+                        </configuration>
+
+
+                    </execution>
+                </executions>
+
+
+                <!--                <configuration>-->
+                <!--                    <includes>-->
+                <!--                        <include>**/*TestRunner.java</include>-->
+                <!--                    </includes>-->
+
+                <!--                    <systemPropertyVariables>-->
+                <!--                        <ConfigType>JAVASCRIPT</ConfigType>-->
+                <!--                        <test_type>sanity test</test_type>-->
+                <!--                        <release>October</release>-->
+                <!--                        <sprint>13</sprint>-->
+                <!--                        <project>Eclipse</project>-->
+                <!--                        <environment>QA</environment>-->
+                <!--                        <feature>Self</feature>-->
+                <!--                        <featurefile>Feature File</featurefile>-->
+                <!--                        <scenario>Thescenarioname</scenario>-->
+
+                <!--                    </systemPropertyVariables>-->
+
+
+
+
 
 
             </plugin>

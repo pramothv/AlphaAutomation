@@ -4,14 +4,11 @@ import base.BaseClass;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
-
-import static org.openqa.selenium.Keys.TAB;
 
 public class SubjectCreatePage extends BaseClass {
 
@@ -41,6 +38,12 @@ public class SubjectCreatePage extends BaseClass {
 
     @FindBy(xpath="(//i[@class='anticon anticon-edit app-menu side-menu-icon'])[1]")
     private WebElement btn_Create1;
+
+    @FindBy(xpath="(//i[@class='anticon anticon-edit app-menu side-menu-icon'])[2]")
+    private WebElement btn_Create2;
+
+    @FindBy(xpath="//*[contains(text(),'View Encrypted Data')]")
+    private WebElement btn_SubViewEncryptedData;
 
     @FindBy(xpath="(//input[@id='firstName'])[1]")
     private WebElement txt_FirstName;
@@ -112,11 +115,92 @@ public class SubjectCreatePage extends BaseClass {
 
     private By txt_EDiaryVersionDesc = By.xpath("(//span[@class='infoLabel'])[3]");
 
+
+    private By txt_SubjectDetailsTab = By.xpath("(//div[text()='Subject Details'])[1]");
+
+    private By txt_VisitsTab = By.xpath("(//div[text()='Visits'])[1]");
+
+    private By txt_SummaryTab = By.xpath("(//div[text()='Summary'])[1]");
+
+    private By txt_SubVisitStatus = By.xpath("(//span[text()='Subject Visit Status'])[1]");
+
+    private By txt_SubViewEncriptedData = By.xpath("(//span[text()='View Encrypted Data'])[1]");
+
+    private By txt_SubNumberSummary = By.xpath("((//span[@class='ant-descriptions-item-content']))[1]");
+
+    private By txt_StudyName = By.xpath("(//span[@class='ant-typography headerData ant-typography-ellipsis ant-typography-ellipsis-single-line'])[1]");
+
+    private By getSiteName = By.xpath("(//span[@class='ant-typography headerData ant-typography-ellipsis ant-typography-ellipsis-single-line'])[2]");
+
+
+    private By getStudyName1 = By.xpath("(//li[@class='ant-cascader-menu-item ant-cascader-menu-item-expand ant-cascader-menu-item-active'])[1]");
+
+
+    private By getStudyName2 = By.xpath("(//li[@class='ant-cascader-menu-item ant-cascader-menu-item-expand'])[1]");
+
+
+    private By getStudyName3 = By.xpath("(//li[@class='ant-cascader-menu-item ant-cascader-menu-item-expand'])[2]");
+
+
+    private By getSiteName1 = By.xpath("(//li[@class='ant-cascader-menu-item ant-cascader-menu-item-active'])[1]");
+
+
+
     @FindBy(xpath="(//i[@title='Custom date'])[1]")
     private WebElement lnk_CustomDate;
 
     @FindBy(xpath="//span[@class='ant-calendar-picker']/div/input")
     private WebElement btn_CalenderIconSubjectCreate;
+
+    @FindBy(xpath="//*[contains(text(),'Subject Details')]")
+    private WebElement lnk_SubjectDetails;
+
+    @FindBy(xpath="(//*[contains(text(),'Subject Details')])[2]")
+    private WebElement lnk_SubjectDetails1;
+
+    @FindBy(xpath="(//i[@class='anticon anticon-edit context-edit-icon'])[1]")
+    private WebElement lnk_EditSite;
+
+    @FindBy(xpath="(//li[@title='160 - The Bishop Center for Translational Neuroscience'])[1]")
+    private WebElement lnk_Site;
+
+    @FindBy(xpath="(//li[@title='CrioTestSite'])[1]")
+    private WebElement lnk_Site1;
+
+    @FindBy(xpath="(//i[@class='anticon anticon-user my-account-icon'])[1]")
+    private WebElement btn_JconnectLogout;
+
+    private By btn_JconnectLogout2 = By.xpath("(//div[@class='ant-menu-submenu-title'])[5]");
+
+    private By btn_JconnectLogout3 = By.xpath("(//li[@class='ant-menu-submenu ant-menu-submenu-horizontal'])[1]");
+
+    @FindBy(xpath="(//div[@class='ant-menu-submenu-title'])[5]")
+    private WebElement btn_JconnectLogout5;
+    @FindBy(xpath="(//div[@class='ant-menu-submenu-title'])[5]")
+    private WebElement btn_JconnectLogout1;
+
+    @FindBy(xpath="(//span[text()=' Log out'])[1]")
+    private WebElement btn_Logout;
+
+    private By btn_Logout3 = By.xpath("(//span[text()=' Log out'])[1]");
+
+
+    @FindBy(xpath="(//button[@role='switch'])[2]")
+    private WebElement slider_StatusChange;
+
+    @FindBy(xpath="(//button[@role='switch'])[3]")
+    private WebElement slider_StatusChange1;
+
+    @FindBy(xpath="(//textarea[@placeholder='Type a message.'])[1]")
+    private WebElement inout_ReasonForChange;
+
+    private By subEmail = By.xpath("(//input[@placeholder='Please enter subject Email'])[1]");
+
+    private By phoneCode = By.xpath("(//input[@placeholder='Please enter subject Email'])[1]");
+
+    private By phoneNum = By.xpath("(//input[@id='phone'])[1]");
+
+
 
     @FindBy(xpath="(//input[@placeholder='Select date'])[1]")
     private WebElement input_SubjectStartDate;
@@ -135,7 +219,7 @@ public class SubjectCreatePage extends BaseClass {
 
     public boolean clickSubject(){
         try{
-            seleniumAdaptor.pauseFor(2);
+//            seleniumAdaptor.pauseFor(2);
 //            seleniumAction.WaitFoElementToBeVisible(btn_Subject);
             loggerObj.info("The btn_Subject is not clicked");
 //            seleniumAdaptor.JavaScriptClick(btn_Subject);
@@ -217,6 +301,301 @@ public class SubjectCreatePage extends BaseClass {
         }
     }
 
+
+    public boolean clickCreate1(){
+        try{
+            seleniumAdaptor.pauseFor(0);
+
+            loggerObj.info("The btn_Create2 is not clicked");
+            seleniumAction.clickElement(btn_Create2);
+            seleniumAdaptor.JavaScriptClick(btn_Create2);
+            seleniumAdaptor.JavaScriptClick(btn_Create2);
+            seleniumAdaptor.JavaScriptClick(btn_Create2);
+            loggerObj.info("The btn_Create2 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickSubViewEncryptedData(){
+        try{
+            seleniumAdaptor.pauseFor(1);
+            loggerObj.info("The btn_SubViewEncryptedData is not clicked");
+//            seleniumAction.clickElement(btn_Create1);
+            seleniumAdaptor.JavaScriptClick(btn_SubViewEncryptedData);
+            loggerObj.info("The btn_SubViewEncryptedData is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickSubjectDetails(){
+        try{
+
+            loggerObj.info("The lnk_SubjectDetails is not clicked");
+            seleniumAction.clickElement(lnk_SubjectDetails);
+            seleniumAdaptor.JavaScriptClick(lnk_SubjectDetails);
+            loggerObj.info("The lnk_SubjectDetails is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickSubjectDetails1(){
+        try{
+
+            loggerObj.info("The lnk_SubjectDetails1 is not clicked");
+            seleniumAction.clickElement(lnk_SubjectDetails1);
+            seleniumAdaptor.JavaScriptClick(lnk_SubjectDetails1);
+            loggerObj.info("The lnk_SubjectDetails1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public boolean clickEditSite(){
+        try{
+
+            loggerObj.info("The lnk_EditSite is not clicked");
+//            seleniumAction.clickElement(lnk_SubjectDetails);
+            seleniumAdaptor.JavaScriptClick(lnk_EditSite);
+            loggerObj.info("The lnk_EditSite is clicked");
+            seleniumAdaptor.pauseFor(1);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public boolean clickSite(){
+        try{
+
+            loggerObj.info("The lnk_EditSite is not clicked");
+//            seleniumAction.clickElement(lnk_SubjectDetails);
+            seleniumAdaptor.JavaScriptClick(lnk_Site);
+            loggerObj.info("The lnk_Site is clicked");
+//            seleniumAdaptor.pauseFor(1);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+
+    public boolean clickSite1(){
+        try{
+
+            loggerObj.info("The lnk_Site1 is not clicked");
+//            seleniumAction.clickElement(lnk_SubjectDetails);
+            seleniumAdaptor.JavaScriptClick(lnk_Site1);
+            loggerObj.info("The lnk_Site1 is clicked");
+//            seleniumAdaptor.pauseFor(1);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+    public boolean clickJconnectLogout(){
+        try{
+
+            loggerObj.info("The btn_JconnectLogout is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_JconnectLogout);
+            loggerObj.info("The lnk_Site is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickJconnectLogout1(){
+        try{
+
+            loggerObj.info("The btn_JconnectLogout1 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_JconnectLogout2);
+            seleniumAdaptor.JavaScriptClick(btn_JconnectLogout1);
+            seleniumAction.clickElement(btn_JconnectLogout1);
+            seleniumAction.clickElement(btn_JconnectLogout5);
+            seleniumAdaptor.JavaScriptClick(btn_JconnectLogout5);
+            loggerObj.info("The btn_JconnectLogout1 is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickJconnectLogout2(){
+        try{
+
+            loggerObj.info("The btn_JconnectLogout3 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_JconnectLogout3);
+            seleniumAdaptor.JavaScriptClick(btn_JconnectLogout5);
+            seleniumAction.clickElement(btn_JconnectLogout5);
+            loggerObj.info("The btn_JconnectLogout5 is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+
+    public boolean clickLogout(){
+        try{
+
+            loggerObj.info("The btn_Logout is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_Logout);
+            loggerObj.info("The btn_Logout is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickLogout1(){
+        try{
+
+            loggerObj.info("The btn_Logout is not clicked");
+//            seleniumAction.hoverMouseOverElement(btn_Logout3);
+            seleniumAdaptor.JavaScriptClick(btn_Logout);
+            loggerObj.info("The btn_Logout is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+
+
+    public boolean captureStudy(String study){
+        try{
+//            seleniumAction.scrollBy("0", "1400");
+//			seleniumAdaptor.pauseFor(1);
+
+
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("//li[starts-with(text(), '"+study+"')]")));
+            loggerObj.info("The study is selected");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public boolean captureReasonForChange(String reasonForChange){
+        try{
+
+            loggerObj.info("The inout_ReasonForChange is not captured");
+            seleniumAdaptor.JavaScriptClick(inout_ReasonForChange);
+            seleniumAction.clearText(inout_ReasonForChange);
+            seleniumAction.typeText(inout_ReasonForChange,reasonForChange);
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+    public boolean clickStatusChange(){
+        try{
+
+            loggerObj.info("The slider_StatusChange is not clicked");
+//            seleniumAction.clickElement(slider_StatusChange);
+            seleniumAdaptor.JavaScriptClick(slider_StatusChange);
+            loggerObj.info("The lnk_SubjectDetails is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickStatusChange1(){
+        try{
+
+            loggerObj.info("The slider_StatusChange1 is not clicked");
+
+            seleniumAdaptor.JavaScriptClick(slider_StatusChange1);
+            loggerObj.info("The slider_StatusChange1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public String getSubEmail() {
+
+        seleniumAction.clickElement(subEmail);
+        seleniumAdaptor.pauseFor(1);
+//        seleniumAdaptor.JavaScriptClick(subEmail);
+        loggerObj.info("The StartDate for subEmail is clicked");
+        String email = driver.findElement(subEmail).getAttribute("value");
+        loggerObj.info("The Subject Email is :" + email);
+
+        return email;
+    }
+
+    public String getPhoneCode() {
+
+        seleniumAction.clickElement(phoneCode);
+//        seleniumAdaptor.JavaScriptClick(subEmail);
+        loggerObj.info("The StartDate for phoneCode is clicked");
+        String phoneCod = driver.findElement(phoneCode).getAttribute("value");
+        loggerObj.info("The Subject phoneCode is :" + phoneCod);
+
+        return phoneCod;
+    }
+
+    public String getPhoneNum() {
+
+        seleniumAction.clickElement(phoneNum);
+        seleniumAdaptor.pauseFor(1);
+//        seleniumAdaptor.JavaScriptClick(subEmail);
+        loggerObj.info("The StartDate for phoneNum is clicked");
+        String phoneNo = driver.findElement(phoneNum).getAttribute("value");
+        loggerObj.info("The Subject phoneNum is :" + phoneNo);
+
+        return phoneNo;
+    }
+
+
+
+
+
+
     public boolean captureFirstName(String firstname){
         try{
 //			seleniumAdaptor.pauseFor(2);
@@ -265,6 +644,36 @@ public class SubjectCreatePage extends BaseClass {
         }
     }
 
+    public boolean captureSelectSite2(String site){
+        try{
+//			seleniumAdaptor.pauseFor(2);
+//            System.out.println("The inputname is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_drpSelectSite);
+//            seleniumAction.clearText(txt_UserName);
+//            seleniumAdaptor.pauseFor(2);
+            seleniumAction.clickElement(driver.findElement(By.xpath("(//ul//li[text()='" + site + "'])[2]")));
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public boolean captureSelectSite1(String site){
+        try{
+//			seleniumAdaptor.pauseFor(2);
+//            System.out.println("The inputname is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_drpSelectSite);
+//            seleniumAction.clearText(txt_UserName);
+//            seleniumAdaptor.pauseFor(2);
+            seleniumAction.clickElement(driver.findElement(By.xpath("(//ul//li[text()='" + site + "'])[2]")));
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
     public boolean captureSubjectNumMRN(String subNum){
         try{
 //			seleniumAdaptor.pauseFor(2);
@@ -508,7 +917,7 @@ public class SubjectCreatePage extends BaseClass {
 //            System.out.println("The inputname is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_drpLanguage);
 //            seleniumAction.clearText(txt_UserName);
-//            seleniumAdaptor.pauseFor(2);
+            seleniumAdaptor.pauseFor(3);
             seleniumAction.clickElement(driver.findElement(By.xpath("//ul//li[text()='" + language + "']")));
             return true;
         } catch(Exception var2) {
@@ -669,10 +1078,123 @@ public class SubjectCreatePage extends BaseClass {
         return EDiary;
     }
 
+    public String getSubjectDetailsTab() {
+
+        seleniumAction.clickElement(txt_SubjectDetailsTab);
+        String txt = driver.findElement(txt_SubjectDetailsTab).getText();
+        loggerObj.info("The SubjectDetailsTab Description in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getVisitsTab() {
+
+        seleniumAction.clickElement(txt_VisitsTab);
+        String txt = driver.findElement(txt_VisitsTab).getText();
+        loggerObj.info("The VisitsTab Description in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getSummaryTab() {
+
+        seleniumAction.clickElement(txt_SummaryTab);
+        String txt = driver.findElement(txt_SummaryTab).getText();
+        loggerObj.info("The SummaryTab Description in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getSubVisitStatus() {
+
+        seleniumAction.clickElement(txt_SubVisitStatus);
+        String txt = driver.findElement(txt_SubVisitStatus).getText();
+        loggerObj.info("The SubVisitStatus Description in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getSubViewEncriptedData() {
+
+        seleniumAction.clickElement(txt_SubViewEncriptedData);
+        String txt = driver.findElement(txt_SubViewEncriptedData).getText();
+        loggerObj.info("The SubViewEncriptedData Description in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getSubNumberSummary() {
+
+        seleniumAction.clickElement(txt_SubNumberSummary);
+        seleniumAdaptor.pauseFor(2);
+        String txt = driver.findElement(txt_SubNumberSummary).getText();
+//        String txt = driver.findElement(txt_SubNumberSummary).getAttribute("value");
+        loggerObj.info("The SubNumber in Summary Section in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getStudyName() {
+
+
+//        seleniumAdaptor.pauseFor(1);
+//        seleniumAction.clickElement(txt_PIname);
+//        loggerObj.info("The txt_PIname is clicked");
+        String txt = driver.findElement(txt_StudyName).getText();
+        loggerObj.info("The StudyName in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getSiteName() {
+
+
+//        seleniumAdaptor.pauseFor(1);
+//        seleniumAction.clickElement(txt_PIname);
+//        loggerObj.info("The txt_PIname is clicked");
+        String txt = driver.findElement(getSiteName).getText();
+        loggerObj.info("The SiteName in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getStudyName1() {
+
+
+        seleniumAdaptor.pauseFor(1);
+//        seleniumAction.clickElement(txt_PIname);
+//        loggerObj.info("The txt_PIname is clicked");
+        String txt = driver.findElement(getStudyName1).getText();
+        loggerObj.info("The getStudyName1 in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getStudyName2() {
+
+
+        seleniumAdaptor.pauseFor(1);
+//        seleniumAction.clickElement(txt_PIname);
+//        loggerObj.info("The txt_PIname is clicked");
+        String txt = driver.findElement(getStudyName2).getText();
+        loggerObj.info("The getStudyName2 in JConnect is :" + txt);
+        return txt;
+    }
+
+    public String getStudyName3() {
+
+
+        seleniumAdaptor.pauseFor(1);
+//        seleniumAction.clickElement(txt_PIname);
+//        loggerObj.info("The txt_PIname is clicked");
+        String txt = driver.findElement(getStudyName3).getText();
+        loggerObj.info("The getStudyName3 in JConnect is :" + txt);
+        return txt;
+    }
 
 
 
+    public String getSiteName1() {
 
+
+        seleniumAdaptor.pauseFor(1);
+//        seleniumAction.clickElement(txt_PIname);
+//        loggerObj.info("The txt_PIname is clicked");
+        String txt = driver.findElement(getSiteName1).getText();
+        loggerObj.info("The SiteName1 in JConnect is :" + txt);
+        return txt;
+    }
 
 }
 
