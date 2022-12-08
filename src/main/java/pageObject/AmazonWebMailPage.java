@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
@@ -523,7 +522,7 @@ public class AmazonWebMailPage extends BaseClass {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(2));
-        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+        driver.get("https://jconnect-build.qa.jivascience.com/webapp/admin/auth/login");
 
 
 //        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
@@ -534,7 +533,7 @@ public class AmazonWebMailPage extends BaseClass {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
-        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+        driver.get("https://jconnect-build.qa.jivascience.com/webapp/admin/auth/login");
 
 //        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
 
@@ -543,7 +542,7 @@ public class AmazonWebMailPage extends BaseClass {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
-        driver.get("https://jcollaborate.jiva-demo.jivascience.com/api/CRIOIntegration/users/sign_in");
+        driver.get("https://jcollaborate.qa.jivascience.com/api/CRIOIntegration/users/sign_in");
 
 //        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
 

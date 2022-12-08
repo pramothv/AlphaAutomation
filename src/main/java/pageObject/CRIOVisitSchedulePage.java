@@ -27,8 +27,14 @@ public class CRIOVisitSchedulePage extends BaseClass {
     @FindBy(xpath = "(//label[text()='Schedule a visit'])[1]")
     private WebElement lnk_ScheduleVisit;
 
+    @FindBy(xpath = "(//input[@value='Create Unscheduled Visit'])[1]")
+    private WebElement lnk_CreateUnScheduleVisit;
+
     @FindBy(xpath = "(//*[contains(text(),'Usha')])[1]")
     private WebElement lnk_AdminUsha;
+
+    @FindBy(xpath = "(//*[contains(text(),'Joshna')])[1]")
+    private WebElement lnk_invJoshna;
 
     @FindBy(xpath = "(//*[contains(text(),'More')])[1]")
     private WebElement lnk_More;
@@ -46,7 +52,44 @@ public class CRIOVisitSchedulePage extends BaseClass {
     @FindBy(xpath="//span[@class='fc-grid-hover']/span")
     private WebElement btn_TimeSelectIcon11;
 
+    @FindBy(xpath="(//div[@class='fc-highlight-container'])[1]")
+    private WebElement btn_TimeSelectIcon10;
+
+    @FindBy(xpath="(//td[@class='fc-widget-content'])[4]")
+    private WebElement btn_TimeSelectIcon17;
+
+    @FindBy(xpath="(//td[@class='fc-widget-content'])[6]")
+    private WebElement btn_TimeSelectIcon19;
+
+    @FindBy(xpath="(//td[@class='fc-widget-content'])[8]")
+    private WebElement btn_TimeSelectIcon21;
+
+    @FindBy(xpath="(//td[@class='fc-widget-content'])[9]")
+    private WebElement btn_TimeSelectIcon25;
+
+    @FindBy(xpath="(//td[@class='fc-widget-content'])[10]")
+    private WebElement btn_TimeSelectIcon27;
+
+    @FindBy(xpath="(//td[@class='fc-widget-content'])[11]")
+    private WebElement btn_TimeSelectIcon29;
+
+
     private By btn_TimeSelectIcon12 =  By.xpath("//span[@class='fc-grid-hover']/span");
+
+    private By btn_TimeSelectIcon9 =  By.xpath("(//div[@class='fc-highlight-container'])[1]");
+
+
+    private By btn_TimeSelectIcon16 =  By.xpath("(//td[@class='fc-widget-content'])[4]");
+
+    private By btn_TimeSelectIcon18 =  By.xpath("(//td[@class='fc-widget-content'])[6]");
+
+    private By btn_TimeSelectIcon20 =  By.xpath("(//td[@class='fc-widget-content'])[8]");
+
+    private By btn_TimeSelectIcon24 =  By.xpath("(//td[@class='fc-widget-content'])[9]");
+
+    private By btn_TimeSelectIcon26 =  By.xpath("(//td[@class='fc-widget-content'])[10]");
+
+    private By btn_TimeSelectIcon28 =  By.xpath("(//td[@class='fc-widget-content'])[11]");
 
     private By btn_TimeSelectIcon3 =  By.xpath("(//span[@class='fc-grid-hover'])[1]");
 
@@ -92,12 +135,39 @@ public class CRIOVisitSchedulePage extends BaseClass {
         }
     }
 
+    public boolean clickCreateUnScheduleVisit() {
+        try {
+
+            loggerObj.info("The lnk_CreateUnScheduleVisit is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_CreateUnScheduleVisit);
+            loggerObj.info("The lnk_CreateUnScheduleVisit is clicked");
+//            seleniumAdaptor.pauseFor(2);
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
     public boolean clickAdminUsha() {
         try {
 //            seleniumAdaptor.pauseFor(2);
             loggerObj.info("The lnk_AdminUsha is not clicked");
             seleniumAdaptor.JavaScriptClick(lnk_AdminUsha);
             loggerObj.info("The lnk_AdminUsha is clicked");
+//            seleniumAdaptor.pauseFor(2);
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickInvJoshna() {
+        try {
+//            seleniumAdaptor.pauseFor(2);
+            loggerObj.info("The lnk_invJoshna is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_invJoshna);
+            loggerObj.info("The lnk_invJoshna is clicked");
 //            seleniumAdaptor.pauseFor(2);
             return true;
         } catch (Exception var2) {
@@ -119,6 +189,31 @@ public class CRIOVisitSchedulePage extends BaseClass {
         }
     }
 
+    public boolean captureprocedure1(String procedure1){
+        try{
+
+            loggerObj.info("The procedure1 is not clicked");
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("//label[text()='" + procedure1 + "']")));
+            loggerObj.info("The procedure1 is captured");
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean captureprocedure2(String procedure2){
+        try{
+
+            loggerObj.info("The procedure2 is not clicked");
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("//label[text()='" + procedure2 + "']")));
+            loggerObj.info("The procedure2 is captured");
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
 
     public boolean clickCalendarToday() {
         try {
@@ -177,6 +272,124 @@ public class CRIOVisitSchedulePage extends BaseClass {
 //            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon11);
             seleniumAction.clickElement(btn_TimeSelectIcon11);
             loggerObj.info("The btn_TimeSelectIcon2 is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickTimeSelectCRIO3() {
+        try {
+
+            loggerObj.info("The btn_TimeSelectIcon9 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_TimeSelectIcon9);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon10);
+            seleniumAction.clickElement(btn_TimeSelectIcon10);
+            loggerObj.info("The btn_TimeSelectIcon10 is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickTimeSelectCRIO4() {
+        try {
+
+            loggerObj.info("The btn_TimeSelectIcon16 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_TimeSelectIcon16);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon17);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon17);
+            seleniumAction.clickElement(btn_TimeSelectIcon17);
+            loggerObj.info("The btn_TimeSelectIcon17 is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickTimeSelectCRIO6() {
+        try {
+
+            loggerObj.info("The btn_TimeSelectIcon20 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_TimeSelectIcon20);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon21);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon21);
+            seleniumAction.clickElement(btn_TimeSelectIcon21);
+            loggerObj.info("The btn_TimeSelectIcon21 is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickTimeSelectCRIO7() {
+        try {
+
+            loggerObj.info("The btn_TimeSelectIcon24 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_TimeSelectIcon24);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon25);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon25);
+            seleniumAction.clickElement(btn_TimeSelectIcon25);
+            loggerObj.info("The btn_TimeSelectIcon25 is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickTimeSelectCRIO8() {
+        try {
+
+            loggerObj.info("The btn_TimeSelectIcon26 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_TimeSelectIcon26);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon27);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon27);
+            seleniumAction.clickElement(btn_TimeSelectIcon27);
+            loggerObj.info("The btn_TimeSelectIcon27 is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickTimeSelectCRIO9() {
+        try {
+
+            loggerObj.info("The btn_TimeSelectIcon28 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_TimeSelectIcon28);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon29);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon29);
+            seleniumAction.clickElement(btn_TimeSelectIcon29);
+            loggerObj.info("The btn_TimeSelectIcon29 is clicked");
+
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickTimeSelectCRIO5() {
+        try {
+
+            loggerObj.info("The btn_TimeSelectIcon18 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_TimeSelectIcon18);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon19);
+            seleniumAdaptor.JavaScriptClick(btn_TimeSelectIcon19);
+            seleniumAction.clickElement(btn_TimeSelectIcon19);
+            loggerObj.info("The btn_TimeSelectIcon19 is clicked");
 
 
             return true;

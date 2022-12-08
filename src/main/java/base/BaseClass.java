@@ -5,12 +5,8 @@ package base;
 
 //import io.cucumber.core.api.Scenario;
 
-import Utility.Base64Encoder;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
-import gherkin.formatter.Reporter;
 import io.cucumber.java.Scenario;
-import io.cucumber.messages.internal.com.google.protobuf.DescriptorProtos;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
@@ -22,6 +18,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import seleniumaction.SeleniumAction;
@@ -74,7 +71,7 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
     public WebDriver openBrowser(String url) throws Exception {
 
         if(broserName.equalsIgnoreCase("chrome")){
-         System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver.exe");
+         System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver1.exe");
           ChromeOptions options = new ChromeOptions();
           HashMap<String, Integer> contentSettings = new HashMap<String, Integer>();
             HashMap<String, Object> profile = new HashMap<String, Object>();
@@ -91,7 +88,15 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
 
 //            WebDriverManager.chromedriver().setup();
 
+//            options.add_experimental_option("useAutomationExtension", False);
+//            options.add_experimental_option("excludeSwitches",["enable-automation"]);
+//            options.addArguments("enable-automation");
             driver = new ChromeDriver(options);
+            options.addArguments("disable-infobars");
+
+
+
+//            options = uc.ChromeOptions();
                }
         else if(broserName.equalsIgnoreCase("firefox")){
             System.setProperty("webdriver.firefox.marionette", webDriverlocationpath+ "\\geckodriver.exe");
@@ -100,12 +105,14 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
         else if(broserName.equalsIgnoreCase("Edge")){
             //set path to Edge.exe
             System.setProperty("webdriver.edge.driver",webDriverlocationpath+"\\msedgedriver1.exe");
-            //create Edge instance
+            EdgeOptions options = new EdgeOptions();
+
             driver =new EdgeDriver();
        }
         else{
             //If no browser passed throw exception
             throw new Exception("Browser is not correct");}
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(1000l, TimeUnit.SECONDS);
         driver.get(url);

@@ -32,10 +32,13 @@ private String homeDirectory = System.getProperty("user.dir");
 
     @FindBy(xpath="(//button[@class='ant-btn ant-btn-primary'])[1]")
     private WebElement lnk_NewChat;
+
+    @FindBy(xpath="(//span[text()='+ New Chat'])[1]")
+    private WebElement lnk_NewChat1;
     @FindBy(xpath="//*[contains(text(),'Jackie Shroff,JA SC')]")
     private WebElement lnk_ChatParticipants;
 
-    @FindBy(xpath="(//*[contains(text(),'JA SC')])[1]")
+    @FindBy(xpath="(//*[contains(text(),'JSA SC')])[1]")
     private WebElement lnk_ChatParticipants1;
 
     @FindBy(xpath="(//*[contains(text(),'Dan nick')])[1]")
@@ -108,6 +111,20 @@ private String homeDirectory = System.getProperty("user.dir");
         }
     }
 
+    public boolean clickNewChat1(){
+        try{
+
+            loggerObj.info("The lnk_NewChat1 is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_NewChat1);
+            loggerObj.info("The lnk_NewChat1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean clickChatParticipants(){
         try{
 
@@ -138,7 +155,21 @@ private String homeDirectory = System.getProperty("user.dir");
         }
     }
 
+    public boolean clickChatParticipants3(){
+        try{
 
+            loggerObj.info("The lnk_ChatParticipants1 is not clicked");
+            seleniumAction.clickElement(lnk_ChatParticipants1);
+            seleniumAdaptor.JavaScriptClick(lnk_ChatParticipants1);
+            loggerObj.info("The lnk_ChatParticipants1 is clicked");
+            seleniumAdaptor.pauseFor(2);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
     public boolean clickChatParticipants2(){
         try{
 

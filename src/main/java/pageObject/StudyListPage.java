@@ -47,6 +47,9 @@ public class StudyListPage extends BaseClass {
     @FindBy(xpath="(//button[@class='ant-btn ant-input-search-button ant-btn-primary'])[1]")
     private WebElement btn_StudyListSearch;
 
+    @FindBy(xpath="(//div[text()='Language'])[1]")
+    private WebElement btn_StudyLanguage;
+
     private By sponsorNameStudy = By.xpath("(//input[@id='study.sponsorName'])[1]");
 
     private By versionNameStudy = By.xpath("(//input[@id='crfVersion.versionName'])[1]");
@@ -145,8 +148,10 @@ public class StudyListPage extends BaseClass {
 
 
             loggerObj.info("The btn_Next is not clicked");
-            seleniumAction.clickElement(btn_Next);
+            seleniumAdaptor.JavaScriptClick(btn_Next);
+//            seleniumAction.clickElement(btn_Next);
             loggerObj.info("The btn_Next is clicked");
+            seleniumAdaptor.pauseFor(1);
 
             return true;
         } catch(Exception var2) {
@@ -188,6 +193,8 @@ public class StudyListPage extends BaseClass {
         try{
             seleniumAdaptor.pauseFor(2);
             seleniumAdaptor.JavaScriptClick(btn_StudyListSearch);
+            seleniumAdaptor.JavaScriptClick(btn_StudyListSearch);
+            seleniumAction.clickElement(btn_StudyListSearch);
             loggerObj.info("The btn_SubjectListSearch is clicked");
 
             return true;
@@ -197,10 +204,25 @@ public class StudyListPage extends BaseClass {
         }
     }
 
+    public boolean clickStudyLanguage(){
+        try{
+            seleniumAdaptor.pauseFor(1);
+            seleniumAdaptor.JavaScriptClick(btn_StudyLanguage);
+            loggerObj.info("The btn_StudyLanguage is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+
     public boolean clickStudyNumberMRN(String studyNum){
         try{
-            seleniumAction.scrollBy("0", "1400");
-            seleniumAdaptor.scrollDown();
+//            seleniumAction.scrollBy("0", "1400");
+//            seleniumAdaptor.scrollDown();
 
             seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//td)[1]//a[starts-with(text(),'"+studyNum+"')]")));
             loggerObj.info("The StudyNumberMRN is captured");

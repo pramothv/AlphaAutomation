@@ -33,6 +33,9 @@ public class JCollaborateQALoginPage extends BaseClass {
     @FindBy(xpath="(//button[text()='Sign In'])[1]")
     private WebElement btn_SignIn;
 
+    @FindBy(xpath="(//button[text()='Validate Credentials'])[1]")
+    private WebElement btn_ValidateCredentials1;
+
     private By txt_UserName1 = By.xpath("(//input[@id='username'])[1]");
 
     private By txt_Password1 = By.xpath("(//input[@id='password'])[1]");
@@ -110,6 +113,20 @@ public class JCollaborateQALoginPage extends BaseClass {
             loggerObj.info("The btn_SignIn is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_SignIn);
             loggerObj.info("The btn_SignIn is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickValidateCredentials1(){
+        try{
+
+            loggerObj.info("The btn_ValidateCredentials1 is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_ValidateCredentials1);
+            loggerObj.info("The btn_ValidateCredentials1 is clicked");
 
             return true;
         } catch(Exception var2) {

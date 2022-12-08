@@ -56,6 +56,9 @@ public class MenuItemsJconnectPage extends BaseClass {
     @FindBy(xpath="(//span[text()='List'])[3]")
     private WebElement lnk_UserManagementList1;
 
+    @FindBy(xpath="(//span[text()='List'])[2]")
+    private WebElement lnk_UserManagementList2;
+
     @FindBy(xpath="(//span[text()='eSignature Log'])[1]")
     private WebElement lnk_ESignatureLog;
 
@@ -64,6 +67,8 @@ public class MenuItemsJconnectPage extends BaseClass {
     private By lnk_SubjectList = By.xpath("(//span[text()='List'])[2]");
 
     private By lnk_UserManagementList = By.xpath("(//span[text()='List'])[3]");
+
+    private By lnk_UserManagementList3 = By.xpath("(//span[text()='List'])[2]");
 
     private By lnk_MyAccounttxt = By.xpath("(//span[text()='My Account'])[1]");
 
@@ -144,6 +149,16 @@ public class MenuItemsJconnectPage extends BaseClass {
         return txt;
     }
 
+
+    public String getUserManagementListtxt2() {
+
+        String txt = driver.findElement(lnk_UserManagementList3).getText();
+        loggerObj.info("The lnk_UserManagementList Description in JConnect is :" + txt);
+        return txt;
+    }
+
+
+
     public String getMyAccounttxt() {
 
         String txt = driver.findElement(lnk_MyAccounttxt).getText();
@@ -195,7 +210,8 @@ public class MenuItemsJconnectPage extends BaseClass {
 
 
     public String getSubjectMigrationtxt() {
-
+       seleniumAction.clickElement(lnk_SubjectMigration);
+        seleniumAdaptor.pauseFor(2);
         String txt = driver.findElement(lnk_SubjectMigration).getText();
         loggerObj.info("The SubjectMigration Description in JConnect is :" + txt);
         return txt;
@@ -205,9 +221,23 @@ public class MenuItemsJconnectPage extends BaseClass {
     public boolean clickUserManagementList(){
         try{
 
-            loggerObj.info("The btn_Subject is not clicked");
+            loggerObj.info("The lnk_UserManagementList1 is not clicked");
             seleniumAdaptor.JavaScriptClick(lnk_UserManagementList1);
-            loggerObj.info("The btn_Subject is clicked");
+            loggerObj.info("The lnk_UserManagementList1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickUserManagementList2(){
+        try{
+
+            loggerObj.info("The lnk_UserManagementList2 is not clicked");
+            seleniumAdaptor.JavaScriptClick(lnk_UserManagementList2);
+            loggerObj.info("The lnk_UserManagementList2 is clicked");
 
             return true;
         } catch(Exception var2) {

@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class WebAppLoginPage extends BaseClass {
 
@@ -237,6 +236,9 @@ public class WebAppLoginPage extends BaseClass {
     @FindBy(xpath="(//div[@class='css-901oao r-jwli3a'])[1]")
     private WebElement btn_AddParticipants;
 
+    @FindBy(xpath="(//div[@class='sc-hLBbgP jROBVC'])[1]")
+    private WebElement btn_AddParticipants1;
+
 
 
     @FindBy(xpath="(//div[text()='More'])[1]")
@@ -357,6 +359,9 @@ public class WebAppLoginPage extends BaseClass {
     @FindBy(xpath="(//div[text()='Safer'])[1]")
     private WebElement lnk_WebAppSafer;
 
+    @FindBy(xpath="(//div[text()='SAFER Interview'])[1]")
+    private WebElement lnk_WebAppSafer1;
+
     @FindBy(xpath="(//*[contains(text(),'Screening')])[3]")
     private WebElement lnk_WebAppScreening;
 
@@ -398,7 +403,14 @@ public class WebAppLoginPage extends BaseClass {
 
     private By windowStartDateWeek3 = By.xpath("(//div[@class='css-901oao r-1viopy3 r-1enofrn r-1g94qm0 r-1g80hic'][starts-with(text(),'Start Time')])[5]");
 
+
+    private By window1StartDateWeek3 = By.xpath("(//div[@class='css-901oao r-1viopy3 r-1enofrn r-1g94qm0 r-1g80hic'][starts-with(text(),'Start Time')])[4]");
+
+
     private By windowEndDateWeek3 = By.xpath("(//div[@class='css-901oao r-1viopy3 r-1enofrn r-1g94qm0 r-1g80hic'][starts-with(text(),'End Time')])[5]");
+
+
+    private By window1EndDateWeek3 = By.xpath("(//div[@class='css-901oao r-1viopy3 r-1enofrn r-1g94qm0 r-1g80hic'][starts-with(text(),'End Time')])[4]");
 
     private By txt_StatusScreening1 = By.xpath("//*[contains(text(),'Status:' )]");
 
@@ -408,7 +420,7 @@ public class WebAppLoginPage extends BaseClass {
     @FindBy(xpath="//*[contains(text(),'Jackie')]")
     private WebElement lnk_ChatParticipantsWebApp;
 
-    @FindBy(xpath="//*[contains(text(),'JA SC')]")
+    @FindBy(xpath="//*[contains(text(),'JSA SC')]")
     private WebElement lnk_ChatParticipantsWebApp1;
 
     @FindBy(xpath="(//div[@class='css-901oao'])[3]")
@@ -438,6 +450,9 @@ public class WebAppLoginPage extends BaseClass {
 
     @FindBy(xpath="(//span[@class='css-901oao css-16my406 r-jwli3a'])[1]")
     private WebElement btn_back1;
+
+    @FindBy(xpath="(//span[@class='css-901oao css-16my406'])[13]")
+    private WebElement btn_back3;
 
     @FindBy(xpath="(//img[@class='css-9pa8cd'])[1]")
     private WebElement btn_back2;
@@ -968,7 +983,7 @@ public class WebAppLoginPage extends BaseClass {
                ArrayList<String> w = new ArrayList<String>(driver.getWindowHandles());
        driver.switchTo().window(w.get(1));
 //        seleniumAdaptor.switchToTab(3);
-        driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+        driver.get("https://jconnect-build.qa.jivascience.com/webapp/admin/auth/login");
 
     }
 
@@ -978,6 +993,26 @@ public class WebAppLoginPage extends BaseClass {
         seleniumAdaptor.switchToTab(0);
         driver.switchTo().window(tabs.get(3));
         driver.get("https://jconnect-build.jiva-demo.jivascience.com/webapp/admin/auth/login");
+
+
+    }
+
+    public void opentabJconnect2(){
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
+        seleniumAdaptor.switchToTab(0);
+        driver.switchTo().window(tabs.get(2));
+        driver.get("https://jcollaborate.jiva-demo.jivascience.com/api/CRIOIntegration/users/sign_in");
+
+
+    }
+
+    public void opentabJconnect3(){
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs= new ArrayList<>(driver.getWindowHandles());
+        seleniumAdaptor.switchToTab(0);
+        driver.switchTo().window(tabs.get(2));
+        driver.get("https://jcollaborate.jiva-demo.jivascience.com/api/CRIOIntegration/users/sign_in");
 
 
     }
@@ -2522,6 +2557,20 @@ public class WebAppLoginPage extends BaseClass {
             return false;
         }
     }
+
+    public boolean clickAddParticipants1(){
+        try{
+
+            loggerObj.info("The btn_AddParticipants1 is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_AddParticipants1);
+            loggerObj.info("The btn_AddParticipants1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
     public boolean clickMore(){
         try{
 //            seleniumAdaptor.pauseFor(2);
@@ -3001,6 +3050,20 @@ public class WebAppLoginPage extends BaseClass {
         }
     }
 
+
+    public boolean clickWebAppSafermeeting1() {
+        try {
+
+            loggerObj.info("The lnk_WebAppSafer is not clicked1");
+            seleniumAdaptor.JavaScriptClick(lnk_WebAppSafer1);
+            loggerObj.info("The lnk_WebAppSafer1 is clicked");
+
+            return true;
+        } catch (Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
     public boolean clickWebAppScreeningmeeting() {
         try {
 
@@ -3318,6 +3381,21 @@ public class WebAppLoginPage extends BaseClass {
             loggerObj.info("The btn_back1 is not clicked");
             seleniumAdaptor.JavaScriptClick(btn_back1);
             loggerObj.info("The btn_back1 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public boolean clickBack3(){
+        try{
+
+            loggerObj.info("The btn_back3 is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_back3);
+            loggerObj.info("The btn_back3 is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -4992,11 +5070,35 @@ public class WebAppLoginPage extends BaseClass {
         return number;
     }
 
+    public String getWindow1StartDateWeek3() {
+
+        seleniumAction.clickElement(window1StartDateWeek3);
+        loggerObj.info("The window1StartDateWeek3 is clicked");
+        String startdate = driver.findElement(window1StartDateWeek3).getText();
+        String number = startdate.split(":")[1].trim();
+        loggerObj.info("The StartDate for Week3 in WebApp is :" + number);
+
+
+        return number;
+    }
+
     public String getWindowEndDateWeek3() {
 
         seleniumAction.clickElement(windowEndDateWeek3);
         System.out.println("The windowEndDateWeek3 is clicked");
         String startdate = driver.findElement(windowEndDateWeek3).getText();
+        String number = startdate.split(":")[1].trim();
+        loggerObj.info("The EndDate for Week3 in WebApp is :" + number);
+
+
+        return number;
+    }
+
+    public String getWindow1EndDateWeek3() {
+
+        seleniumAction.clickElement(window1EndDateWeek3);
+        loggerObj.info("The windowEndDateWeek3 is clicked");
+        String startdate = driver.findElement(window1EndDateWeek3).getText();
         String number = startdate.split(":")[1].trim();
         loggerObj.info("The EndDate for Week3 in WebApp is :" + number);
 

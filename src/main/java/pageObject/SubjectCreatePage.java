@@ -4,14 +4,11 @@ import base.BaseClass;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
-
-import static org.openqa.selenium.Keys.TAB;
 
 public class SubjectCreatePage extends BaseClass {
 
@@ -41,6 +38,9 @@ public class SubjectCreatePage extends BaseClass {
 
     @FindBy(xpath="(//i[@class='anticon anticon-edit app-menu side-menu-icon'])[1]")
     private WebElement btn_Create1;
+
+    @FindBy(xpath="(//i[@class='anticon anticon-edit app-menu side-menu-icon'])[2]")
+    private WebElement btn_Create2;
 
     @FindBy(xpath="//*[contains(text(),'View Encrypted Data')]")
     private WebElement btn_SubViewEncryptedData;
@@ -155,21 +155,41 @@ public class SubjectCreatePage extends BaseClass {
     @FindBy(xpath="//*[contains(text(),'Subject Details')]")
     private WebElement lnk_SubjectDetails;
 
+    @FindBy(xpath="(//*[contains(text(),'Subject Details')])[2]")
+    private WebElement lnk_SubjectDetails1;
+
     @FindBy(xpath="(//i[@class='anticon anticon-edit context-edit-icon'])[1]")
     private WebElement lnk_EditSite;
 
     @FindBy(xpath="(//li[@title='160 - The Bishop Center for Translational Neuroscience'])[1]")
     private WebElement lnk_Site;
 
+    @FindBy(xpath="(//li[@title='CrioTestSite'])[1]")
+    private WebElement lnk_Site1;
+
     @FindBy(xpath="(//i[@class='anticon anticon-user my-account-icon'])[1]")
     private WebElement btn_JconnectLogout;
+
+    private By btn_JconnectLogout2 = By.xpath("(//div[@class='ant-menu-submenu-title'])[5]");
+
+    private By btn_JconnectLogout3 = By.xpath("(//li[@class='ant-menu-submenu ant-menu-submenu-horizontal'])[1]");
+
+    @FindBy(xpath="(//div[@class='ant-menu-submenu-title'])[5]")
+    private WebElement btn_JconnectLogout5;
+    @FindBy(xpath="(//div[@class='ant-menu-submenu-title'])[5]")
+    private WebElement btn_JconnectLogout1;
 
     @FindBy(xpath="(//span[text()=' Log out'])[1]")
     private WebElement btn_Logout;
 
+    private By btn_Logout3 = By.xpath("(//span[text()=' Log out'])[1]");
+
 
     @FindBy(xpath="(//button[@role='switch'])[2]")
     private WebElement slider_StatusChange;
+
+    @FindBy(xpath="(//button[@role='switch'])[3]")
+    private WebElement slider_StatusChange1;
 
     @FindBy(xpath="(//textarea[@placeholder='Type a message.'])[1]")
     private WebElement inout_ReasonForChange;
@@ -282,6 +302,24 @@ public class SubjectCreatePage extends BaseClass {
     }
 
 
+    public boolean clickCreate1(){
+        try{
+            seleniumAdaptor.pauseFor(0);
+
+            loggerObj.info("The btn_Create2 is not clicked");
+            seleniumAction.clickElement(btn_Create2);
+            seleniumAdaptor.JavaScriptClick(btn_Create2);
+            seleniumAdaptor.JavaScriptClick(btn_Create2);
+            seleniumAdaptor.JavaScriptClick(btn_Create2);
+            loggerObj.info("The btn_Create2 is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean clickSubViewEncryptedData(){
         try{
             seleniumAdaptor.pauseFor(1);
@@ -304,6 +342,21 @@ public class SubjectCreatePage extends BaseClass {
             seleniumAction.clickElement(lnk_SubjectDetails);
             seleniumAdaptor.JavaScriptClick(lnk_SubjectDetails);
             loggerObj.info("The lnk_SubjectDetails is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickSubjectDetails1(){
+        try{
+
+            loggerObj.info("The lnk_SubjectDetails1 is not clicked");
+            seleniumAction.clickElement(lnk_SubjectDetails1);
+            seleniumAdaptor.JavaScriptClick(lnk_SubjectDetails1);
+            loggerObj.info("The lnk_SubjectDetails1 is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -345,6 +398,21 @@ public class SubjectCreatePage extends BaseClass {
             return false;
         }}
 
+
+    public boolean clickSite1(){
+        try{
+
+            loggerObj.info("The lnk_Site1 is not clicked");
+//            seleniumAction.clickElement(lnk_SubjectDetails);
+            seleniumAdaptor.JavaScriptClick(lnk_Site1);
+            loggerObj.info("The lnk_Site1 is clicked");
+//            seleniumAdaptor.pauseFor(1);
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
     public boolean clickJconnectLogout(){
         try{
 
@@ -359,10 +427,60 @@ public class SubjectCreatePage extends BaseClass {
             return false;
         }}
 
+    public boolean clickJconnectLogout1(){
+        try{
+
+            loggerObj.info("The btn_JconnectLogout1 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_JconnectLogout2);
+            seleniumAdaptor.JavaScriptClick(btn_JconnectLogout1);
+            seleniumAction.clickElement(btn_JconnectLogout1);
+            seleniumAction.clickElement(btn_JconnectLogout5);
+            seleniumAdaptor.JavaScriptClick(btn_JconnectLogout5);
+            loggerObj.info("The btn_JconnectLogout1 is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickJconnectLogout2(){
+        try{
+
+            loggerObj.info("The btn_JconnectLogout3 is not clicked");
+            seleniumAction.hoverMouseOverElement(btn_JconnectLogout3);
+            seleniumAdaptor.JavaScriptClick(btn_JconnectLogout5);
+            seleniumAction.clickElement(btn_JconnectLogout5);
+            loggerObj.info("The btn_JconnectLogout5 is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+
     public boolean clickLogout(){
         try{
 
             loggerObj.info("The btn_Logout is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_Logout);
+            loggerObj.info("The btn_Logout is clicked");
+
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickLogout1(){
+        try{
+
+            loggerObj.info("The btn_Logout is not clicked");
+//            seleniumAction.hoverMouseOverElement(btn_Logout3);
             seleniumAdaptor.JavaScriptClick(btn_Logout);
             loggerObj.info("The btn_Logout is clicked");
 
@@ -415,6 +533,21 @@ public class SubjectCreatePage extends BaseClass {
 //            seleniumAction.clickElement(slider_StatusChange);
             seleniumAdaptor.JavaScriptClick(slider_StatusChange);
             loggerObj.info("The lnk_SubjectDetails is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickStatusChange1(){
+        try{
+
+            loggerObj.info("The slider_StatusChange1 is not clicked");
+
+            seleniumAdaptor.JavaScriptClick(slider_StatusChange1);
+            loggerObj.info("The slider_StatusChange1 is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -504,6 +637,21 @@ public class SubjectCreatePage extends BaseClass {
 //            seleniumAction.clearText(txt_UserName);
 //            seleniumAdaptor.pauseFor(2);
             seleniumAction.clickElement(driver.findElement(By.xpath("//ul//li[text()='" + site + "']")));
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean captureSelectSite2(String site){
+        try{
+//			seleniumAdaptor.pauseFor(2);
+//            System.out.println("The inputname is not clicked");
+            seleniumAdaptor.JavaScriptClick(btn_drpSelectSite);
+//            seleniumAction.clearText(txt_UserName);
+//            seleniumAdaptor.pauseFor(2);
+            seleniumAction.clickElement(driver.findElement(By.xpath("(//ul//li[text()='" + site + "'])[2]")));
             return true;
         } catch(Exception var2) {
             var2.printStackTrace();

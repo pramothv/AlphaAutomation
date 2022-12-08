@@ -225,6 +225,8 @@ public class SubjectListPage extends BaseClass {
 
     private By txt_Status =  By.xpath("(//span[@class='ant-tag ant-tag-green'])[1]");
 
+    private By txt_Status2 =  By.xpath("(//span[@class='ant-tag ant-tag-blue'])[1]");
+
     private By txt_Status1 =  By.xpath("(//span[@class='ant-tag ant-tag-red'])[1]");
 
     @FindBy(xpath="(//span[text()='List'])[2]")
@@ -250,6 +252,9 @@ public class SubjectListPage extends BaseClass {
 
     @FindBy(xpath = "(//span[text()='Save & Next'])[1]")
     private WebElement btn_SaveandNext;
+
+    @FindBy(xpath = "(//span[text()='Validate Credentials'])[1]")
+    private WebElement btn_ValidateCredentials;
 
     @FindBy(xpath="//*[contains(text(),'OK')]")
     private WebElement btn_ScreeningPassOK;
@@ -310,6 +315,15 @@ public class SubjectListPage extends BaseClass {
         loggerObj.info("The Subject Status is :" + alert);
         return alert;
     }
+    public String getStatus2() {
+
+        seleniumAction.clickElement(txt_Status2);
+        loggerObj.info("The txt_Status2 is clicked");
+        String alert = driver.findElement(txt_Status2).getText();
+        loggerObj.info("The Subject Status is :" + alert);
+        return alert;
+    }
+
 
     public String getStatus1() {
 
@@ -325,6 +339,19 @@ public class SubjectListPage extends BaseClass {
 
             seleniumAdaptor.JavaScriptClick(lnk_SubjectListMenu);
             loggerObj.info("The lnk_SubjectListMenu is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean clickSubjectListMenu1(){
+        try{
+
+            seleniumAdaptor.JavaScriptClick(lnk_SubjectListMenu1);
+            loggerObj.info("The lnk_SubjectListMenu1 is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -417,6 +444,18 @@ public class SubjectListPage extends BaseClass {
 
             seleniumAdaptor.JavaScriptClick(btn_SaveandNext);
             loggerObj.info("The btn_SaveandNext is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }}
+
+    public boolean clickValidateCredentials(){
+        try{
+
+            seleniumAdaptor.JavaScriptClick(btn_ValidateCredentials);
+            loggerObj.info("The btn_ValidateCredentials is clicked");
 
             return true;
         } catch(Exception var2) {
@@ -905,7 +944,9 @@ public class SubjectListPage extends BaseClass {
 //            seleniumAdaptor.scrollDown();
             seleniumAdaptor.JavaScriptClick(btn_drpStatementTestementType);
             loggerObj.info("The btN_drpStatementTestementType is selected");
-            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[9]//li[starts-with(text(),'"+statementTestementType+"')]")));
+            seleniumAdaptor.pauseFor(2);
+//            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[9]//li[starts-with(text(),'"+statementTestementType+"')]")));
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul)[7]//li[starts-with(text(),'"+statementTestementType+"')]")));
             loggerObj.info("The callDurationHrs is selected");
 
             return true;

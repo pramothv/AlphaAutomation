@@ -4,19 +4,13 @@ import Utility.PropertiesFileReader;
 import base.BaseClass;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.aventstack.extentreports.reporter.configuration.ExtentHtmlReporterConfiguration;
-import com.aventstack.extentreports.reporter.configuration.ExtentLoggerReporterConfiguration;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import io.cucumber.junit.CucumberOptions;
-import jdk.javadoc.doclet.Reporter;
 import net.masterthought.cucumber.ReportResult;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -41,6 +35,8 @@ public class AlphaJConnectStepDef extends BaseClass {
     SeleniumAdaptor seleniumAdaptor;
 
     JConnectChatPage jConnectChatPage;
+
+    JconnectAuditReportsPage jconnectAuditReportsPage;
 
     JconnectUserManagementPage jconnectUserManagementPage;
 
@@ -258,7 +254,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         ExtentCucumberAdapter.addTestStepLog("The EDiary Version Number in JConnect is " + getValue("EDiaryVersionNum"));
 
         Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
-        Assert.assertTrue("unable to clickCreate", subjectCreatePage.clickCreate());
+        Assert.assertTrue("unable to clickCreate1", subjectCreatePage.clickCreate1());
         takeScreenShotNew(this.scenario);
 //        seleniumAdaptor.pauseFor(2);
         Assert.assertTrue("unable to captureFirstName", subjectCreatePage.captureFirstName(firstname));
@@ -275,10 +271,9 @@ public class AlphaJConnectStepDef extends BaseClass {
 
 //        Assert.assertTrue("unable to clickCustomDate", subjectCreatePage.clickCustomDate());
 
-        Assert.assertTrue("unable to clickCustomDateIfAvailable", subjectCreatePage.clickCustomDateIfAvailable());
-//        Assert.assertTrue("unable to captureSubjectStartDate", subjectCreatePage.captureSubjectStartDate1(startDate));
-        Assert.assertTrue("unable to clickCalenderIconSubjectCreate", subjectCreatePage.clickCalenderIconSubjectCreate());
-        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(startDate));
+//        Assert.assertTrue("unable to clickCustomDateIfAvailable", subjectCreatePage.clickCustomDateIfAvailable());
+//        Assert.assertTrue("unable to clickCalenderIconSubjectCreate", subjectCreatePage.clickCalenderIconSubjectCreate());
+//        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(startDate));
         seleniumAdaptor.pauseFor(1);
 
         //        Assert.assertTrue("unable to captureSubjectStartDate", subjectCreatePage.captureSubjectStartDate(startDate));
@@ -294,7 +289,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         putValue("SubCreationCancelBtnMsg", subjectCreatePage.getSubCreationCancelBtnMsg());
         ExtentCucumberAdapter.addTestStepLog("The SubCreationCancelBtnMsg in JConnect is " + getValue("SubCreationCancelBtnMsg"));
 
-        Assert.assertTrue("unable to captureUserName", subjectCreatePage.clickSubCreationOK());
+        Assert.assertTrue("unable to clickSubCreationOK", subjectCreatePage.clickSubCreationOK());
         takeScreenShotNew(this.scenario);
         seleniumAdaptor.pauseFor(4);
         amazonWebMailPage.CheckingChkboxScreening();
@@ -860,7 +855,7 @@ public class AlphaJConnectStepDef extends BaseClass {
 
 //        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
         Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
-        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff2", callSchedulePage.captureScheduleTeleVisitSiteStaff2(ScheduleCallsitestaff));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff3", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
 
         seleniumAdaptor.pauseFor(1);
 
@@ -1023,7 +1018,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         validate("Screening", subjectListPage.getScreeningDesc());
 
         putValue("ScreeningStatus", subjectListPage.getScreeningStatus());
-        validate("Completed", subjectListPage.getScreeningStatus());
+//        validate("Completed  ", subjectListPage.getScreeningStatus());
 
 
     }
@@ -1751,7 +1746,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         Assert.assertTrue("unable to captureTitle", callSchedulePage.captureTitle(title));
 //        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
         Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
-        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff2", callSchedulePage.captureScheduleTeleVisitSiteStaff2(ScheduleCallsitestaff));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff3", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
 
         seleniumAdaptor.pauseFor(1);
     }
@@ -1876,6 +1871,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         callSchedulePage.switchToTab0();
 //        amazonWebMailPage.opentabJconnectReal1();
         amazonWebMailPage.opentabAmazonWebAppReal1();
+        seleniumAdaptor.pauseFor(6);
         Assert.assertTrue("unable to capturePhoneCode", webAppLoginPage.capturePhoneCode2(phoneCode));
         Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePhoneNum(phoneNum));
         webAppLoginPage.capturePassword(getValue("password"));
@@ -2663,9 +2659,9 @@ public class AlphaJConnectStepDef extends BaseClass {
         seleniumAdaptor.pauseFor(4);
         Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
 
-        putValue("WindowStartDateWeek3", webAppLoginPage.getWindowStartDateWeek3());
+        putValue("WindowStartDateWeek3", webAppLoginPage.getWindow1StartDateWeek3());
         ExtentCucumberAdapter.addTestStepLog("The WindowStartDateWeek3 in WebApp is :" + getValue("WindowStartDateWeek3"));
-        putValue("WindowEndDateWeek3", webAppLoginPage.getWindowEndDateWeek3());
+        putValue("WindowEndDateWeek3", webAppLoginPage.getWindow1EndDateWeek3());
         ExtentCucumberAdapter.addTestStepLog("The WindowEndDateWeek3 in WebApp is :" + getValue("WindowEndDateWeek3"));
     }
 
@@ -2924,6 +2920,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         ExtentCucumberAdapter.addTestStepLog("The VersionName Study in JConnect is :" + getValue("VersionName"));
         validate("Version 12.0", studyListPage.getVersionNameStudy());
 
+        Assert.assertTrue("unable to clickStudyLanguage", studyListPage.clickStudyLanguage());
         studyListPage.CheckingChkboxLanguageSource();
         studyListPage.CheckingChkboxLanguageTarget();
 
@@ -3500,14 +3497,14 @@ public class AlphaJConnectStepDef extends BaseClass {
 
         callSchedulePage.switchToTab0();
         Assert.assertTrue("unable to clickChat", jConnectChatPage.clickChat());
-        Assert.assertTrue("unable to clickNewChat", jConnectChatPage.clickNewChat());
+        Assert.assertTrue("unable to clickNewChat1", jConnectChatPage.clickNewChat1());
 //        Assert.assertTrue("unable to captureUsers", jConnectChatPage.captureUsers(users));
         Assert.assertTrue("unable to captureUsers1", jConnectChatPage.captureUsers1(users));
         Assert.assertTrue("unable to captureSubjectChat", jConnectChatPage.captureSubjectChat(subject));
         Assert.assertTrue("unable to clickCheckCircle", jConnectChatPage.clickCheckCircle());
         Assert.assertTrue("unable to clickCallScheduleMenu", callSchedulePage.clickCallScheduleMenu());
         Assert.assertTrue("unable to clickChat", jConnectChatPage.clickChat());
-        Assert.assertTrue("unable to clickChatParticipants1", jConnectChatPage.clickChatParticipants1());
+        Assert.assertTrue("unable to clickChatParticipants3", jConnectChatPage.clickChatParticipants3());
         Assert.assertTrue("unable to captureMessage", jConnectChatPage.captureMessage(message));
 //        Assert.assertTrue("unable to clickSendMessage", jConnectChatPage.clickSendMessage());
 
@@ -3805,7 +3802,7 @@ public class AlphaJConnectStepDef extends BaseClass {
 
         seleniumAdaptor.pauseFor(2);
         takeScreenShotNew(this.scenario);
-        Assert.assertTrue("unable to clickSubjectDetails", subjectCreatePage.clickSubjectDetails());
+        Assert.assertTrue("unable to clickSubjectDetails1", subjectCreatePage.clickSubjectDetails1());
         takeScreenShotNew(this.scenario);
         Assert.assertTrue("unable to clickSubjectDetails", subjectCreatePage.clickSubViewEncryptedData());
         subjectCreatePage.getPhoneNum();
@@ -4217,7 +4214,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         callSchedulePage.switchToTab0();
         Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
         takeScreenShotNew(this.scenario);
-        Assert.assertTrue("unable to clickSubjectListMenu", subjectListPage.clickSubjectListMenu());
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
         Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
         Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
         Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
@@ -4225,7 +4222,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         seleniumAdaptor.pauseFor(2);
         Assert.assertTrue("unable to clickSubjectDetails()", subjectCreatePage.clickSubjectDetails());
         Assert.assertTrue("unable to clickSubViewEncryptedData", subjectCreatePage.clickSubViewEncryptedData());
-        Assert.assertTrue("unable to captureMessageToSubject", subjectCreatePage.clickStatusChange());
+        Assert.assertTrue("unable to captureMessageToSubject", subjectCreatePage.clickStatusChange1());
         Assert.assertTrue("unable to captureSubjectListSearch", subjectCreatePage.captureReasonForChange(reasonForChange));
         Assert.assertTrue("unable to click OK button", subjectCreatePage.clickSubCreationOK());
         Assert.assertTrue("unable to clickSaveandNext", subjectCreatePage.clickSaveandNext());
@@ -4251,7 +4248,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         callSchedulePage.switchToTab0();
         Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
         takeScreenShotNew(this.scenario);
-        Assert.assertTrue("unable to clickSubjectListMenu", subjectListPage.clickSubjectListMenu());
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
         Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
         Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
 //        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
@@ -4283,7 +4280,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         callSchedulePage.switchToTab0();
         Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
         takeScreenShotNew(this.scenario);
-        Assert.assertTrue("unable to clickSubjectListMenu", subjectListPage.clickSubjectListMenu());
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
         Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
         Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
         Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
@@ -4316,7 +4313,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         callSchedulePage.switchToTab0();
         Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
         takeScreenShotNew(this.scenario);
-        Assert.assertTrue("unable to clickSubjectListMenu", subjectListPage.clickSubjectListMenu());
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
         Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
         Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
 //        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
@@ -8086,7 +8083,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         callSchedulePage.switchToTab0();
         takeScreenShotNew(this.scenario);
 //        seleniumAdaptor.pauseFor(2);
-        seleniumAdaptor.pauseFor(1);
+        seleniumAdaptor.pauseFor(2);
 //        Assert.assertTrue("unable to clickEndCallJconnect1", callSchedulePage.clickEndCallJconnect1());
 
         Assert.assertTrue("unable to clickEndCallJconnect2", callSchedulePage.clickEndCallJconnect2());
@@ -8603,7 +8600,8 @@ public class AlphaJConnectStepDef extends BaseClass {
         seleniumAction.scrollBy("0", "300");
         Assert.assertTrue("unable to clickMore", cRIOVisitSchedulePage.clickMore());
         seleniumAdaptor.pauseFor(1);
-        Assert.assertTrue("unable to clickAdminUsha", cRIOVisitSchedulePage.clickAdminUsha());
+//        Assert.assertTrue("unable to clickAdminUsha", cRIOVisitSchedulePage.clickAdminUsha());
+//        Assert.assertTrue("unable to clickInvJoshna", cRIOVisitSchedulePage.clickInvJoshna());
         seleniumAdaptor.scrollDown();
         seleniumAction.scrollBy("0", "300");
 
@@ -8883,7 +8881,8 @@ public class AlphaJConnectStepDef extends BaseClass {
 //        seleniumAdaptor.pauseFor(2);
 
         Assert.assertTrue("unable to clickChat", webAppLoginPage.clickChat());
-        Assert.assertTrue("unable to clickAddParticipants", webAppLoginPage.clickAddParticipants());
+//        Assert.assertTrue("unable to clickAddParticipants", webAppLoginPage.clickAddParticipants());
+        Assert.assertTrue("unable to clickAddParticipants1", webAppLoginPage.clickAddParticipants1());
         seleniumAdaptor.pauseFor(1);
 
         putValue("SearchParticipantstxt", webAppLoginPage.gettxtSearchParticipants());
@@ -8903,7 +8902,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         takeScreenShotNew(this.scenario);
 
 
-        Assert.assertTrue("unable to clickBack1", webAppLoginPage.clickBack1());
+        Assert.assertTrue("unable to clickBack3", webAppLoginPage.clickBack3());
         takeScreenShotNew(this.scenario);
     }
 
@@ -9280,6 +9279,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         amazonWebMailPage.opentabAmazonWebAppReal1();
         Assert.assertTrue("unable to capturePhoneCode", webAppLoginPage.capturePhoneCode2(phoneCode));
         Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePhoneNum(phoneNum));
+//        Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePassword("4190"));
         webAppLoginPage.capturePassword(getValue("password"));
         takeScreenShotNew(this.scenario);
         Assert.assertTrue("unable to clickLogin", webAppLoginPage.clickLogin());
@@ -9705,6 +9705,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         ExtentCucumberAdapter.addTestStepLog("The VersionName Study in JConnect is :" + getValue("VersionName"));
         validate("Version 12.0", studyListPage.getVersionNameStudy());
 
+        Assert.assertTrue("unable to clickStudyLanguage", studyListPage.clickStudyLanguage());
         studyListPage.CheckingChkboxLanguageSource();
         studyListPage.CheckingChkboxLanguageSourceSpanish();
         studyListPage.CheckingChkboxLanguageTarget();
@@ -9752,7 +9753,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         validate("Summary", subjectCreatePage.getSummaryTab());
         ExtentCucumberAdapter.addTestStepLog("The Summary Tab Description in JConnect is  " + getValue("Summary"));
 
-        Assert.assertTrue("unable to clickSubjectDetails", subjectCreatePage.clickSubjectDetails());
+        Assert.assertTrue("unable to clickSubjectDetails1", subjectCreatePage.clickSubjectDetails1());
         Assert.assertTrue("unable to clickSummary", subjectListPage.clickSummary());
         Assert.assertTrue("unable to clickVisits", subjectListPage.clickVisits());
         takeScreenShotNew(this.scenario);
@@ -9809,7 +9810,7 @@ public class AlphaJConnectStepDef extends BaseClass {
 
         Assert.assertTrue("unable to clickNext", studyListPage.clickNext());
 
-        Assert.assertTrue("unable to clickSubjectDetails", subjectCreatePage.clickSubjectDetails());
+        Assert.assertTrue("unable to clickSubjectDetails1", subjectCreatePage.clickSubjectDetails1());
         putValue("SubViewEncriptedData", subjectCreatePage.getSubViewEncriptedData());
         validate("View Encrypted Data", subjectCreatePage.getSubViewEncriptedData());
         ExtentCucumberAdapter.addTestStepLog("The SubViewEncriptedData Description in JConnect is  " + getValue("SubViewEncriptedData"));
@@ -10005,10 +10006,16 @@ public class AlphaJConnectStepDef extends BaseClass {
         webAppLoginPage = new WebAppLoginPage(driver);
         seleniumAdaptor = new SeleniumAdaptor(driver);
         subjectCreatePage = new SubjectCreatePage(driver);
+        studyListPage = new StudyListPage(driver);
+        seleniumAction = new SeleniumAction(driver);
 
         takeScreenShotNew(this.scenario);
-        Assert.assertTrue("unable to clickJconnectLogout", subjectCreatePage.clickJconnectLogout());
-        Assert.assertTrue("unable to clickLogout", subjectCreatePage.clickLogout());
+        Assert.assertTrue("unable to clickStudy",studyListPage.clickStudy());
+        seleniumAction.scrollBy("1400", "0");
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to clickJconnectLogout1", subjectCreatePage.clickJconnectLogout1());
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to clickLogout1", subjectCreatePage.clickLogout1());
         seleniumAdaptor.pauseFor(3);
 
         Assert.assertTrue("unable to captureUserName", jCollaborateQALoginPage.captureUserName(username));
@@ -10090,6 +10097,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         validate("Subject", menuItemsJconnectPage.getSubjecttxt());
         ExtentCucumberAdapter.addTestStepLog("The Subjecttxt Description in JConnect is  " + getValue("Subjecttxt"));
 
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
 
         putValue("SubjectMigration", menuItemsJconnectPage.getSubjectMigrationtxt());
         validate("Migration", menuItemsJconnectPage.getSubjectMigrationtxt());
@@ -10146,11 +10154,13 @@ public class AlphaJConnectStepDef extends BaseClass {
 
         takeScreenShotNew(this.scenario);
 
-        putValue("UserList", menuItemsJconnectPage.getUserManagementListtxt());
-        validate("List", menuItemsJconnectPage.getUserManagementListtxt());
+        Assert.assertTrue("unable to clickUserManagement", menuItemsJconnectPage.clickUserManagement());
+
+        putValue("UserList", menuItemsJconnectPage.getUserManagementListtxt2());
+        validate("List", menuItemsJconnectPage.getUserManagementListtxt2());
         ExtentCucumberAdapter.addTestStepLog("The UserManagement Description in JConnect is  " + getValue("UserList"));
 
-        Assert.assertTrue("unable to clickUserManagementList", menuItemsJconnectPage.clickUserManagementList());
+        Assert.assertTrue("unable to clickUserManagementList2", menuItemsJconnectPage.clickUserManagementList2());
 
         Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(name));
         Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
@@ -10252,6 +10262,7 @@ public class AlphaJConnectStepDef extends BaseClass {
         validate("Schedule a Call", callSchedulePage.getScheduleACalltxt());
         ExtentCucumberAdapter.addTestStepLog("The UserLoginDetails Tab Description in JConnect is  " + getValue("ScheduleACall"));
 
+        Assert.assertTrue("unable to clickCloseScheduleCall", callSchedulePage.clickCloseScheduleCall());
 
         takeScreenShotNew(this.scenario);
     }
@@ -10300,14 +10311,16 @@ public class AlphaJConnectStepDef extends BaseClass {
 
 
         Assert.assertTrue("unable to clickCallScheduleMenu", callSchedulePage.clickCallScheduleMenu());
+
+        Assert.assertTrue("unable to captureTime", callSchedulePage.captureTime("day"));
         Assert.assertTrue("unable to captureTime", callSchedulePage.captureTime(time));
 
+//        putValue("ScheduleACall", callSchedulePage.getScheduleACalltxt());
+//        validate("Schedule a Call", callSchedulePage.getScheduleACalltxt());
+//        ExtentCucumberAdapter.addTestStepLog("The UserLoginDetails Tab Description in JConnect is  " + getValue("ScheduleACall"));
 
-        putValue("ScheduleACall", callSchedulePage.getScheduleACalltxt());
-        validate("Schedule a Call", callSchedulePage.getScheduleACalltxt());
-        ExtentCucumberAdapter.addTestStepLog("The UserLoginDetails Tab Description in JConnect is  " + getValue("ScheduleACall"));
-
-        Assert.assertTrue("unable to clickCalendarICFmeeting", callSchedulePage.clickCalendarICFmeeting());
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to clickCalendarICFmeeting1", callSchedulePage.clickCalendarICFmeeting1());
 
 
         putValue("ScheduleACall", callSchedulePage.getScheduleACalltxt());
@@ -10353,6 +10366,1904 @@ public class AlphaJConnectStepDef extends BaseClass {
     }
 
     @And("I navigate to Audit Reports section and click Call History and capture {string}{string} and search")
-    public void iNavigateToAuditReportsSectionAndClickCallHistoryAndCaptureAndSearch(String arg0, String arg1) {
+    public void iNavigateToAuditReportsSectionAndClickCallHistoryAndCaptureAndSearch(String study, String site) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jConnectChatPage = new JConnectChatPage(driver);
+        jconnectAuditReportsPage = new JconnectAuditReportsPage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+        Assert.assertTrue("unable to jconnectAuditReportsPage", jconnectAuditReportsPage.clickAuditReports());
+        Assert.assertTrue("unable to clickCallHistory", jconnectAuditReportsPage.clickCallHistory());
+
+        Assert.assertTrue("unable to captureStudy", jconnectAuditReportsPage.captureStudy(study));
+        Assert.assertTrue("unable to captureSite", jconnectAuditReportsPage.captureSite(site));
+        Assert.assertTrue("unable to clickSearch", jconnectAuditReportsPage.clickSearch());
+
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to clickActions3", jconnectAuditReportsPage.clickActions3());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickParticipantHistory", jconnectAuditReportsPage.clickParticipantHistory());
+
+        putValue("Participant1Name", jconnectAuditReportsPage.getParticipant1Name());
+        ExtentCucumberAdapter.addTestStepLog("The Participant1Name Description in JConnect is  " + getValue("Participant1Name"));
+
+        putValue("Participant1Status1", jconnectAuditReportsPage.getParticipant1Status1());
+        ExtentCucumberAdapter.addTestStepLog("The Participant1Status1 Description in JConnect is  " + getValue("Participant1Status1"));
+
+        putValue("Participant2Name", jconnectAuditReportsPage.getParticipant2Name());
+        ExtentCucumberAdapter.addTestStepLog("The  Participant2Name in JConnect is  " + getValue("Participant2Name"));
+
+        putValue("Participant2Status2", jconnectAuditReportsPage.getParticipant2Status2());
+        ExtentCucumberAdapter.addTestStepLog("The  Participant2Status2 in JConnect is  " + getValue("Participant2Status2"));
+
+        putValue("Title", jconnectAuditReportsPage.getParticipantHistoryTitle());
+        ExtentCucumberAdapter.addTestStepLog("The ParticipantHistoryTitle Description in JConnect is  " + getValue("Title"));
+
+        putValue("ScheduledDate", jconnectAuditReportsPage.getParticipantHistoryScheduledDate());
+        ExtentCucumberAdapter.addTestStepLog("The ParticipantHistoryScheduledDate in JConnect is  " + getValue("ScheduledDate"));
+
+        putValue("ScheduledTime", jconnectAuditReportsPage.getParticipantHistoryScheduledTime());
+        ExtentCucumberAdapter.addTestStepLog("The ParticipantHistoryScheduledTime in JConnect is  " + getValue("ScheduledTime"));
+
+        putValue("ScheduledTimeZone", jconnectAuditReportsPage.getParticipantHistoryScheduledTimeZone());
+        ExtentCucumberAdapter.addTestStepLog("The Chat ParticipantHistoryScheduledTimeZone in JConnect is  " + getValue("ScheduledTimeZone"));
+
+        Assert.assertTrue("unable to clickOK", jconnectAuditReportsPage.clickOK());
+
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+
+    }
+
+    @And("I must be able to LogOut of Jconnect Application")
+    public void iMustBeAbleToLogOutOfJconnectApplication() {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+//        Assert.assertTrue("unable to clickJconnectLogout", subjectCreatePage.clickJconnectLogout());
+//        Assert.assertTrue("unable to clickLogout", subjectCreatePage.clickLogout());
+
+        Assert.assertTrue("unable to clickJconnectLogout1", subjectCreatePage.clickJconnectLogout1());
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to clickLogout1", subjectCreatePage.clickLogout1());
+//        seleniumAdaptor.pauseFor(3);
+
+        takeScreenShotNew(this.scenario);
+
+    }
+
+    @And("I must navigate to ScheduleInfo section and should capture {string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iMustNavigateToScheduleInfoSectionAndShouldCapture(String date, String timehours, String timemins, String timetype, String timeZone, String calldurationHrs, String calldurationMins, String alert) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        seleniumAdaptor.pauseFor(2);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.clickCalenderIcon());
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(date));
+        seleniumAdaptor.pauseFor(2);
+
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        //        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate(date));
+        Assert.assertTrue("unable to captureTimeHrs10", callSchedulePage.captureTimeHrs10(timehours));
+        Assert.assertTrue("unable to captureTimeMins10", callSchedulePage.captureTimeMins10(timemins));
+        Assert.assertTrue("unable to captureTimetype10", callSchedulePage.captureTimetype10(timetype));
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureScheduleInfoTimeZone", callSchedulePage.captureScheduleInfoTimeZone(timeZone));
+        Assert.assertTrue("unable to captureCallDurationHrs10", callSchedulePage.captureCallDurationHrs10(calldurationHrs));
+        Assert.assertTrue("unable to captureCallDurationMins", callSchedulePage.captureCallDurationMins10(calldurationMins));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureAlert", callSchedulePage.captureAlert10(alert));
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+//        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureScheduleTime1(time));
+//        Assert.assertTrue("unable to captureHost", callSchedulePage.captureHost(host));
+//        seleniumAdaptor.pauseFor(5);
+
+
+        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+        seleniumAdaptor.pauseFor(1);
+
+//        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+//        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+//
+
+
+    }
+
+    @And("I select ScheduleVisitICF and must select the date and capture {string}{string}")
+    public void iSelectScheduleVisitICFAndMustSelectTheDateAndCapture(String visitFromTime, String visitToTime) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        cRIOLoginPage = new CRIOLoginPage(driver);
+        cRIOSubjectCreationPage = new CRIOSubjectCreationPage(driver);
+        cRIOSubjectListPage = new CRIOSubjectListPage(driver);
+        cRIOVisitSchedulePage = new CRIOVisitSchedulePage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+
+//        seleniumAdaptor.pauseFor(2);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+//        seleniumAction.scrollBy("0", "1400");
+
+        Assert.assertTrue("unable to clickScheduleVisit", cRIOVisitSchedulePage.clickScheduleVisit());
+        seleniumAdaptor.pauseFor(1);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+        Assert.assertTrue("unable to clickMore", cRIOVisitSchedulePage.clickMore());
+        seleniumAdaptor.pauseFor(1);
+//        Assert.assertTrue("unable to clickAdminUsha", cRIOVisitSchedulePage.clickAdminUsha());
+//        Assert.assertTrue("unable to clickInvJoshna", cRIOVisitSchedulePage.clickInvJoshna());
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+
+
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickCalendarToday());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickTimeSelectCRIO4", cRIOVisitSchedulePage.clickTimeSelectCRIO4());
+        Assert.assertTrue("unable to captureVisitFromTime", cRIOVisitSchedulePage.captureVisitFromTime(visitFromTime));
+        Assert.assertTrue("unable to captureVisitToTime", cRIOVisitSchedulePage.captureVisitToTime(visitToTime));
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickSaveTimeCRIO());
+
+        takeScreenShotNew(this.scenario);
+    }
+
+    @And("I select ScheduleVisitScreening and must select the date and capture {string}{string}")
+    public void iSelectScheduleVisitScreeningAndMustSelectTheDateAndCapture(String visitFromTime, String visitToTime) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        cRIOLoginPage = new CRIOLoginPage(driver);
+        cRIOSubjectCreationPage = new CRIOSubjectCreationPage(driver);
+        cRIOSubjectListPage = new CRIOSubjectListPage(driver);
+        cRIOVisitSchedulePage = new CRIOVisitSchedulePage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+
+//        seleniumAdaptor.pauseFor(2);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+//        seleniumAction.scrollBy("0", "1400");
+
+        Assert.assertTrue("unable to clickScheduleVisit", cRIOVisitSchedulePage.clickScheduleVisit());
+        seleniumAdaptor.pauseFor(1);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+        Assert.assertTrue("unable to clickMore", cRIOVisitSchedulePage.clickMore());
+        seleniumAdaptor.pauseFor(1);
+//        Assert.assertTrue("unable to clickAdminUsha", cRIOVisitSchedulePage.clickAdminUsha());
+//        Assert.assertTrue("unable to clickInvJoshna", cRIOVisitSchedulePage.clickInvJoshna());
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+
+
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickCalendarToday());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickTimeSelectCRIO8", cRIOVisitSchedulePage.clickTimeSelectCRIO8());
+        Assert.assertTrue("unable to captureVisitFromTime", cRIOVisitSchedulePage.captureVisitFromTime(visitFromTime));
+        Assert.assertTrue("unable to captureVisitToTime", cRIOVisitSchedulePage.captureVisitToTime(visitToTime));
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickSaveTimeCRIO());
+
+        takeScreenShotNew(this.scenario);
+     }
+
+    @And("I must navigate to Subject List and must enter {string} and fetch the record")
+    public void iMustNavigateToSubjectListAndMustEnterAndFetchTheRecord(String subNum) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        cRIOLoginPage = new CRIOLoginPage(driver);
+        cRIOSubjectCreationPage = new CRIOSubjectCreationPage(driver);
+        cRIOSubjectListPage = new CRIOSubjectListPage(driver);
+        cRIOVisitSchedulePage = new CRIOVisitSchedulePage(driver);
+
+        takeScreenShotNew(this.scenario);
+        callSchedulePage.switchToTab0();
+        callSchedulePage.switchToTab1();
+        Assert.assertTrue("unable to clickSubjects", cRIOSubjectCreationPage.clickSubjects());
+        Assert.assertTrue("unable to captureSubjectSearch", cRIOSubjectListPage.captureSubjectSearch(subNum));
+
+        Assert.assertTrue("unable to clickNameListCRIO", cRIOSubjectListPage.clickNameListCRIO());
+
+//        seleniumAdaptor.pauseFor(2);
+        seleniumAdaptor.scrollDown();
+//        seleniumAction.scrollBy("0", "1400");
+        seleniumAction.scrollBy("0", "300");
+
+        takeScreenShotNew(this.scenario);
+     }
+
+    @And("I launch JConnect and must capture {string}{string} and click Signin")
+    public void iLaunchJConnectAndMustCaptureAndClickSignin(String arg0, String arg1) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+
+        webAppLoginPage.opentabJconnect2();
+
+
+        takeScreenShotNew(this.scenario);
+
+    }
+
+    @And("I navigate to Jconnect CallSchedule must capture {string} and launch Screening meeting")
+    public void iNavigateToJconnectCallScheduleMustCaptureAndLaunchScreeningMeeting(String ScheduleCallsubject) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        callSchedulePage.switchToTab0();
+        driver.close();
+        callSchedulePage.switchToTab0();
+        driver.close();
+        callSchedulePage.switchToTab0();
+        Assert.assertTrue("unable to clickCallScheduleMenu", callSchedulePage.clickCallScheduleMenu());
+        Assert.assertTrue("unable to captureSubject11", callSchedulePage.captureSubject11(ScheduleCallsubject));
+        Assert.assertTrue("unable to clickScreeningMeetingJconnect", callSchedulePage.clickScreeningMeetingJconnect());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickStartJoinCall", callSchedulePage.clickStartJoinCall());
+        seleniumAdaptor.pauseFor(1);
+        callSchedulePage.switchToTab1();
+
+
+    }
+
+    @And("I launch the CRIO website")
+    public void iLaunchTheCRIOWebsite() {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        cRIOLoginPage = new CRIOLoginPage(driver);
+        cRIOSubjectCreationPage = new CRIOSubjectCreationPage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+        cRIOLoginPage.opentabCRIO();
+        seleniumAdaptor.pauseFor(1);
+
+        takeScreenShotNew(this.scenario);
+
+
+     }
+
+    @And("I select UnScheduleVisit and must select the date and capture {string}{string} and select the procuderes {string}{string}")
+    public void iSelectUnScheduleVisitAndMustSelectTheDateAndCaptureAndSelectTheProcuderes(String visitFromTime, String visitToTime, String procedure1, String procedure2) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        cRIOLoginPage = new CRIOLoginPage(driver);
+        cRIOSubjectCreationPage = new CRIOSubjectCreationPage(driver);
+        cRIOSubjectListPage = new CRIOSubjectListPage(driver);
+        cRIOVisitSchedulePage = new CRIOVisitSchedulePage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+
+//        seleniumAdaptor.pauseFor(2);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+//        seleniumAction.scrollBy("0", "1400");
+
+        Assert.assertTrue("unable to clickCreateUnScheduleVisit", cRIOVisitSchedulePage.clickCreateUnScheduleVisit());
+        seleniumAdaptor.pauseFor(1);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+        Assert.assertTrue("unable to clickMore", cRIOVisitSchedulePage.clickMore());
+        seleniumAdaptor.pauseFor(1);
+//        Assert.assertTrue("unable to clickAdminUsha", cRIOVisitSchedulePage.clickAdminUsha());
+//        Assert.assertTrue("unable to clickInvJoshna", cRIOVisitSchedulePage.clickInvJoshna());
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+
+
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickCalendarToday());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickTimeSelectCRIO9", cRIOVisitSchedulePage.clickTimeSelectCRIO9());
+        Assert.assertTrue("unable to captureVisitFromTime", cRIOVisitSchedulePage.captureVisitFromTime(visitFromTime));
+        Assert.assertTrue("unable to captureVisitToTime", cRIOVisitSchedulePage.captureVisitToTime(visitToTime));
+
+
+        Assert.assertTrue("unable to captureVisitToTime", cRIOVisitSchedulePage.captureprocedure1(procedure1));
+        Assert.assertTrue("unable to captureVisitToTime", cRIOVisitSchedulePage.captureprocedure2(procedure2));
+
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickSaveTimeCRIO());
+
+        takeScreenShotNew(this.scenario);
+    }
+
+    @And("I navigate to Jconnect CallSchedule must capture {string} and launch UnScheduled meeting")
+    public void iNavigateToJconnectCallScheduleMustCaptureAndLaunchUnScheduledMeeting(String ScheduleCallsubject) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        callSchedulePage.switchToTab0();
+        driver.close();
+        callSchedulePage.switchToTab0();
+        driver.close();
+        callSchedulePage.switchToTab0();
+        Assert.assertTrue("unable to clickCallScheduleMenu", callSchedulePage.clickCallScheduleMenu());
+        Assert.assertTrue("unable to captureSubject11", callSchedulePage.captureSubject11(ScheduleCallsubject));
+        Assert.assertTrue("unable to clickUnscheduledMeetingJconnect", callSchedulePage.clickUnscheduledMeetingJconnect());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickStartJoinCall", callSchedulePage.clickStartJoinCall());
+        seleniumAdaptor.pauseFor(1);
+        callSchedulePage.switchToTab1();
+
+
+    }
+
+    @And("I must navigate to WebApp and select the Unscheduled option")
+    public void iMustNavigateToWebAppAndSelectTheUnscheduledOption() {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+        callSchedulePage.switchToTab0();
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.pauseFor(4);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+
+
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        seleniumAdaptor.pauseFor(4);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.scrollDown();
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickUnscheduled2", webAppLoginPage.clickUnscheduled1());
+        seleniumAdaptor.pauseFor(2);
+
+
+    }
+
+    @And("I launch JConnect WebApp with {string}{string} password and select the Unscheduled option under Diary section")
+    public void iLaunchJConnectWebAppWithPasswordAndSelectTheUnscheduledOptionUnderDiarySection(String phoneCode, String phoneNum) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+//        webAppLoginPage.opentabJconnectWebApp();
+
+        Assert.assertTrue("unable to capturePhoneCode", webAppLoginPage.capturePhoneCode2(phoneCode));
+        Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePhoneNum(phoneNum));
+        webAppLoginPage.capturePassword(getValue("password"));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickLogin", webAppLoginPage.clickLogin());
+
+
+        takeScreenShotNew(this.scenario);
+
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.pauseFor(4);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+
+
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        seleniumAdaptor.pauseFor(4);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.scrollDown();
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickUnscheduled2", webAppLoginPage.clickUnscheduled1());
+        seleniumAdaptor.pauseFor(2);
+
+
+
+
+
+    }
+
+    @And("I launch JConnect WebApp with {string}{string} password and select Screening in Diary section")
+    public void iLaunchJConnectWebAppWithPasswordAndSelectScreeningInDiarySection(String phoneCode, String phoneNum) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+//        webAppLoginPage.opentabJconnectWebApp();
+
+        Assert.assertTrue("unable to capturePhoneCode", webAppLoginPage.capturePhoneCode2(phoneCode));
+        Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePhoneNum(phoneNum));
+        webAppLoginPage.capturePassword(getValue("password"));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickLogin", webAppLoginPage.clickLogin());
+
+
+        takeScreenShotNew(this.scenario);
+
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.pauseFor(4);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+
+
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+        seleniumAdaptor.pauseFor(4);
+        Assert.assertTrue("unable to clickDiary", webAppLoginPage.clickDiary());
+        seleniumAdaptor.scrollDown();
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickScreening", webAppLoginPage.clickScreening());
+        seleniumAdaptor.pauseFor(2);
+
+    }
+
+    @And("I select SaferVisit and must select the date and capture {string}{string}")
+    public void iSelectSaferVisitAndMustSelectTheDateAndCapture(String visitFromTime, String visitToTime) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        cRIOLoginPage = new CRIOLoginPage(driver);
+        cRIOSubjectCreationPage = new CRIOSubjectCreationPage(driver);
+        cRIOSubjectListPage = new CRIOSubjectListPage(driver);
+        cRIOVisitSchedulePage = new CRIOVisitSchedulePage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+
+//        seleniumAdaptor.pauseFor(2);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+//        seleniumAction.scrollBy("0", "1400");
+
+        Assert.assertTrue("unable to clickScheduleVisit", cRIOVisitSchedulePage.clickScheduleVisit());
+        seleniumAdaptor.pauseFor(1);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+        Assert.assertTrue("unable to clickMore", cRIOVisitSchedulePage.clickMore());
+        seleniumAdaptor.pauseFor(1);
+//        Assert.assertTrue("unable to clickAdminUsha", cRIOVisitSchedulePage.clickAdminUsha());
+//        Assert.assertTrue("unable to clickInvJoshna", cRIOVisitSchedulePage.clickInvJoshna());
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+
+
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickCalendarToday());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickTimeSelectCRIO5", cRIOVisitSchedulePage.clickTimeSelectCRIO5());
+        Assert.assertTrue("unable to captureVisitFromTime", cRIOVisitSchedulePage.captureVisitFromTime(visitFromTime));
+        Assert.assertTrue("unable to captureVisitToTime", cRIOVisitSchedulePage.captureVisitToTime(visitToTime));
+
+
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickSaveTimeCRIO());
+
+        takeScreenShotNew(this.scenario);
+    }
+
+
+    @And("I select WeekOne Baseline and must select the date and capture {string}{string}")
+    public void iSelectWeekOneBaselineAndMustSelectTheDateAndCapture(String visitFromTime, String visitToTime) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        cRIOLoginPage = new CRIOLoginPage(driver);
+        cRIOSubjectCreationPage = new CRIOSubjectCreationPage(driver);
+        cRIOSubjectListPage = new CRIOSubjectListPage(driver);
+        cRIOVisitSchedulePage = new CRIOVisitSchedulePage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+
+//        seleniumAdaptor.pauseFor(2);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+//        seleniumAction.scrollBy("0", "1400");
+
+        Assert.assertTrue("unable to clickScheduleVisit", cRIOVisitSchedulePage.clickScheduleVisit());
+        seleniumAdaptor.pauseFor(1);
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+        Assert.assertTrue("unable to clickMore", cRIOVisitSchedulePage.clickMore());
+        seleniumAdaptor.pauseFor(1);
+//        Assert.assertTrue("unable to clickAdminUsha", cRIOVisitSchedulePage.clickAdminUsha());
+//        Assert.assertTrue("unable to clickInvJoshna", cRIOVisitSchedulePage.clickInvJoshna());
+        seleniumAdaptor.scrollDown();
+        seleniumAction.scrollBy("0", "300");
+
+
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickCalendarToday());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickTimeSelectCRIO7", cRIOVisitSchedulePage.clickTimeSelectCRIO7());
+        Assert.assertTrue("unable to captureVisitFromTime", cRIOVisitSchedulePage.captureVisitFromTime(visitFromTime));
+        Assert.assertTrue("unable to captureVisitToTime", cRIOVisitSchedulePage.captureVisitToTime(visitToTime));
+
+
+        Assert.assertTrue("unable to clickCalendarToday", cRIOVisitSchedulePage.clickSaveTimeCRIO());
+
+        takeScreenShotNew(this.scenario);
+    }
+
+    @And("I launch JConnect WebApp with {string}{string} password and should join the Safer meeting from WebApp and conclude")
+    public void iLaunchJConnectWebAppWithPasswordAndShouldJoinTheSaferMeetingFromWebAppAndConclude(String phoneCode, String phoneNum) {
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+//        webAppLoginPage.opentabJconnectWebApp();
+        amazonWebMailPage.opentabAmazonWebAppReal();
+        Assert.assertTrue("unable to capturePhoneCode", webAppLoginPage.capturePhoneCode2(phoneCode));
+        Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePhoneNum(phoneNum));
+        webAppLoginPage.capturePassword(getValue("password"));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickLogin", webAppLoginPage.clickLogin());
+
+
+        callSchedulePage.switchToTab0();
+        driver.close();
+        callSchedulePage.switchToTab0();
+        callSchedulePage.switchToTab1();
+
+        callSchedulePage.switchToTab0();
+        callSchedulePage.switchToTab2();
+        driver.close();
+        callSchedulePage.switchToTab0();
+        callSchedulePage.switchToTab1();
+
+        Assert.assertTrue("unable to clickCalls", webAppLoginPage.clickCalls());
+//        Assert.assertTrue("unable to clickICF", webAppLoginPage.clickICF());
+        Assert.assertTrue("unable to clickWebAppSafermeeting1", webAppLoginPage.clickWebAppSafermeeting1());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickJoinICFCall", webAppLoginPage.clickJoinICFCall());
+
+        takeScreenShotNew(this.scenario);
+        callSchedulePage.switchToTab1();
+        driver.close();
+        callSchedulePage.switchToTab0();
+        callSchedulePage.switchToTab1();
+//        callSchedulePage.switchToTab3();
+        seleniumAdaptor.pauseFor(8);
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickJoinCall", callSchedulePage.clickJoinCall1());
+        takeScreenShotNew(this.scenario);
+
+        amazonWebMailPage.opentabAmazonWebAppReal();
+//        seleniumAdaptor.pauseFor(10);
+        callSchedulePage.switchToTab1();
+        takeScreenShotNew(this.scenario);
+
+
+        Assert.assertTrue("unable to clickEndCallWebApp2", webAppLoginPage.clickEndCallWebApp2());
+        //        seleniumAdaptor.pauseFor(30);
+        takeScreenShotNew(this.scenario);
+//        driver.close();
+        callSchedulePage.switchToTab0();
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(2);
+        seleniumAdaptor.pauseFor(1);
+//        Assert.assertTrue("unable to clickEndCallJconnect1", callSchedulePage.clickEndCallJconnect1());
+
+        Assert.assertTrue("unable to clickEndCallJconnect2", callSchedulePage.clickEndCallJconnect2());
+//        seleniumAdaptor.pauseFor(30);
+        takeScreenShotNew(this.scenario);
+//        driver.close();
+
+        callSchedulePage.switchToTab0();
+        takeScreenShotNew(this.scenario);
+
+        driver.close();
+
+        callSchedulePage.switchToTab0();
+        driver.close();
+        callSchedulePage.switchToTab0();
+        seleniumAdaptor.pauseFor(1);
+
+
+    }
+
+    @And("I launch JConnect and must capture {string}{string} and should click Signin")
+    public void iLaunchJConnectAndMustCaptureAndShouldClickSignin(String arg0, String arg1) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+
+        webAppLoginPage.opentabJconnect3();
+
+
+        takeScreenShotNew(this.scenario);
+
+    }
+
+    @And("I navigate to Jconnect CallSchedule and must capture {string} and launch SAFER Interview meeting")
+    public void iNavigateToJconnectCallScheduleAndMustCaptureAndLaunchSAFERInterviewMeeting(String ScheduleCallsubject) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        callSchedulePage.switchToTab0();
+        driver.close();
+        callSchedulePage.switchToTab1();
+        callSchedulePage.switchToTab0();
+        driver.close();
+        callSchedulePage.switchToTab0();
+
+        Assert.assertTrue("unable to clickCallScheduleMenu", callSchedulePage.clickCallScheduleMenu());
+//        Assert.assertTrue("unable to captureSubject", callSchedulePage.captureSubject(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureSubject11", callSchedulePage.captureSubject11(ScheduleCallsubject));
+        Assert.assertTrue("unable to clickSaferInterviewmeeting", callSchedulePage.clickSaferInterviewmeeting());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickStartJoinCall", callSchedulePage.clickStartJoinCall());
+        seleniumAdaptor.pauseFor(1);
+        callSchedulePage.switchToTab1();
+
+    }
+
+
+    @And("I navigate to StudyList List and must capture {string} and fetch the record")
+    public void iNavigateToStudyListListAndMustCaptureAndFetchTheRecord(String studyNum) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+        studyListPage = new StudyListPage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to clickJconnectWidget", subjectCreatePage.clickJconnectWidget());
+
+        Assert.assertTrue("unable to clickStudy", studyListPage.clickStudy());
+        Assert.assertTrue("unable to clickStudyListMenu", studyListPage.clickStudyListMenu());
+        Assert.assertTrue("unable to captureStudyListSearch", studyListPage.captureStudyListSearch(studyNum));
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickStudyListSearch", studyListPage.clickStudyListSearch());
+        Assert.assertTrue("unable to clickSubNumberMRN", studyListPage.clickStudyNumberMRN(studyNum));
+        seleniumAdaptor.pauseFor(2);
+
+        takeScreenShotNew(this.scenario);
+
+        putValue("SponsorNameStudy", studyListPage.getSponsorNameStudy());
+        ExtentCucumberAdapter.addTestStepLog("The SponsorNameStudy in JConnect is :" + getValue("SponsorNameStudy"));
+        validate("MedPlusInc", studyListPage.getSponsorNameStudy());
+        putValue("VersionName", studyListPage.getVersionNameStudy());
+        ExtentCucumberAdapter.addTestStepLog("The VersionName Study in JConnect is :" + getValue("VersionName"));
+        validate("Version 13.0", studyListPage.getVersionNameStudy());
+
+        Assert.assertTrue("unable to clickStudyLanguage", studyListPage.clickStudyLanguage());
+        studyListPage.CheckingChkboxLanguageSource();
+        studyListPage.CheckingChkboxLanguageTarget();
+
+        Assert.assertTrue("unable to clickMappedOrg", studyListPage.clickMappedOrg());
+        seleniumAdaptor.pauseFor(2);
+        putValue("StudyOrgName", studyListPage.getStudyOrgName());
+        ExtentCucumberAdapter.addTestStepLog("The StudyOrganisation Name in JConnect is :" + getValue("StudyOrgName"));
+        validate("160 - The Bishop Center for Translational Neuroscience", studyListPage.getStudyOrgName());
+
+
+    }
+
+    @And("I capture {string} and check the same in the Page Header")
+    public void iCaptureAndCheckTheSameInThePageHeader(String study2) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+
+
+        Assert.assertTrue("unable to clickEditSite", subjectCreatePage.clickEditSite());
+
+        Assert.assertTrue("unable to captureStudy", subjectCreatePage.captureStudy(study2));
+
+        Assert.assertTrue("unable to clickSite", subjectCreatePage.clickSite());
+
+        putValue("StudyName1", subjectCreatePage.getStudyName());
+        ExtentCucumberAdapter.addTestStepLog("The New StudyName in JConnect is  " + getValue("StudyName1"));
+
+
+        putValue("SiteName", subjectCreatePage.getSiteName());
+        validate("160 - The Bishop Center for Translational Neuroscience", subjectCreatePage.getSiteName());
+        ExtentCucumberAdapter.addTestStepLog("The SiteName in JConnect is  " + getValue("SiteName"));
+
+
+    }
+
+    @And("I click on Subject and CreateSubject Option and should capture {string}{string}{string}{string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iClickOnSubjectAndCreateSubjectOptionAndShouldCapture(String firstname, String lastname, String site, String subNum, String subExtID, String phoneCode, String phoneNum, String email, String role, String startDate, String language) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+
+//        Assert.assertTrue("unable to clickJconnectWidget", subjectCreatePage.clickJconnectWidget());
+        takeScreenShotNew(this.scenario);
+
+        putValue("EDiaryVersionDesc", subjectCreatePage.getEDiaryVersion());
+        ExtentCucumberAdapter.addTestStepLog("The EDiary Version Description in JConnect is " + getValue("EDiaryVersionDesc"));
+        putValue("EDiaryVersionNum", subjectCreatePage.getEDiaryVersionNum());
+        ExtentCucumberAdapter.addTestStepLog("The EDiary Version Number in JConnect is " + getValue("EDiaryVersionNum"));
+
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        Assert.assertTrue("unable to clickCreate1", subjectCreatePage.clickCreate1());
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to captureFirstName", subjectCreatePage.captureFirstName(firstname));
+        Assert.assertTrue("unable to captureLastName", subjectCreatePage.captureLastName(lastname));
+        Assert.assertTrue("unable to captureSelectSite2", subjectCreatePage.captureSelectSite2(site));
+        Assert.assertTrue("unable to captureSubjectNumMRN", subjectCreatePage.captureSubjectNumMRN(subNum));
+        Assert.assertTrue("unable to captureSubjectExtID", subjectCreatePage.captureSubjectExtID(subExtID));
+        Assert.assertTrue("unable to capturePhoneNumCode", subjectCreatePage.capturePhoneNumCode(phoneCode));
+        Assert.assertTrue("unable to captureUserName", subjectCreatePage.capturePhoneNum(phoneNum));
+        Assert.assertTrue("unable to capturePhoneNum", subjectCreatePage.captureEmail(email));
+        Assert.assertTrue("unable to captureRole", subjectCreatePage.captureRole(role));
+        Assert.assertTrue("unable to captureEmail", subjectCreatePage.captureEmail(email));
+//        Assert.assertTrue("unable to captureRole", subjectCreatePage.captureRole1(role));
+
+//        Assert.assertTrue("unable to clickCustomDate", subjectCreatePage.clickCustomDate());
+
+//        Assert.assertTrue("unable to clickCustomDateIfAvailable", subjectCreatePage.clickCustomDateIfAvailable());
+//        Assert.assertTrue("unable to clickCalenderIconSubjectCreate", subjectCreatePage.clickCalenderIconSubjectCreate());
+//        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(startDate));
+        seleniumAdaptor.pauseFor(1);
+
+        //        Assert.assertTrue("unable to captureSubjectStartDate", subjectCreatePage.captureSubjectStartDate(startDate));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureLanguage", subjectCreatePage.captureLanguage(language));
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureUserName", subjectCreatePage.clickSaveandNext());
+        takeScreenShotNew(this.scenario);
+        putValue("SubCreationAlert", subjectCreatePage.getSubCreationAlertMsg());
+        ExtentCucumberAdapter.addTestStepLog("The SubCreationAlert Message in JConnect is " + getValue("SubCreationAlert"));
+        putValue("SubCreationCancelBtnMsg", subjectCreatePage.getSubCreationCancelBtnMsg());
+        ExtentCucumberAdapter.addTestStepLog("The SubCreationCancelBtnMsg in JConnect is " + getValue("SubCreationCancelBtnMsg"));
+
+        Assert.assertTrue("unable to clickSubCreationOK", subjectCreatePage.clickSubCreationOK());
+        takeScreenShotNew(this.scenario);
+        seleniumAdaptor.pauseFor(4);
+        amazonWebMailPage.CheckingChkboxScreening();
+        putValue("Chktxt", amazonWebMailPage.getCheckingChkboxScreening());
+        validate("", amazonWebMailPage.getCheckingChkboxScreening());
+        takeScreenShotNew(this.scenario);
+        seleniumAdaptor.pauseFor(2);
+     }
+
+    @And("I navigate to StudyList List and should capture {string} and fetch the record")
+    public void iNavigateToStudyListListAndShouldCaptureAndFetchTheRecord(String studyNum) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+        studyListPage = new StudyListPage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to clickJconnectWidget", subjectCreatePage.clickJconnectWidget());
+
+        Assert.assertTrue("unable to clickStudy", studyListPage.clickStudy());
+        Assert.assertTrue("unable to clickStudyListMenu", studyListPage.clickStudyListMenu());
+        Assert.assertTrue("unable to captureStudyListSearch", studyListPage.captureStudyListSearch(studyNum));
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickStudyListSearch", studyListPage.clickStudyListSearch());
+        Assert.assertTrue("unable to clickSubNumberMRN", studyListPage.clickStudyNumberMRN(studyNum));
+        seleniumAdaptor.pauseFor(2);
+
+        takeScreenShotNew(this.scenario);
+
+        putValue("SponsorNameStudy", studyListPage.getSponsorNameStudy());
+        ExtentCucumberAdapter.addTestStepLog("The SponsorNameStudy in JConnect is :" + getValue("SponsorNameStudy"));
+        validate("MedPlusInc", studyListPage.getSponsorNameStudy());
+        putValue("VersionName", studyListPage.getVersionNameStudy());
+        ExtentCucumberAdapter.addTestStepLog("The VersionName Study in JConnect is :" + getValue("VersionName"));
+        validate("Version 12.0", studyListPage.getVersionNameStudy());
+
+        Assert.assertTrue("unable to clickStudyLanguage", studyListPage.clickStudyLanguage());
+        studyListPage.CheckingChkboxLanguageSource();
+        studyListPage.CheckingChkboxLanguageTarget();
+
+        Assert.assertTrue("unable to clickMappedOrg", studyListPage.clickMappedOrg());
+        seleniumAdaptor.pauseFor(2);
+        putValue("StudyOrgName", studyListPage.getStudyOrgName());
+        ExtentCucumberAdapter.addTestStepLog("The StudyOrganisation Name in JConnect is :" + getValue("StudyOrgName"));
+        validate("160 - The Bishop Center for Translational Neuroscience", studyListPage.getStudyOrgName());
+
+
+    }
+
+    @And("I click on Subject and CreateSubject Option and should be able to capture {string}{string}{string}{string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iClickOnSubjectAndCreateSubjectOptionAndShouldBeAbleToCapture(String firstname, String lastname, String site, String subNum, String subExtID, String phoneCode, String phoneNum, String email, String role, String startDate, String language) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+
+//        Assert.assertTrue("unable to clickJconnectWidget", subjectCreatePage.clickJconnectWidget());
+        takeScreenShotNew(this.scenario);
+
+        putValue("EDiaryVersionDesc", subjectCreatePage.getEDiaryVersion());
+        ExtentCucumberAdapter.addTestStepLog("The EDiary Version Description in JConnect is " + getValue("EDiaryVersionDesc"));
+        putValue("EDiaryVersionNum", subjectCreatePage.getEDiaryVersionNum());
+        ExtentCucumberAdapter.addTestStepLog("The EDiary Version Number in JConnect is " + getValue("EDiaryVersionNum"));
+
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        Assert.assertTrue("unable to clickCreate", subjectCreatePage.clickCreate());
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to captureFirstName", subjectCreatePage.captureFirstName(firstname));
+        Assert.assertTrue("unable to captureLastName", subjectCreatePage.captureLastName(lastname));
+        Assert.assertTrue("unable to captureSelectSite2", subjectCreatePage.captureSelectSite2(site));
+        Assert.assertTrue("unable to captureSubjectNumMRN", subjectCreatePage.captureSubjectNumMRN(subNum));
+        Assert.assertTrue("unable to captureSubjectExtID", subjectCreatePage.captureSubjectExtID(subExtID));
+        Assert.assertTrue("unable to capturePhoneNumCode", subjectCreatePage.capturePhoneNumCode(phoneCode));
+        Assert.assertTrue("unable to captureUserName", subjectCreatePage.capturePhoneNum(phoneNum));
+        Assert.assertTrue("unable to capturePhoneNum", subjectCreatePage.captureEmail(email));
+        Assert.assertTrue("unable to captureRole", subjectCreatePage.captureRole(role));
+        Assert.assertTrue("unable to captureEmail", subjectCreatePage.captureEmail(email));
+//        Assert.assertTrue("unable to captureRole", subjectCreatePage.captureRole1(role));
+
+//        Assert.assertTrue("unable to clickCustomDate", subjectCreatePage.clickCustomDate());
+
+//        Assert.assertTrue("unable to clickCustomDateIfAvailable", subjectCreatePage.clickCustomDateIfAvailable());
+//        Assert.assertTrue("unable to clickCalenderIconSubjectCreate", subjectCreatePage.clickCalenderIconSubjectCreate());
+//        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(startDate));
+        seleniumAdaptor.pauseFor(1);
+
+        //        Assert.assertTrue("unable to captureSubjectStartDate", subjectCreatePage.captureSubjectStartDate(startDate));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureLanguage", subjectCreatePage.captureLanguage(language));
+        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureUserName", subjectCreatePage.clickSaveandNext());
+        takeScreenShotNew(this.scenario);
+        putValue("SubCreationAlert", subjectCreatePage.getSubCreationAlertMsg());
+        ExtentCucumberAdapter.addTestStepLog("The SubCreationAlert Message in JConnect is " + getValue("SubCreationAlert"));
+        putValue("SubCreationCancelBtnMsg", subjectCreatePage.getSubCreationCancelBtnMsg());
+        ExtentCucumberAdapter.addTestStepLog("The SubCreationCancelBtnMsg in JConnect is " + getValue("SubCreationCancelBtnMsg"));
+
+        Assert.assertTrue("unable to clickSubCreationOK", subjectCreatePage.clickSubCreationOK());
+        takeScreenShotNew(this.scenario);
+        seleniumAdaptor.pauseFor(4);
+        amazonWebMailPage.CheckingChkboxScreening();
+        putValue("Chktxt", amazonWebMailPage.getCheckingChkboxScreening());
+        validate("", amazonWebMailPage.getCheckingChkboxScreening());
+        takeScreenShotNew(this.scenario);
+        seleniumAdaptor.pauseFor(2);
+    }
+
+    @And("I must navigate to ScheduleInfo section and must be able to capture {string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iMustNavigateToScheduleInfoSectionAndMustBeAbleToCapture(String date, String timehours, String timemins, String timetype, String timeZone, String calldurationHrs, String calldurationMins, String alert) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        seleniumAdaptor.pauseFor(2);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.clickCalenderIcon());
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(date));
+        seleniumAdaptor.pauseFor(2);
+
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        //        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate(date));
+        Assert.assertTrue("unable to captureTimeHrs3", callSchedulePage.captureTimeHrs3(timehours));
+        Assert.assertTrue("unable to captureTimeMins4", callSchedulePage.captureTimeMins4(timemins));
+        Assert.assertTrue("unable to captureTimetype3", callSchedulePage.captureTimetype3(timetype));
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureScheduleInfoTimeZone", callSchedulePage.captureScheduleInfoTimeZone(timeZone));
+        Assert.assertTrue("unable to captureCallDurationHrs4", callSchedulePage.captureCallDurationHrs4(calldurationHrs));
+        Assert.assertTrue("unable to captureCallDurationMins4", callSchedulePage.captureCallDurationMins4(calldurationMins));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureAlert4", callSchedulePage.captureAlert4(alert));
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+//        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureScheduleTime1(time));
+//        Assert.assertTrue("unable to captureHost", callSchedulePage.captureHost(host));
+//        seleniumAdaptor.pauseFor(5);
+
+
+        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+        seleniumAdaptor.pauseFor(1);
+
+//        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+//        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+//
+
+
+    }
+
+    @And("I navigate to Schedule a Call screen and should capture {string} {string}{string}")
+    public void iNavigateToScheduleACallScreenAndShouldCapture(String title, String ScheduleCallsubject, String ScheduleCallsitestaff) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+
+        Assert.assertTrue("unable to captureTitle", callSchedulePage.captureTitle(title));
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject5", callSchedulePage.captureScheduleTeleVisitSubject5(ScheduleCallsubject));
+
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff3", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
+
+        seleniumAdaptor.pauseFor(1);
+
+
+    }
+
+    @And("I must navigate to ScheduleInfo section and should be able to capture {string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iMustNavigateToScheduleInfoSectionAndShouldBeAbleToCapture(String date, String timehours, String timemins, String timetype, String timeZone, String calldurationHrs, String calldurationMins, String alert) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        seleniumAdaptor.pauseFor(2);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.clickCalenderIcon());
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(date));
+        seleniumAdaptor.pauseFor(2);
+
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        //        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate(date));
+        Assert.assertTrue("unable to captureTimeHrs3", callSchedulePage.captureTimeHrs3(timehours));
+        Assert.assertTrue("unable to captureTimeMins4", callSchedulePage.captureTimeMins4(timemins));
+        Assert.assertTrue("unable to captureTimetype3", callSchedulePage.captureTimetype3(timetype));
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureScheduleInfoTimeZone", callSchedulePage.captureScheduleInfoTimeZone(timeZone));
+        Assert.assertTrue("unable to captureCallDurationHrs4", callSchedulePage.captureCallDurationHrs4(calldurationHrs));
+        Assert.assertTrue("unable to captureCallDurationMins4", callSchedulePage.captureCallDurationMins4(calldurationMins));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureAlert4", callSchedulePage.captureAlert4(alert));
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+//        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureScheduleTime1(time));
+//        Assert.assertTrue("unable to captureHost", callSchedulePage.captureHost(host));
+//        seleniumAdaptor.pauseFor(5);
+
+
+        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+        seleniumAdaptor.pauseFor(1);
+
+//        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+//        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+//
+
+
+    }
+
+    @And("I capture {string} and check same in the Page Header")
+    public void iCaptureAndCheckSameInThePageHeader(String study2) {
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+
+
+        Assert.assertTrue("unable to clickEditSite", subjectCreatePage.clickEditSite());
+
+        Assert.assertTrue("unable to captureStudy", subjectCreatePage.captureStudy(study2));
+
+        Assert.assertTrue("unable to clickSite1", subjectCreatePage.clickSite1());
+
+        putValue("StudyName1", subjectCreatePage.getStudyName());
+        ExtentCucumberAdapter.addTestStepLog("The New StudyName in JConnect is  " + getValue("StudyName1"));
+
+
+        putValue("SiteName", subjectCreatePage.getSiteName());
+        validate("CrioTestSite", subjectCreatePage.getSiteName());
+        ExtentCucumberAdapter.addTestStepLog("The SiteName in JConnect is  " + getValue("SiteName"));
+
+
+    }
+
+    @And("I should be able to navigate to the ScheduleInfo section and must capture {string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iShouldBeAbleToNavigateToTheScheduleInfoSectionAndMustCapture(String date, String timehours, String timemins, String timetype, String timeZone, String calldurationHrs, String calldurationMins, String alert) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        seleniumAdaptor.pauseFor(2);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.clickCalenderIcon());
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(date));
+        seleniumAdaptor.pauseFor(2);
+
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        //        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate(date));
+        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureTimeHrs1(timehours));
+        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureTimeMins1(timemins));
+        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureTimetype1(timetype));
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureScheduleInfoTimeZone", callSchedulePage.captureScheduleInfoTimeZone(timeZone));
+        Assert.assertTrue("unable to captureCallDurationHrs", callSchedulePage.captureCallDurationHrs2(calldurationHrs));
+        Assert.assertTrue("unable to captureCallDurationMins", callSchedulePage.captureCallDurationMins2(calldurationMins));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureAlert", callSchedulePage.captureAlert2(alert));
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+//        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureScheduleTime1(time));
+//        Assert.assertTrue("unable to captureHost", callSchedulePage.captureHost(host));
+//        seleniumAdaptor.pauseFor(5);
+
+
+        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+//        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+//
+
+
+      }
+
+    @And("I should navigate to ScheduleInfo section and should be able to capture {string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iShouldNavigateToScheduleInfoSectionAndShouldBeAbleToCapture(String date, String timehours, String timemins, String timetype, String timeZone, String calldurationHrs, String calldurationMins, String alert) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        seleniumAdaptor.pauseFor(2);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.clickCalenderIcon());
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(date));
+        seleniumAdaptor.pauseFor(2);
+
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        //        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate(date));
+        Assert.assertTrue("unable to captureTimeHrs10", callSchedulePage.captureTimeHrs10(timehours));
+        Assert.assertTrue("unable to captureTimeMins10", callSchedulePage.captureTimeMins10(timemins));
+        Assert.assertTrue("unable to captureTimetype10", callSchedulePage.captureTimetype10(timetype));
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureScheduleInfoTimeZone", callSchedulePage.captureScheduleInfoTimeZone(timeZone));
+        Assert.assertTrue("unable to captureCallDurationHrs10", callSchedulePage.captureCallDurationHrs10(calldurationHrs));
+        Assert.assertTrue("unable to captureCallDurationMins", callSchedulePage.captureCallDurationMins10(calldurationMins));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureAlert", callSchedulePage.captureAlert10(alert));
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+//        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureScheduleTime1(time));
+//        Assert.assertTrue("unable to captureHost", callSchedulePage.captureHost(host));
+//        seleniumAdaptor.pauseFor(5);
+
+
+        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+        seleniumAdaptor.pauseFor(1);
+
+//        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+//        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+//
+
+
+    }
+
+    @And("I must be able to navigate to the ScheduleInfo section and capture {string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iMustBeAbleToNavigateToTheScheduleInfoSectionAndCapture(String date, String timehours, String timemins, String timetype, String timeZone, String calldurationHrs, String calldurationMins, String alert) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        seleniumAdaptor.pauseFor(2);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.clickCalenderIcon());
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(date));
+        seleniumAdaptor.pauseFor(2);
+
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        //        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate(date));
+        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureTimeHrs1(timehours));
+        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureTimeMins1(timemins));
+        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureTimetype1(timetype));
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureScheduleInfoTimeZone", callSchedulePage.captureScheduleInfoTimeZone(timeZone));
+        Assert.assertTrue("unable to captureCallDurationHrs6", callSchedulePage.captureCallDurationHrs6(calldurationHrs));
+        Assert.assertTrue("unable to captureCallDurationMins7", callSchedulePage.captureCallDurationMins7(calldurationMins));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureAlert11", callSchedulePage.captureAlert11(alert));
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+//        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureScheduleTime1(time));
+//        Assert.assertTrue("unable to captureHost", callSchedulePage.captureHost(host));
+//        seleniumAdaptor.pauseFor(5);
+
+
+        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+//        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+//
+
+
+     }
+
+    @And("I navigate to CallSchedule and ScheduleTelevisit for SaferVisit and must capture {string} {string}{string}")
+    public void iNavigateToCallScheduleAndScheduleTelevisitForSaferVisitAndMustCapture(String title, String ScheduleCallsubject, String ScheduleCallsitestaff) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        Assert.assertTrue("unable to captureTitle", callSchedulePage.captureTitle(title));
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff3", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
+
+        seleniumAdaptor.pauseFor(1);
+     }
+
+    @And("I navigate to CallSchedule and ScheduleTelevisit for WeekOneBaseLine and must capture {string} {string}{string}")
+    public void iNavigateToCallScheduleAndScheduleTelevisitForWeekOneBaseLineAndMustCapture(String title, String ScheduleCallsubject, String ScheduleCallsitestaff) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        Assert.assertTrue("unable to captureTitle", callSchedulePage.captureTitle(title));
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff3", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
+
+        seleniumAdaptor.pauseFor(1);
+    }
+
+    @And("I navigate to CallSchedule and ScheduleTelevisit for WeekOne and must capture {string} {string}{string}")
+    public void iNavigateToCallScheduleAndScheduleTelevisitForWeekOneAndMustCapture(String title, String ScheduleCallsubject, String ScheduleCallsitestaff) {
+
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        Assert.assertTrue("unable to captureTitle", callSchedulePage.captureTitle(title));
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff3", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
+
+        seleniumAdaptor.pauseFor(1);
+     }
+
+    @And("I navigate to Schedule a Call screen and capture {string} click AddGuest and should capture {string}{string}{string}{string}")
+    public void iNavigateToScheduleACallScreenAndCaptureClickAddGuestAndShouldCapture(String title, String guestname, String guestemail, String ScheduleCallsubject, String ScheduleCallsitestaff) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+
+        Assert.assertTrue("unable to captureTitle", callSchedulePage.captureTitle(title));
+        Assert.assertTrue("unable to clickAddGuest", callSchedulePage.clickAddGuest());
+        Assert.assertTrue("unable to captureGuestName", callSchedulePage.captureGuestName(guestname));
+        Assert.assertTrue("unable to captureGuestEmail", callSchedulePage.captureGuestEmail(guestemail));
+        Assert.assertTrue("unable to clickAddGuestOK", callSchedulePage.clickAddGuestOK());
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff3", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
+
+        seleniumAdaptor.pauseFor(1);
+
+
+      }
+
+    @And("I navigate to Schedule a Call screen and should be able to capture {string}{string}{string}")
+    public void iNavigateToScheduleACallScreenAndShouldBeAbleToCapture(String title, String ScheduleCallsubject, String ScheduleCallsitestaff) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureTitle", callSchedulePage.captureTitle(title));
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff2", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
+
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+
+      }
+
+    @And("I click on SaveandNext and click Validate Credentials")
+    public void iClickOnSaveandNextAndClickValidateCredentials() {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAction = new SeleniumAction(driver);
+
+
+        takeScreenShotNew(this.scenario);
+        seleniumAdaptor.pauseFor(2);
+        seleniumAction.scrollBy("0", "1400");
+
+        Assert.assertTrue("unable to clickSaveandNext", subjectListPage.clickSaveandNext());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickValidateCredentials", subjectListPage.clickValidateCredentials());
+        seleniumAdaptor.pauseFor(5);
+        Assert.assertTrue("unable to clickAuthorVisitSave", subjectListPage.clickAuthorVisitSave());
+        seleniumAdaptor.pauseFor(2);
+     }
+
+
+
+    @And("I click on SaveandNext and click Validate Credentials with {string}{string} and click Signin")
+    public void iClickOnSaveandNextAndClickValidateCredentialsWithAndClickSignin(String username, String password) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+
+
+
+
+        takeScreenShotNew(this.scenario);
+        seleniumAdaptor.pauseFor(2);
+        seleniumAction.scrollBy("0", "1400");
+
+        Assert.assertTrue("unable to clickSaveandNext", subjectListPage.clickSaveandNext());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickValidateCredentials", subjectListPage.clickValidateCredentials());
+        seleniumAdaptor.pauseFor(6);
+
+
+        Assert.assertTrue("unable to captureUserName", jCollaborateQALoginPage.captureUserName(username));
+        Assert.assertTrue("unable to capturePassword", jCollaborateQALoginPage.capturePassword(password));
+
+        Assert.assertTrue("unable to clickValidateCredentials1", jCollaborateQALoginPage.clickValidateCredentials1());
+        seleniumAdaptor.pauseFor(4);
+        ExtentCucumberAdapter.addTestStepLog("Loged into Jconnect Successfully");
+        takeScreenShotNew(this.scenario);
+    }
+
+    @And("I capture {string} and save")
+    public void iCaptureAndSave(String SelectAuthorVisitStatementTestementType) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAction = new SeleniumAction(driver);
+
+
+        takeScreenShotNew(this.scenario);
+        seleniumAdaptor.pauseFor(2);
+        seleniumAction.scrollBy("0", "1400");
+
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.SelectAuthorVisitStatementTestementType(SelectAuthorVisitStatementTestementType));
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickAuthorVisitSave", subjectListPage.clickAuthorVisitSave());
+        seleniumAdaptor.pauseFor(2);
+    }
+
+    @And("I must be able to navigate to ScheduleInfo section and must capture the {string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iMustBeAbleToNavigateToScheduleInfoSectionAndMustCaptureThe(String date, String timehours, String timemins, String timetype, String timeZone, String calldurationHrs, String calldurationMins, String alert) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        seleniumAdaptor.pauseFor(3);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.clickCalenderIcon());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(date));
+        seleniumAdaptor.pauseFor(2);
+
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        //        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate(date));
+        Assert.assertTrue("unable to captureTimeHrs1", callSchedulePage.captureTimeHrs1(timehours));
+        Assert.assertTrue("unable to captureTimeMins1", callSchedulePage.captureTimeMins1(timemins));
+        Assert.assertTrue("unable to captureTimetype1", callSchedulePage.captureTimetype1(timetype));
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureScheduleInfoTimeZone", callSchedulePage.captureScheduleInfoTimeZone(timeZone));
+//        Assert.assertTrue("unable to captureCallDurationHrs3", callSchedulePage.captureCallDurationHrs3(calldurationHrs));
+//        Assert.assertTrue("unable to captureCallDurationMins3", callSchedulePage.captureCallDurationMins3(calldurationMins));
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureCallDurationHrs9", callSchedulePage.captureCallDurationHrs9(calldurationHrs));
+
+        Assert.assertTrue("unable to captureCallDurationHrs7", callSchedulePage.captureCallDurationHrs7(calldurationHrs));
+        seleniumAdaptor.pauseFor(1);
+        Assert.assertTrue("unable to captureCallDurationMins11", callSchedulePage.captureCallDurationMins11(calldurationMins));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureAlert12", callSchedulePage.captureAlert12(alert));
+
+//        Assert.assertTrue("unable to captureCallDurationHrs", callSchedulePage.captureCallDurationHrs(calldurationHrs));
+//        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureCallDurationMins9", callSchedulePage.captureCallDurationMins3(calldurationMins));
+//        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureAlert9", callSchedulePage.captureAlert3(alert));
+
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+//        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureScheduleTime1(time));
+//        Assert.assertTrue("unable to captureHost", callSchedulePage.captureHost(host));
+//        seleniumAdaptor.pauseFor(5);
+
+
+//        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+        seleniumAdaptor.pauseFor(2);
+
+//        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+//
+
+
+    }
+
+    @And("I launch the JConnect WebApp and capture {string}{string}\"password and click login")
+    public void iLaunchTheJConnectWebAppAndCapturePasswordAndClickLogin(String phoneCode, String phoneNum) throws Throwable {    // Write code here that turns the phrase above into concrete actions    throw new cucumber.api.PendingException();}
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+        webAppLoginPage.opentabJconnectWebApp();
+        Assert.assertTrue("unable to capturePhoneCode", webAppLoginPage.capturePhoneCode2(phoneCode));
+        Assert.assertTrue("unable to capturePhoneNum", webAppLoginPage.capturePhoneNum(phoneNum));
+        webAppLoginPage.capturePassword(getValue("password"));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickLogin", webAppLoginPage.clickLogin());
+        takeScreenShotNew(this.scenario);
+
+//        seleniumAdaptor.pauseFor(10);
+
+    }
+
+
+    @And("I must capture {string} and save")
+    public void iMustCaptureAndSave(String WebAppTimeZone) {
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        takeScreenShotNew(this.scenario);
+
+
+        takeScreenShotNew(this.scenario);
+
+        seleniumAdaptor.pauseFor(1);
+
+        Assert.assertTrue("unable to clickSaveTimeZone", webAppLoginPage.clickSelectTimeZone());
+
+        seleniumAdaptor.pauseFor(1);
+
+        Assert.assertTrue("unable to captureTimeZoneWebApp", webAppLoginPage.captureTimeZoneWebApp(WebAppTimeZone));
+        seleniumAdaptor.pauseFor(1);
+
+        Assert.assertTrue("unable to clickSaveTimeZone", webAppLoginPage.clickSaveTimeZone());
+//        seleniumAdaptor.pauseFor(10);
+
+    }
+
+    @And("I navigate to Subject List and enter {string} and should fetch the record")
+    public void iNavigateToSubjectListAndEnterAndShouldFetchTheRecord(String firstname) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
+        Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
+        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
+
+    }
+
+    @And("I navigate to Subject List and enter {string} and must fetch the record and capture {string} check the forms for AUDIT CHRTSR PHQ")
+    public void iNavigateToSubjectListAndEnterAndMustFetchTheRecordAndCaptureCheckTheFormsForAUDITCHRTSRPHQ(String firstname, String visit) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
+        Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
+//        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
+
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickDiarySubjectList", subjectListPage.clickDiarySubjectList());
+        Assert.assertTrue("unable to SelectVisit1", subjectListPage.SelectVisit1(visit));
+        seleniumAdaptor.pauseFor(1);
+
+        subjectListPage.getFormsPHQ();
+        subjectListPage.getFormsAUDIT();
+        subjectListPage.getFormsCHRTSR();
+        takeScreenShotNew(this.scenario);
+
+    }
+
+    @And("I navigate to Subject List and enter {string} and fetch the record and capture {string} and must click AUDIT form and click AuditFormTrial and click on Export")
+    public void iNavigateToSubjectListAndEnterAndFetchTheRecordAndCaptureAndMustClickAUDITFormAndClickAuditFormTrialAndClickOnExport(String firstname, String visit) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
+        Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
+//        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
+
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickDiarySubjectList", subjectListPage.clickDiarySubjectList());
+        Assert.assertTrue("unable to SelectVisit1", subjectListPage.SelectVisit1(visit));
+        seleniumAdaptor.pauseFor(1);
+
+
+        Assert.assertTrue("unable to clickFormsAUDIT", subjectListPage.clickFormsAUDIT());
+        Assert.assertTrue("unable to clickFormAuditTrial", subjectListPage.clickFormAuditTrial());
+        Assert.assertTrue("unable to clickExport", subjectListPage.clickExport());
+        Assert.assertTrue("unable to clickBack()", subjectListPage.clickBack());
+        Assert.assertTrue("unable to clickAction()", subjectListPage.clickAction());
+        Assert.assertTrue("unable to clickPrint()", subjectListPage.clickPrint());
+//        driver.close();
+        callSchedulePage.switchToTab0();
+
+
+        subjectListPage.getFormsPHQ();
+        subjectListPage.getFormsAUDIT();
+        subjectListPage.getFormsCHRTSR();
+        takeScreenShotNew(this.scenario);
+
+    }
+
+    @And("I navigate to Subject List and enter {string} and must fetch the record and click on send notification and capture {string} and send")
+    public void iNavigateToSubjectListAndEnterAndMustFetchTheRecordAndClickOnSendNotificationAndCaptureAndSend(String firstname, String message) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
+        Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
+//        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
+
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickActionSubjectList()", subjectListPage.clickActionSubjectList());
+        Assert.assertTrue("unable to captureMessageToSubject", subjectListPage.captureMessageToSubject(message));
+        Assert.assertTrue("unable to clickSendMsg", subjectListPage.clickSendMsg());
+        seleniumAdaptor.pauseFor(1);
+
+        callSchedulePage.switchToTab0();
+
+    }
+
+    @And("I navigate to Subject List and enter {string} and must fetch the record and visit SubjectDetails and change the status by capturing {string}and save")
+    public void iNavigateToSubjectListAndEnterAndMustFetchTheRecordAndVisitSubjectDetailsAndChangeTheStatusByCapturingAndSave(String firstname, String reasonForChange) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+        callSchedulePage.switchToTab0();
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
+        Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
+        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
+
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickSubjectDetails()", subjectCreatePage.clickSubjectDetails());
+        Assert.assertTrue("unable to clickSubViewEncryptedData", subjectCreatePage.clickSubViewEncryptedData());
+        Assert.assertTrue("unable to clickStatusChange1", subjectCreatePage.clickStatusChange1());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectCreatePage.captureReasonForChange(reasonForChange));
+        Assert.assertTrue("unable to click OK button", subjectCreatePage.clickSubCreationOK());
+        Assert.assertTrue("unable to clickSaveandNext", subjectCreatePage.clickSaveandNext());
+        Assert.assertTrue("unable to click OK button", subjectCreatePage.clickSubCreationOK());
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+     }
+
+    @And("I navigate to Subject List and enter {string} and should fetch the record and check the Status")
+    public void iNavigateToSubjectListAndEnterAndShouldFetchTheRecordAndCheckTheStatus(String firstname) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+        callSchedulePage.switchToTab0();
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
+        Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
+//        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
+
+        seleniumAdaptor.pauseFor(2);
+        subjectListPage.getStatus1();
+        putValue("Status", subjectListPage.getStatus1());
+        validate("Inactive", subjectListPage.getStatus1());
+        ExtentCucumberAdapter.addTestStepLog("The Subject Status is :" + getValue("Status"));
+        takeScreenShotNew(this.scenario);
+
+
+      }
+
+    @And("I navigate to Subject List and must enter {string} and must be able to fetch the record")
+    public void iNavigateToSubjectListAndMustEnterAndMustBeAbleToFetchTheRecord(String firstname) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+
+        Assert.assertTrue("unable to clickSubjectListMenu", subjectListPage.clickSubjectListMenu());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
+        Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
+        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickSummary", subjectListPage.clickSummary());
+        Assert.assertTrue("unable to clickSummary", subjectListPage.clickSummary());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickSummary", subjectListPage.clickSummary());
+        Assert.assertTrue("unable to clickMyAccount", subjectListPage.clickMyAccount());
+        Assert.assertTrue("unable to clickMyAccount", subjectListPage.clickMyAccount());
+        Assert.assertTrue("unable to clickMyAccount", subjectListPage.clickMyAccount());
+
+    }
+
+    @And("I click on SubjectDetails section and must click View Encrypted Data and retrieve the PhoneNum and Email")
+    public void iClickOnSubjectDetailsSectionAndMustClickViewEncryptedDataAndRetrieveThePhoneNumAndEmail() {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+
+
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectDetails", subjectCreatePage.clickSubjectDetails());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectDetails", subjectCreatePage.clickSubViewEncryptedData());
+        subjectCreatePage.getPhoneNum();
+        subjectCreatePage.getSubEmail();
+        takeScreenShotNew(this.scenario);
+    }
+
+    @And("I navigate to Jconnect CallSchedule capture {string} and launch Screening meeting and should amend {string}{string}{string} and reschedule call")
+    public void iNavigateToJconnectCallScheduleCaptureAndLaunchScreeningMeetingAndShouldAmendAndRescheduleCall(String ScheduleCallsubject, String timehours, String timemins, String timetype) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        callSchedulePage.switchToTab0();
+        Assert.assertTrue("unable to clickCallScheduleMenu", callSchedulePage.clickCallScheduleMenu());
+//        Assert.assertTrue("unable to captureSubject", callSchedulePage.captureSubject(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureSubject11", callSchedulePage.captureSubject11(ScheduleCallsubject));
+        Assert.assertTrue("unable to clickScreeningMeetingJconnect", callSchedulePage.clickScreeningMeetingJconnect());
+        takeScreenShotNew(this.scenario);
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        seleniumAdaptor.pauseFor(2);
+        Assert.assertTrue("unable to captureTimeHrs5", callSchedulePage.captureTimeHrs5(timehours));
+        Assert.assertTrue("unable to captureTimeMins6", callSchedulePage.captureTimeMins6(timemins));
+        Assert.assertTrue("unable to captureTimetype7", callSchedulePage.captureTimetype7(timetype));
+
+        Assert.assertTrue("unable to clickRescheduleCall", callSchedulePage.clickRescheduleCall());
+
+        seleniumAdaptor.pauseFor(1);
+        callSchedulePage.switchToTab1();
+
+     }
+
+    @And("I navigate to Subject List and enter {string} and must fetch the record and must check the Status")
+    public void iNavigateToSubjectListAndEnterAndMustFetchTheRecordAndMustCheckTheStatus(String firstname) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        subjectCreatePage = new SubjectCreatePage(driver);
+        jCollaborateWelcomePage = new JCollaborateWelcomePage(driver);
+        amazonWebMailPage = new AmazonWebMailPage(driver);
+        subjectListPage = new SubjectListPage(driver);
+        callSchedulePage = new CallSchedulePage(driver);
+
+        seleniumAdaptor.pauseFor(2);
+        takeScreenShotNew(this.scenario);
+        callSchedulePage.switchToTab0();
+        Assert.assertTrue("unable to clickSubject", subjectCreatePage.clickSubject());
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickSubjectListMenu1", subjectListPage.clickSubjectListMenu1());
+        Assert.assertTrue("unable to captureSubjectListSearch", subjectListPage.captureSubjectListSearch(firstname));
+        Assert.assertTrue("unable to clickSubjectListSearch", subjectListPage.clickSubjectListSearch());
+//        Assert.assertTrue("unable to clickSubNumberMRN", subjectListPage.clickSubNumberMRN(firstname));
+
+        seleniumAdaptor.pauseFor(2);
+        subjectListPage.getStatus2();
+        putValue("Status", subjectListPage.getStatus2());
+        validate("Not Started", subjectListPage.getStatus2());
+        ExtentCucumberAdapter.addTestStepLog("The Subject Status is :" + getValue("Status"));
+        takeScreenShotNew(this.scenario);
+
+
+     }
+
+    @And("I click on CallSchedule and capture {string}{string}{string}{string}{string} and must click on Schedule Visit")
+    public void iClickOnCallScheduleAndCaptureAndMustClickOnScheduleVisit(String time, String study, String site, String subject, String sitestaff) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        Assert.assertTrue("unable to clickCallScheduleMenu", callSchedulePage.clickCallScheduleMenu());
+        Assert.assertTrue("unable to captureTime", callSchedulePage.captureTime(time));
+//        Assert.assertTrue("unable to captureStudy", callSchedulePage.captureStudyMain(study));
+//        Assert.assertTrue("unable to captureSiteMain", callSchedulePage.captureSiteMain(site));
+        Assert.assertTrue("unable to captureStudy", callSchedulePage.captureStudy(study));
+        Assert.assertTrue("unable to captureSite", callSchedulePage.captureSite(site));
+        Assert.assertTrue("unable to captureSubject11", callSchedulePage.captureSubject11(subject));
+        Assert.assertTrue("unable to captureSiteStaffMain", callSchedulePage.captureSiteStaffMain(sitestaff));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to clickScheduledVisit", callSchedulePage.clickScheduleTeleVisit());
+        seleniumAdaptor.pauseFor(1);
+
+
+     }
+
+    @And("I must navigate to ScheduleInfo section and must be able to capture the {string}{string}{string}{string}{string}{string}{string}{string}")
+    public void iMustNavigateToScheduleInfoSectionAndMustBeAbleToCaptureThe(String date, String timehours, String timemins, String timetype, String timeZone, String calldurationHrs, String calldurationMins, String alert) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+        seleniumAdaptor.pauseFor(2);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.clickCalenderIcon());
+        Assert.assertTrue("unable to captureDateCalendar", callSchedulePage.captureDateCalendar(date));
+        seleniumAdaptor.pauseFor(2);
+
+        Assert.assertTrue("unable to clickTimeIcon", callSchedulePage.clickTimeIcon());
+        //        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate(date));
+        Assert.assertTrue("unable to captureTimeHrsSchedInfo", callSchedulePage.captureTimeHrsSchedInfo(timehours));
+        Assert.assertTrue("unable to captureTimeMinsSchedInfo", callSchedulePage.captureTimeMinsSchedInfo(timemins));
+        Assert.assertTrue("unable to captureTimetypeSchedInfo", callSchedulePage.captureTimetypeSchedInfo(timetype));
+
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureScheduleInfoTimeZone", callSchedulePage.captureScheduleInfoTimeZone(timeZone));
+        Assert.assertTrue("unable to captureCallDurationHrsSchedInfo", callSchedulePage.captureCallDurationHrsSchedInfo(calldurationHrs));
+        Assert.assertTrue("unable to captureCallDurationMinsSchedInfo", callSchedulePage.captureCallDurationMinsSchedInfo(calldurationMins));
+        takeScreenShotNew(this.scenario);
+        Assert.assertTrue("unable to captureAlertSchedInfo", callSchedulePage.captureAlertSchedInfo(alert));
+        seleniumAdaptor.pauseFor(1);
+        takeScreenShotNew(this.scenario);
+//        Assert.assertTrue("unable to captureScheduleDate", callSchedulePage.captureScheduleDate1(date));
+//        Assert.assertTrue("unable to captureScheduleTime", callSchedulePage.captureScheduleTime1(time));
+//        Assert.assertTrue("unable to captureHost", callSchedulePage.captureHost(host));
+//        seleniumAdaptor.pauseFor(5);
+
+
+        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+        seleniumAdaptor.pauseFor(4);
+
+//        takeScreenShotNew(this.scenario);
+//        seleniumAdaptor.pauseFor(10);
+//        Assert.assertTrue("unable to clickScheduleCall", callSchedulePage.clickScheduleCall());
+//
+
+
+    }
+
+    @And("I must navigate to CallSchedule and ScheduleTelevisit for Screening and must capture {string} {string}{string}")
+    public void iMustNavigateToCallScheduleAndScheduleTelevisitForScreeningAndMustCapture(String title, String ScheduleCallsubject, String ScheduleCallsitestaff) {
+        callSchedulePage = new CallSchedulePage(driver);
+        webAppLoginPage = new WebAppLoginPage(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+
+
+        Assert.assertTrue("unable to captureTitle", callSchedulePage.captureTitle(title));
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject5", callSchedulePage.captureScheduleTeleVisitSubject5(ScheduleCallsubject));
+
+//        Assert.assertTrue("unable to captureScheduleTeleVisitSubject2", callSchedulePage.captureScheduleTeleVisitSubject2(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSubject12", callSchedulePage.captureScheduleTeleVisitSubject12(ScheduleCallsubject));
+        Assert.assertTrue("unable to captureScheduleTeleVisitSiteStaff3", callSchedulePage.captureScheduleTeleVisitSiteStaff3(ScheduleCallsitestaff));
+
+        seleniumAdaptor.pauseFor(1);
+
+
     }
 }

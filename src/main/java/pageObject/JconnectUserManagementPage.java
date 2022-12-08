@@ -72,7 +72,9 @@ public class JconnectUserManagementPage extends BaseClass {
         try{
 
 
-            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//*[contains(text(),'"+name+"')]")));
+//            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//*[contains(text(),'"+name+"')]")));
+            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//a[text()='"+name+"'])[1]")));
+//            seleniumAdaptor.JavaScriptClick(driver.findElement(By.xpath("(//ul//li[text()='" + name + "'])[2]")));
             loggerObj.info("The UserManageListName is selected");
 
             return true;
