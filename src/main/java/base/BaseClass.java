@@ -7,6 +7,8 @@ package base;
 
 import com.aventstack.extentreports.ExtentTest;
 import io.cucumber.java.Scenario;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -16,12 +18,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import seleniumaction.SeleniumAction;
 import seleniumadaptor.SeleniumAdaptor;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -65,16 +71,16 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
     public WebDriver openBrowser(String url) throws Exception {
 
         if(broserName.equalsIgnoreCase("chrome")){
-         System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver.exe");
+         System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver1.exe");
           ChromeOptions options = new ChromeOptions();
-//          HashMap<String, Integer> contentSettings = new HashMap<String, Integer>();
-//            HashMap<String, Object> profile = new HashMap<String, Object>();
-//            HashMap<String, Object> prefs = new HashMap<String, Object>();
-//
-//            contentSettings.put("media_stream", 1);
-//            profile.put("managed_default_content_settings", contentSettings);
-//            prefs.put("profile", profile);
-//            options.setExperimentalOption("prefs", prefs);
+          HashMap<String, Integer> contentSettings = new HashMap<String, Integer>();
+            HashMap<String, Object> profile = new HashMap<String, Object>();
+            HashMap<String, Object> prefs = new HashMap<String, Object>();
+
+            contentSettings.put("media_stream", 2);
+            profile.put("managed_default_content_settings", contentSettings);
+            prefs.put("profile", profile);
+            options.setExperimentalOption("prefs", prefs);
 
             options.addArguments("disable-notifications");
             options.addArguments("disable-geolocation");
@@ -82,7 +88,15 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
 
 //            WebDriverManager.chromedriver().setup();
 
+//            options.add_experimental_option("useAutomationExtension", False);
+//            options.add_experimental_option("excludeSwitches",["enable-automation"]);
+//            options.addArguments("enable-automation");
             driver = new ChromeDriver(options);
+            options.addArguments("disable-infobars");
+
+
+
+//            options = uc.ChromeOptions();
                }
         else if(broserName.equalsIgnoreCase("firefox")){
             System.setProperty("webdriver.firefox.marionette", webDriverlocationpath+ "\\geckodriver.exe");
@@ -91,16 +105,23 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
         else if(broserName.equalsIgnoreCase("Edge")){
             //set path to Edge.exe
             System.setProperty("webdriver.edge.driver",webDriverlocationpath+"\\msedgedriver1.exe");
-            //create Edge instance
+            EdgeOptions options = new EdgeOptions();
+
             driver =new EdgeDriver();
        }
         else{
             //If no browser passed throw exception
             throw new Exception("Browser is not correct");}
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(1000l, TimeUnit.SECONDS);
         driver.get(url);
         return driver;
+
+        //AddReport
+//       reporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "./reports/Execution.html");
+
+
     }
     public static String generateRandomString(int length) {
         String candidateChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -157,12 +178,71 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
             TakesScreenshot ts =(TakesScreenshot) driver;
             byte[] src = ts.getScreenshotAs(OutputType.BYTES);
             scenario.attach(src, "image/png", "screenshot");
+
+
+//            byte[] imageBytes= IOUtils.toByteArray(new FileInputStream(String.valueOf(src)));
+//             Base64.getEncoder().encodeToString(imageBytes);
         }
         catch (Exception e) {
             System.out.println("Unable to take screenshot");
             System.out.println(e);
 
         }
+    }
+
+    public static void takeScreenShotNew5(Scenario scenario) {
+        try {
+            TakesScreenshot ts =(TakesScreenshot) driver;
+            byte[] src = ts.getScreenshotAs(OutputType.BASE64).getBytes();
+            scenario.attach(src, "data:image/png:base64", "screenshot");
+//            String encodedBase64 = null;
+//            byte[] bytes = new byte[(int)finalDesti]
+//            encodedBase64= new String(Base64Encoder.encodedBase64String(bytes));
+//          String img = "data:image/png:base64, " +encodedBase64;
+//            ExtentCucumberAdapter.addTestStepScreenCaptureFromPath(img.toString());
+
+        }
+        catch (Exception e) {
+            System.out.println("Unable to take screenshot");
+            System.out.println(e);
+
+        }
+    }
+
+
+    public String takeScreenShotNew2(Scenario scenario) throws IOException {
+
+        TakesScreenshot ts =(TakesScreenshot) driver;
+        byte[] src = ts.getScreenshotAs(OutputType.BASE64).getBytes();
+        scenario.attach(src, "image/png", "screenshot");
+//        byte[] imageBytes= IOUtils.toByteArray(new FileInputStream(String.valueOf(src)));
+//
+//
+//
+        return Base64.getEncoder().encodeToString(src);
+
+
+
+    }
+
+
+
+
+
+    public static String getScreenshotAsBase64() throws IOException {
+        File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String path = System.getProperty("user.dir")+"/Screenshots/image.png";
+        FileUtils.copyFile(source, new File(path));
+        byte[] imageBytes= IOUtils.toByteArray(new FileInputStream(path));
+//        scenario.attach(path, "image/png", "screenshot");
+        return Base64.getEncoder().encodeToString(imageBytes);
+
+    }
+
+    public String getBase64() throws IOException {
+
+        return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
+
     }
 
     public void putValue(String vname, String vvalue) {

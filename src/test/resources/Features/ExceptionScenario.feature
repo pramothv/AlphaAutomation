@@ -9,7 +9,7 @@ Feature: Testing Exception
 
 
     Given I capture "<username>""<password>" and click Signin
-    When I click on the JConnectBuild Option
+#    When I click on the JConnectBuild Option
 
 
 
