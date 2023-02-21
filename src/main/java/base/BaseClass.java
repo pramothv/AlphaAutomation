@@ -36,16 +36,16 @@ import java.util.concurrent.TimeUnit;
 public class BaseClass {
 
     String broserName="chrome";
-//    String broserName="Edge";
+    //    String broserName="Edge";
     public SeleniumAction seleniumAction;
- public  ExtentTest extentTest;
+    public  ExtentTest extentTest;
 
-// private static final String LOG_FILE = "log4j.properties";
-private static Logger logger = LogManager.getLogger(BaseClass.class);
+    // private static final String LOG_FILE = "log4j.properties";
+    private static Logger logger = LogManager.getLogger(BaseClass.class);
 
     public SeleniumAdaptor seleniumAdaptor;
     public static   WebDriver driver;
-//    public static  WebDriver drivers;
+    //    public static  WebDriver drivers;
     String webDriverlocationpath=  System.getProperty("user.dir")+File.separator +"src"+ File.separator+"test"+File.separator+"resources"+File.separator+"webdriver";
     static String screenshotlocationpath=  System.getProperty("user.dir") + File.separator +"target" + File.separator+"screenshots";
 
@@ -71,9 +71,9 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
     public WebDriver openBrowser(String url) throws Exception {
 
         if(broserName.equalsIgnoreCase("chrome")){
-         System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver1.exe");
-          ChromeOptions options = new ChromeOptions();
-          HashMap<String, Integer> contentSettings = new HashMap<String, Integer>();
+            System.setProperty("webdriver.chrome.driver",webDriverlocationpath+"\\chromedriver2.exe");
+            ChromeOptions options = new ChromeOptions();
+            HashMap<String, Integer> contentSettings = new HashMap<String, Integer>();
             HashMap<String, Object> profile = new HashMap<String, Object>();
             HashMap<String, Object> prefs = new HashMap<String, Object>();
 
@@ -97,7 +97,7 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
 
 
 //            options = uc.ChromeOptions();
-               }
+        }
         else if(broserName.equalsIgnoreCase("firefox")){
             System.setProperty("webdriver.firefox.marionette", webDriverlocationpath+ "\\geckodriver.exe");
             driver =new FirefoxDriver();
@@ -108,7 +108,7 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
             EdgeOptions options = new EdgeOptions();
 
             driver =new EdgeDriver();
-       }
+        }
         else{
             //If no browser passed throw exception
             throw new Exception("Browser is not correct");}
@@ -262,5 +262,4 @@ private static Logger logger = LogManager.getLogger(BaseClass.class);
 
 
 }
-
 

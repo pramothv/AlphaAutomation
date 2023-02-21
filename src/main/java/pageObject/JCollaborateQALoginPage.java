@@ -3,9 +3,7 @@ package pageObject;
 import base.BaseClass;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
@@ -74,7 +72,40 @@ public class JCollaborateQALoginPage extends BaseClass {
 
         return text;
     }
+    public void CheckingTRYALLOGOLoginScreen(){
 
+        WebElement i = driver.findElement(By.xpath("(//img[@class='logo-image'])[1]"));
+        Boolean p = (Boolean) ((JavascriptExecutor)driver).executeScript("return arguments[0].complete " + "&& typeof arguments[0].naturalWidth != \"undefined\" " + "&& arguments[0].naturalWidth > 0" , i);
+        if(p) {
+            System.out.println("TRYAL Logo is present");
+        }else{System.out.println("TRYAL Logo is not present");
+        }
+
+    }
+
+    public boolean clickKeyBoardENTER(){
+        try{
+//            seleniumAdaptor.pauseFor(2);
+            loggerObj.info("The txt_Password is not clicked");
+            seleniumAdaptor.JavaScriptClick(txt_Password);
+            txt_Password.sendKeys(new CharSequence[] {Keys.ENTER});
+            loggerObj.info("The ENTER button in Keyboard is clicked");
+
+            return true;
+        } catch(Exception var2) {
+            var2.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public void opentabJConnectDemoDAPResearchSite1(){
+
+        seleniumAdaptor.openNewTabJS(0);
+        seleniumAdaptor.switchToTab(0);
+        driver.get("https://jconnect-build.ut1.tryallabs.com/api/DallasPharmaInc/DAPResearchSite/login");
+
+    }
 
     public boolean captureUserName(String username){
         try{

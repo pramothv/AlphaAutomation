@@ -42,6 +42,8 @@ public class AlphaJConnectStepDef extends BaseClass {
 
     MyAccountPage myAccountPage;
 
+    public GenerateHAR generateHAR;
+
     public JCollaborateQALoginPage jCollaborateQALoginPage;
 
     public AmazonWebMailPage amazonWebMailPage;
@@ -88,9 +90,19 @@ public class AlphaJConnectStepDef extends BaseClass {
         this.scenario = scenario;
         Properties properties = obj.getProperty();
         System.out.println(properties);
-        openBrowser(properties.getProperty("browser.baseURL"));
+
+//        generateHAR = new GenerateHAR(driver);
+//        generateHAR.generateHARFile();
+
+        openBrowser(properties.getProperty("browser.baseURLTRYALJConnectDemoDAPResearchSite"));
+//        openBrowser(properties.getProperty("browser.baseURL"));
+//        openBrowserwithHAR(properties.getProperty("browser.baseURL"));
+//        openBrowserwithHAR(properties.getProperty("browser.baseURL"),scenario.getName().replaceAll(" ",""));
+
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//        extent = new ExtentReports();
+
+
+        //        extent = new ExtentReports();
 
 //        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "./Reports/report.html");
 //        ExtentReports extent;
@@ -98,14 +110,24 @@ public class AlphaJConnectStepDef extends BaseClass {
 //        extent.attachReporter(htmlReporter);
 //        htmlReporter.config().setDocumentTitle("MyReport");
 
-
-
-
-
     }
 
+//    @BeforeStep
+//    public void captureFunctionalitiesAtStep() throws IOException {
+//        /*Date date = new Date();
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
+//        String formattedDate = sdf.format(date);
+//        System.out.println(formattedDate);
+//        System.out.println("Capturing common function at every Steps "+formattedDate);*/
+//        BaseClass.har.writeTo(BaseClass.myHARFile);
+//    }
+
     @After
-    public void tearDown(Scenario scenario) {
+    public void tearDown(Scenario scenario) throws IOException, InterruptedException {
+
+//        generateHAR = new GenerateHAR(driver);
+//        generateHAR.generateHARFileAfter();
+
         if (scenario.isFailed()) {
 //            takeScreenShot(scenario);
 
@@ -125,7 +147,6 @@ public class AlphaJConnectStepDef extends BaseClass {
             System.out.println(String.valueOf(e));
         }
     }
-
 
 //
 //    @Before
@@ -12266,4 +12287,33 @@ public class AlphaJConnectStepDef extends BaseClass {
 
 
     }
+
+    @Given("I capture {string}{string} and click Login for jConnect")
+    public void iCaptureAndClickLoginForJConnect(String username, String password) {
+        seleniumAction = new SeleniumAction(driver);
+        seleniumAdaptor = new SeleniumAdaptor(driver);
+        jCollaborateQALoginPage = new JCollaborateQALoginPage(driver);
+        callSchedulePage = new CallSchedulePage(driver);
+
+        takeScreenShotNew(this.scenario);
+
+        jCollaborateQALoginPage.opentabJConnectDemoDAPResearchSite1();
+//        callSchedulePage.switchToTab0();
+//        driver.close();
+//        callSchedulePage.switchToTab0();
+
+        Assert.assertTrue("unable to captureUserName", jCollaborateQALoginPage.captureUserName(username));
+        Assert.assertTrue("unable to capturePassword", jCollaborateQALoginPage.capturePassword(password));
+
+        jCollaborateQALoginPage.CheckingTRYALLOGOLoginScreen();
+
+//        Assert.assertTrue("unable to clickLogIn", jCollaborateQALoginPage.clickLogIn());
+        Assert.assertTrue("unable to clickKeyBoardENTER", jCollaborateQALoginPage.clickKeyBoardENTER());
+
+        ExtentCucumberAdapter.addTestStepLog("Logged In Successfully");
+
+        takeScreenShotNew(this.scenario);
+
+    }
+
 }

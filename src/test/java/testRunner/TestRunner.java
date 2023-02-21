@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features={"src/test/resources/features"},
-        tags = "@testingWorkFLScenario2New",
+        tags = "@testinsamwer1234",
         glue= {"stepdefinition"},
         dryRun = false,
 //       plugin ={ "pretty","json:target/cucumber-reports/AutoumationReport/priscillareports.json"
